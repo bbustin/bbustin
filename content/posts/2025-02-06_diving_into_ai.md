@@ -184,7 +184,7 @@ and end up with this flake:
   in
   {
     # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#simple
+    # $ darwin-rebuild build --flake .
     darwinConfigurations."<your computer's hostname>" = nix-darwin.lib.darwinSystem {
       modules = [ configuration ];
     };
