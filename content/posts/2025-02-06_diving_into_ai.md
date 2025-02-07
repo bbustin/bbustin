@@ -1,5 +1,6 @@
 +++
 title = "Diving into AI"
+updated = 2025-02-07
 
 [taxonomies]
 tags = ["Research", "AI", "Nix"]
@@ -259,7 +260,8 @@ I create a `flake.nix` file in the `pytorch` directory.
 It turns out that I probably would have needed much less boiler-plate if I had gone
 the `nix-shell` route.
 
-To use this, open Terminal and change to the `pytorch` directory. Then run
+To use this, open Terminal and change to the `pytorch` directory. The first time
+you run this you must add it to git with `git add flake.nix`. Then run
 `nix develop`. This command, along with the flake takes care of everything. Your default 
 web browser will pop up in Jupyter lab and you're ready to follow along.
 
