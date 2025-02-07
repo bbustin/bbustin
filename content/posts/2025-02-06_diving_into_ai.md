@@ -150,7 +150,7 @@ and end up with this flake:
           # Like cat, but built in Rust and has syntax highlighting
           pkgs.bat
           
-          # recursice grep written in Rust - rg
+          # recursive grep written in Rust - rg
           pkgs.ripgrep
         ];
 
