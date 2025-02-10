@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-07
+updated = 2025-02-10
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
@@ -45,7 +45,7 @@ ollama run llama3.3 "How does agentic AI work?"
 This yields similar text which does not really help me much. But it sounds great!
 
 ```bash
-ollama run llama3.3 "What libraries are avasilable to implement agentic AI? What are their key differences?"
+ollama run llama3.3 "What libraries are available to implement agentic AI? What are their key differences?"
 ```
 
 The response is not helpful. That was a bit of a waste of time.
@@ -200,9 +200,13 @@ any interest in running the benchmark. I look more deeply at the file and it is 
 around these test datasets. I could probably modify `run.py` to do what I want; however, there
 are type Jupyter notebook files I can examine first.
 
-I need to modify the flake.nix to install jupyter and to run it. To make it a bit better than
-in my previous post, I made it not run jupyter if dependency installation failed. Otherwise,
-there could be a failure you don't notice and you bang your head on the wall trying to figure
+#### Modify the code to run the model locally and use my prompts rather than those from the benchmark
+
+I'm going to use Jupyter while figuring this all out. To do that, I modify the flake.nix file
+to install and run Jupyter. To make it a bit better than in my previous post
+[Diving into AI](@/posts/2025-02-06_diving_into_ai.md), I made it not run jupyter if 
+dependency installation fails. Otherwise, there could be a failure you don't notice 
+causing you bang your head on the wall trying to figure
 out why nothing is working. Here is the relevant part.
 
 ```nix
@@ -216,12 +220,12 @@ shellHook = ''
 '';
 ```
 
-Now `nix develop` and jupyter lab opens. I look at both `analysis.ipynb` and `visual_vs_text_browser.ipynb`
+Now when I run `nix develop` jupyter lab opens. I look at both `analysis.ipynb` and `visual_vs_text_browser.ipynb`
 and they also are doing the same thing to a certain degree. I know at this point, that I should really
 go back to the start, examine LangChain/LangGraph, smolagents, and then find what other libraries. But,
 franky, I find this fun.
 
-The game plan? Create a new Jupyter notebook with snippets from the existing ones and try to figure out how
+The game plan? Create a new Jupyter notebook with snippets from existing code and try to figure out how
 it all fits together. In the end, I get it to work running locally.
 
 Here is the flake.nix so far
@@ -266,7 +270,7 @@ Here is the python code I have so far. I have this in a jupyter notebook, but yo
 just as easily put it in a .py file and run it. (If you do that, you can edit the flake to not launch
 Jupyter or exit on its own.)
 
-```python,linenos
+```python
 # imports
 import os
 from datetime import datetime
@@ -461,8 +465,8 @@ and research the answer.
 
 There are still two large problems at this point:
 
-1. It is using the CPU, not the GPU. I will need to try to get it to use the MLX
-   framework, if possible.
+1. It is using the CPU, not the GPU. I will need to try to get it to use the MPS
+(Metal Performance Shaders), if possible.
 2. I am getting this error:
 ````
 Here is the plan of action that I will follow to solve the task:
@@ -496,16 +500,55 @@ class in `scripts/text_inspector_tool.py`. I think the model just does not under
 file is not actually present. Maybe it would work around this if allowed to run long enough,
 or I may need to use a different model.
 
-I am now going to try to get the MLX library to be used since this will greatly speed things
-up on my machine.
+#### Get it running on the GPU
 
-`mlx-lm` will not build when I try to install it with pip.
-```bash
-Failed to build sentencepiece
-ERROR: Could not build wheels for sentencepiece, which is required to install pyproject.toml-based projects
+First I write a method that returns the most appropriate device to have pytorch use. 
+You'll need to also add `import torch` with the rest of the imports for the code
+below to work.
+
+```python
+# Check for CUDA and MPS availability
+def get_device():
+    """
+    Determine the available device for computation.
+    
+    Returns:
+        torch.device: The device to use (CUDA, MPS, OpenCL, or CPU).
+    """
+    if torch.cuda.is_available():
+        device = torch.device("cuda")
+        print("Using CUDA")
+    elif torch.backends.mps.is_available():
+        device = torch.device("mps")
+        print("Using MPS")
+    elif torch.backends.opencl.is_available():  # Example for an additional device (e.g., OpenCL)
+        device = torch.device("opencl")
+        print("Using OpenCL")
+    else:
+        device = torch.device("cpu")
+        print("Using CPU")
+    return device
+
+device = get_device()
 ```
 
-If I scroll further up, I see that `cmake` is not found. I have the Nix flake make that available
-and it installs. 
+Then, we need to modify the code creating the smolagent model to pass the device down the
+stack to Pytorch. This is easy. In method `answer_single_question` change the first
+line to `model = TransformersModel(model_id, device_map=get_device())`.
 
-I'm at a stopping point. I will update when I get a chance to work some more on it.
+Success!
+
+#### Fix the error with the text_inspector_tool
+
+The error I am seeing is coming from `src/smolagents/agents.py` in the `step` method of
+`MultiStepAgent` when it is calling `fix_final_answer_code(parse_code_blobs(model_output))`.
+I notice that the output of the model appears to be getting cut off. Changing the fist line
+in `answer_single_question` to 
+`model = TransformersModel(model_id, device_map=get_device(), max_new_tokens=8192)` solves
+this problem.
+
+Now the problem I am encountering is that to search Google the serpapi is being used
+and this requires an API key. My plan is to modify this to use DuckDuckGo search.
+
+#### Change to using Duck Duck Go search
+
