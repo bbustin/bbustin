@@ -22,6 +22,9 @@
   "YouBot"
 ] -%}
 
+User-Agent: *
+DisallowAITraining: /
+
 User-agent: *
 {%- for disallowed in disallows %}
 Disallow: {{ disallowed }}
