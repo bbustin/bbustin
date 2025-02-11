@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-10
+updated = 2025-02-11
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
@@ -552,3 +552,32 @@ and this requires an API key. My plan is to modify this to use DuckDuckGo search
 
 #### Change to using Duck Duck Go search
 
+Right now it is using serpapi to use Google search. This needs an API key and
+relies on an intermediary between us and the search. I am going to experiment
+with addressing this in two ways:
+
+1. Modify the code to just perform a regular DuckDuckGo search
+2. Use a Python library that hits the DuckDuckGo search API
+
+##### Perform a regular Duck Duck Go Search
+
+In `scripts/text_web_browser.py` I change line 389 from
+`self.browser.visit_page(f"google: {query}", filter_year=filter_year)`
+
+```python
+url = f"https://duckduckgo.com/html/?q={query}"
+if filter_year:
+    url += f"&df={filter_year}-01-01..{filter_year}-12-31"
+self.browser.visit_page(url)
+```
+
+This is likely not going to be as good as structured output, but these LLMs
+often surprise me with their capacity to do unstructured tasks.
+
+I notice that as each step completes, the RAM utilization of the Python process
+goes up. There is likely a bug in my code where the model is getting loaded for each step
+rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instruct.
+
+It also appears to always get stuck on step 2.
+
+To be continued...
