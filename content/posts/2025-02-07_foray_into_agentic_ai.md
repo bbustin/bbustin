@@ -578,6 +578,6 @@ I notice that as each step completes, the RAM utilization of the Python process
 goes up. There is likely a bug in my code where the model is getting loaded for each step
 rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instruct.
 
-It also appears to always get stuck on step 2.
+It also significantly slows down on step 2. vMaybe because it has so much more context.
 
 To be continued...
