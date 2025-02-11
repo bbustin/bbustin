@@ -578,6 +578,12 @@ I notice that as each step completes, the RAM utilization of the Python process
 goes up. There is likely a bug in my code where the model is getting loaded for each step
 rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instruct.
 
-It also significantly slows down on step 2. vMaybe because it has so much more context.
+It also significantly slows down on step 2. Maybe because it has so much more context.
+It did work in the end though!
+
+I think having more structured search data could make the context smaller, leading to
+faster execution. It might also allow the AI to make better use of the search results.
+
+##### Search DuckDuckGo using a library
 
 To be continued...
