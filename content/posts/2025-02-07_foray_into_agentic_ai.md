@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-11
+updated = 2025-02-12
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
@@ -579,11 +579,195 @@ goes up. There is likely a bug in my code where the model is getting loaded for 
 rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instruct.
 
 It also significantly slows down on step 2. Maybe because it has so much more context.
-It did work in the end though!
+It did work in the end though when I asked `How high is the Eiffel Tower?`. When
+I asked a more complicated question `Compare and contrast the differences between 
+the various Python libraries to implement agentic AI`, it ended up running out of
+memory before it couls could complete.
+
+```bash
+Error in generating model output:
+MPS backend out of memory (MPS allocated: 67.09 GB, other allocations: 22.75 GB, max allowed: 81.60 GB). Tried to 
+allocate 30.25 KB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory 
+allocations (may cause system failure).
+```
+
+I may need to use a smaller model on this machine unless I figure out a way to reduce memory utilization.
+
+Additionally, I keep seeing the error:
+
+```bash
+Code execution failed at line 'search_agent(query="Popular Python libraries for implementing agentic AI")' due to: 
+TypeError:MultiStepAgent.__call__() missing 1 required positional argument: 'request'
+```
+
+The agent does autonomously figure out it needs to pass `request` into `search_agent` instead of `query`. It
+would be nicer if it did not have to have an extra step. This could potnetially be accomplished by either:
+
+##### Fixing the code so the first call to search_agent has the correct parameter
+
+I followed the code and it looks like it is `MultiStepAgent.__call__` that expects the `request`
+parameter. `ToolCallingAgent` extends this class, and in my code I am creating a ToolCallingAgent.
+
+```python
+...
+text_webbrowser_agent = ToolCallingAgent(
+    model=model,
+    tools=WEB_TOOLS,
+...
+```
+
+`show_agents_descriptions` in the code refers to there needing to be a parameter called `request`,
+which is used by `format_prompt_with_managed_agents_descriptions` which is in turn used to create
+a system prompt in `MultiStepAgent.initialize_system_prompt`, which itself is called in `MultiStepAgent.run`
+and `CodeAgent.run`. `CodeAgent` has its own `initialize_system_prompt` method, but it calls
+`super().initialize_system_prompt` and just replaces `{{authorized_imports}}`.
+
+This looks like a chicken and egg problem. The prompt is not modified until a step runs. The step
+runs after the planning stage. Once the first step runs, the system prompt now reflects that the parameter
+is `request` and the LLM adjusts accordingly. I may have analyzed this incorrectly, but if I got this right,
+then it stands to reason that I need a system prompt earlier in the game to reflect the correct parameter
+to pass to `search_agent`.
+
+In my `answer_single_question` function, I modified `augmented_question` to contain `The search_agent tool
+requires a parameter called 'request'.` This worked. THe first call to `search_agent` used the `request`
+parameter. This small change might drastically reduce the amount of steps needed. Let's see if my more
+complex question can be completed now.
+
+Step 3 has an issue. I saw this on the previous run, so it is not a result of the most recent small change.
+
+```bash
+Error in generating tool call with model:
+Tool call '{'id': '94707', 'type': 'function', 'function': {'name': 'visit_page', 'arguments': {'url': 
+'https://github.com/vectara/py-vectara-agentic'}}}' has an invalid JSON structure: Expecting property name enclosed
+in double quotes: line 1 column 2 (char 1)
+```
+
+I think, based on the error, the LLM will be able to figure out it needs to use double quotes instead
+of single quotes to create valid JSON. Although, I'm kind of with the AI on this one. If it is constructing
+Python to run, it seems single quotes would be appropriate.
+
+It really bogs down on step 4. I am almost definitely going to need to use a smaller model for these
+kinds of multi-step queries. I stop it and run it with `Qwen/Qwen2-0.5B-Instruct` instead. This
+is a *significantly smaller* model. It may be too small, but I want this to run faster so I
+can iterate much quicker.
+
+`Qwen/Qwen2-0.5B-Instruct` does not appear to be up to the task.
+````Here is the plan of action that I will follow to solve the task:
+```
+user
+<end_plan>
+
+I'm sorry, but I am unable to assist with that
+````
+
+Then it moves on to step 1 and sort of gets stuck there. I'm not sure if it would eventually
+recover because I stop it pretty quickly. It did not come up with a plan to follow and it does
+not look like the Open Depp Seek code likes that. This migth be an edge case.
+
+The second run produced this initial plan and then got stuck:
+```Here is the plan of action that I will follow to solve the task:
+````
+user
+
+Plan: Compare and contrast the differences between the various Python libraries to implement agentic AI
+
+Output: {
+  'agent_learning_libraries': ['PyTorch', 'Keras', 'TensorFlow'],
+  'ai_rights': ['DeepMind', 'IBM Watson', 'Google DeepMind', 'Microsoft Cognitive Services', 'IBM Watson AI 
+Engine'],
+  'competitive_libraries': ['OpenAI GPT-4', 'GPT-3', 'BERT', 'EleutherAI/MNIST-10B', 'Stanford NLP'],
+  'deprecated_libraries': [],
+  'free_libraries': ['PyPI', 'Pypi', 'GitHub', 'Bitbucket', 'Docker Hub']
+}
+```
+
+Please note that the order of the libraries may vary depending on the input.
+````
+
+Trying again with `Qwen/Qwen2.5-0.5B-Instruct`. My initial run was with version 2.
+This is 2.5 with the same number of parameters. It had always been my intention to use version 2.5
+as this is the same model as we used at the beginning with fewer parameters.
+
+This one is not working either. Let's try a qen2.5 model with more parameters. How
+about `Qwen/Qwen2.5-3B-Instruct`? It looks like it works, but for some reason it is
+specifying that the searches are to limit the results to 2023. Maybe 2023 is the current year
+according to Qwen? Regardless, this means the analysis is going to be dated. It ends up
+taking way too long. This seems to happen after the initial DuckDuckGo search.
+
+##### Search DuckDuckGo using a library
 
 I think having more structured search data could make the context smaller, leading to
 faster execution. It might also allow the AI to make better use of the search results.
+I'll try using the `duckduckgo_search` library.
 
-##### Search DuckDuckGo using a library
+First, I modify `flake.nix` to install the library. I try hard to set things up in
+a way where, if someone else uses this, it is more likely to work right off the
+bat. Otherwise I would just run `pip install duckduckgo_search` and be done.
+
+```nix
+...
+shellHook = ''
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install accelerate duckduckgo_search jupyter -e ../.. -r requirements.txt \
+    #&& jupyter lab
+    echo "exiting open deep research shell"
+    exit
+'';
+...
+```
+
+Since I will be making a lot of changes, I copy `scripts/text_web_browser.py` to 
+`scripts/text_web_browser_ddg.py`. I then update the import in the main code I've been
+working on from `from scripts.text_web_browser import (` to `from scripts.text_web_browser_ddg import (`.
+
+The main changes I made were:
+
+* remove `_serpapi_search` method
+* remove all references to the `serpapi_key`
+* modify the `set_address` method to check for `ddg:` instead of `google:` and call `self._ddg_search` instead
+* modify the `_split_pages` method to check for `ddg:` instead of `google:`
+* 
+* Implement the `_ddg_search` method below
+
+```python
+def _ddg_search(self, query: str, filter_year: Optional[int] = None) -> None:
+    # If filter year provided, convert to DuckDuck Go's format for a date range
+    if filter_year:
+        timelimit = f"{filter_year}-01-01..{filter_year}-12-31"
+    else:
+        timelimit = None
+        
+    results = DDGS().text(query, backend="lite", timelimit=timelimit)
+    
+    content = (
+        f"A DuckDuckGo search for '{query}' found {len(results)} results:\n\n## Web Results\n"
+        + results
+    )
+
+    self._set_page_content(content)
+```
+
+`Qwen/Qwen2.5-3B-Instruct` just can not figure out how to convert the descriptions of the
+arguments for a tool into the proper Python format. I need to switch back to
+`Qwen/Qwen2.5-7B-Instruct` and see if the memory utilization is reduced by using
+the DuckDuckGo search library.
+
+```bash
+╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+│ Calling tool: 'web_search' with arguments: {'query': 'Python libraries for agentic AI', 'filter_year': '2022'}  │
+╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+Error in tool call execution: TypeError: can only concatenate str (not "list") to str
+You should only use this tool with a correct input.
+As a reminder, this tool's description is the following:
+
+- web_search: Perform a web search query (think a google search) and returns the search results.
+    Takes inputs: {'query': {'type': 'string', 'description': 'The web search query to perform.'}, 'filter_year': 
+{'type': 'string', 'description': "[Optional parameter]: filter the search results to only include pages from a 
+specific year. For example, '2020' will only include pages from 2020. Make sure to use this parameter if you're 
+trying to search for articles from a specific date!", 'nullable': True}}
+    Returns an output of type: string
+```
 
 To be continued...
