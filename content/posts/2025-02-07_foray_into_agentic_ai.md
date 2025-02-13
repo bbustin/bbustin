@@ -770,4 +770,7 @@ trying to search for articles from a specific date!", 'nullable': True}}
     Returns an output of type: string
 ```
 
+The same problem happens with `Qwen/Qwen2.5-7B-Instruct` and there are some issues 
+with my `_ddg_search` method. I will get to the bottom of these problems.
+
 To be continued...
