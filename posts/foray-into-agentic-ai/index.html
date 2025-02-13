@@ -1,0 +1,783 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US">
+  
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/png" sizes="32x32" href="https://bustin.tech/favicon-32x32.png">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Foray into Agentic AI | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone c…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/foray-into-agentic-ai/">
+  <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://bustin.tech/images/logo.png">
+  <meta name="twitter:title" content="Foray into Agentic AI">
+  <meta name="twitter:description" content="I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone c…">
+  
+  <meta property="og:title" content="Foray into Agentic AI">
+  <meta property="og:description" content="I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone c…">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://bustin.tech/posts/foray-into-agentic-ai/">
+    <meta property="og:image" content="https://bustin.tech/images/logo.png">
+
+  <meta property="og:site_name" content="Foray into Agentic AI">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-02-07T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/foray-into-agentic-ai"
+      },
+      "headline": "Foray into Agentic AI",
+      "description": "I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone c…",
+      "wordcount": "2432",
+      "datePublished": "2025-02-07T00:00:00+00:00",
+      "dateModified": "2025-02-07T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Foray into Agentic AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/images/logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Foray into Agentic AI</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/research/" class="page-tag">Research</a>,
+      <a href="https://bustin.tech/tags/ai/" class="page-tag">AI</a>,
+      <a href="https://bustin.tech/tags/agents/" class="page-tag">Agents</a>,
+      <a href="https://bustin.tech/tags/nix/" class="page-tag">Nix</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-02-07T00:00:00+00:00">
+      Posted on February  7, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone could ask, for example:</p>
+<blockquote>
+<p>Compare the number of widgets sold in 2024 and 2025. Break down the data by quarter.
+Present the data in both a table as well as a line chart.</p>
+</blockquote>
+<p>The way they are able to accomplish this is by leveraging agentic AI.</p>
+<span id="continue-reading"></span><h1 id="what-is-agentic-ai">What is Agentic AI</h1>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">ollama run llama3.3 </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">What is agentic AI?</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<blockquote>
+<p>Agentic AI refers to artificial intelligence (AI) systems that are capable
+of autonomous decision-making and action, often with a degree of
+self-directedness or goal-oriented behavior. The term "agentic" comes from
+the word "agent," which in this context means an entity that can act
+independently to achieve its goals.</p>
+<p>Agentic AI systems are designed to perceive their environment, reason
+about it, and take actions that influence their surroundings. They may be
+able to learn from experience, adapt to changing situations, and make
+decisions based on their own objectives, rather than simply following
+pre-programmed instructions.</p>
+<p>...</p>
+</blockquote>
+<p>That sounds great, but does not help much here. What I am really looking to find out
+is how it works.</p>
+<p>Here we go again...</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">ollama run llama3.3 </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">How does agentic AI work?</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<p>This yields similar text which does not really help me much. But it sounds great!</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">ollama run llama3.3 </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">What libraries are available to implement agentic AI? What are their key differences?</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<p>The response is not helpful. That was a bit of a waste of time.</p>
+<p>In my conversation the other day, I learned that you create tools the AI can leverage
+to interact with the world. For example, you could create a tool for searching the web
+or a tool to perform mathematical operations. The AI needs to know about the existence
+of these tools and what they are for. Then it is either trained to or somehow figures out
+on its own when and how to use the tools.</p>
+<p>OpenAI recently created <a href="https://en.wikipedia.org/wiki/OpenAI_Deep_Research">DeepResearch</a>
+which can autonomously research your questions by searching the web. Shortly thereafter
+the Hugging Face community came out with
+<a href="https://huggingface.co/blog/open-deep-research">Open Deep Research</a> which purports to do the
+same thing. Just for funsies, I would like to get Open Deep Research running locally. Then
+I would like to ask it to research this area for me.</p>
+<h2 id="open-deep-research">Open Deep Research</h2>
+<h3 id="setup">Setup</h3>
+<p><strong><em>Editor's note:</em> This section is long and meandering. Feel free to skip to the next section
+if a play by play is not your idea of fun.</strong></p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">git clone https://github.com/huggingface/smolagents.git
+</span><span style="color:#6699cc;">cd smolagents
+</span><span style="color:#6699cc;">git checkout gaia-submission-r1
+</span><span style="color:#6699cc;">cd examples/open_deep_research
+</span></code></pre>
+<p>Now I have the code. I'm going to set up a shell with python and all of the requirements
+using a Nix flake just as I did in <a href="https://bustin.tech/posts/diving-into-ai/">Diving into AI</a>.
+I put the following in a file called <code>flake.nix</code> in the <code>open_deep_research</code> directory.</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#5fb3b3;">{
+</span><span>	</span><span style="color:#bb80b3;">description </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Shell for running Open Deep Research</span><span style="color:#5fb3b3;">&quot;;
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">inputs </span><span style="color:#5fb3b3;">= 
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= </span><span style="color:#99c794;">github:nixos/nixpkgs/nixos-unstable</span><span style="color:#5fb3b3;">;
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">outputs </span><span style="color:#5fb3b3;">= { </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">, ... }:
+</span><span>		</span><span style="color:#c594c5;">let
+</span><span>			</span><span style="color:#bb80b3;">system </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">aarch64-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span><span>			</span><span style="color:#bb80b3;">pkgs </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">legacyPackages</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">};
+</span><span>			</span><span style="color:#bb80b3;">pythonVersion </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">python313</span><span style="color:#5fb3b3;">&quot;;
+</span><span>		</span><span style="color:#c594c5;">in
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">devShells</span><span>.</span><span style="color:#5fb3b3;">${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">}</span><span>.</span><span style="color:#bb80b3;">default </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">mkShell 
+</span><span>				</span><span style="color:#5fb3b3;">{
+</span><span>					</span><span style="color:#bb80b3;">buildInputs </span><span style="color:#5fb3b3;">= [ 
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.&quot;${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Packages</span><span style="color:#5fb3b3;">&quot;.</span><span style="color:#f99157;">pip
+</span><span>					</span><span style="color:#5fb3b3;">];
+</span><span>
+</span><span>					</span><span style="color:#bb80b3;">shellHook </span><span style="color:#5fb3b3;">= &#39;&#39;
+</span><span style="color:#99c794;">						python -m venv .venv
+</span><span style="color:#99c794;">						source .venv/bin/activate
+</span><span style="color:#99c794;">						pip install -r requirements.txt
+</span><span style="color:#99c794;">						echo &quot;When done with this shell remember to press ctrl+d&quot;
+</span><span style="color:#99c794;">					</span><span style="color:#5fb3b3;">&#39;&#39;;
+</span><span>					
+</span><span>				</span><span style="color:#5fb3b3;">};
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><strong><em>Note:</em> Nix allows flakes to be composed. At some point, I may be able to create a flake
+with most of the boilerplate. Then I can have flakes in my individual projects that import it,
+and mostly just need to have the specific differences needed for that project. I may get to that
+at some point, but I am not sure if I want to do that. It adds more complication. Sometimes it is
+nice for an entity to stand alone. Even if there is more boilerplate.</strong></p>
+<p>Now I run <code>nix develop</code> and I get the error:</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>error: path &#39;/nix/store/siwymp8gjx9fi4rag6x3x4hhcxgh8zfv-source/examples/open_deep_research/flake.nix&#39; does not exist
+</span></code></pre>
+<p>When nix is running out of a directory that is a git repository, it will only see files
+that are added to the git repository. It does not need the changes to be committed, and you
+do not have to <code>git add</code> again if you change the flake. It would be nice if this error
+message could be improved to provide a bit more guidance for the end user.</p>
+<p>I run <code>git add flake.nix</code>. Now <code>nix develop</code> works, the dependencies are installed,
+and I have the bash shell in front of me. Time to see if it works.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">.venv</span><span style="color:#5fb3b3;">)</span><span style="color:#6699cc;"> bash-5.2$ python run.py
+</span><span style="color:#6699cc;">Traceback (most recent call last</span><span>)</span><span style="color:#6699cc;">:
+</span><span>  </span><span style="color:#6699cc;">File </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">/Users/brianbustin/projects/smolagents/examples/open_deep_research/run.py</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#6699cc;">, line 14, in </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#6699cc;">module</span><span style="color:#5fb3b3;">&gt;
+</span><span>    </span><span style="color:#6699cc;">from scripts.reformulator import prepare_response
+</span><span>  </span><span style="color:#6699cc;">File </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">/Users/brianbustin/projects/smolagents/examples/open_deep_research/scripts/reformulator.py</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#6699cc;">, line 5, in </span><span style="color:#5fb3b3;">&lt;</span><span style="color:#6699cc;">module</span><span style="color:#5fb3b3;">&gt;
+</span><span>    </span><span style="color:#6699cc;">from smolagents.models import MessageRole, Model
+</span><span style="color:#6699cc;">ModuleNotFoundError: No module named </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">smolagents</span><span style="color:#5fb3b3;">&#39;
+</span></code></pre>
+<p>I'm surprised that is not in the <code>requirements.txt</code>. When I look at the <code>visual_vs_textbrowser.ipynb</code> file, it starts with the line <code>!pip install "smolagents[litellm]" -q</code>. I modify the flake to install the optional smolagents with
+the optional litellm dependency <code>pip install "smolagents[litellm]" -r requirements.txt</code>.</p>
+<p>Second try.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">.venv</span><span style="color:#5fb3b3;">)</span><span style="color:#6699cc;"> bash-5.2$ python run.py
+</span><span style="color:#6699cc;">/Users/brianbustin/projects/smolagents/examples/open_deep_research/.venv/lib/python3.13/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">t find ffmpeg or avconv - defaulting to ffmpeg, but may not work
+</span><span style="color:#99c794;">  warn(&quot;Couldn</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">t find ffmpeg or avconv - defaulting to ffmpeg, but may not work</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">, RuntimeWarning)
+</span><span style="color:#99c794;">processor_config.json: 100%|███████████████████| 483/483 [00:00&lt;00:00, 1.03MB/s]
+</span><span style="color:#99c794;">Chat templates should be in a &#39;chat_template.jinja&#39; file but found key=&#39;chat_template&#39; in the processor&#39;s config. Make sure to move your template to its own file.
+</span><span style="color:#99c794;">preprocessor_config.json: 100%|████████████████| 460/460 [00:00&lt;00:00, 1.84MB/s]
+</span><span style="color:#99c794;">tokenizer_config.json: 100%|███████████████| 1.64k/1.64k [00:00&lt;00:00, 8.31MB/s]
+</span><span style="color:#99c794;">tokenizer.model: 100%|███████████████████████| 493k/493k [00:00&lt;00:00, 5.22MB/s]
+</span><span style="color:#99c794;">tokenizer.json: 100%|██████████████████████| 1.80M/1.80M [00:00&lt;00:00, 6.78MB/s]
+</span><span style="color:#99c794;">added_tokens.json: 100%|██████████████████████| 92.0/92.0 [00:00&lt;00:00, 503kB/s]
+</span><span style="color:#99c794;">special_tokens_map.json: 100%|█████████████| 1.04k/1.04k [00:00&lt;00:00, 3.65MB/s]
+</span><span style="color:#99c794;">Traceback (most recent call last):
+</span><span style="color:#99c794;">  File </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#6699cc;">/Users/brianbustin/projects/smolagents/examples/open_deep_research/run.py</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">, line 33, in &lt;module&gt;
+</span><span style="color:#99c794;">    from smolagents import (
+</span><span style="color:#99c794;">    ...&lt;6 lines&gt;...
+</span><span style="color:#99c794;">    )
+</span><span style="color:#99c794;">ImportError: cannot import name &#39;MANAGED_AGENT_PROMPT&#39; from &#39;smolagents&#39; (/Users/brianbustin/projects/smolagents/examples/open_deep_research/.venv/lib/python3.13/site-packages/smolagents/__init__.py)
+</span></code></pre>
+<p>There are two issues here. The first is that ffmpeg is not available. For that, I just add
+a line with <code>pkgs.ffmpeg</code> to the buildInputs section. The second issue may be related to
+<a href="https://github.com/huggingface/smolagents/issues/522">this bug report</a>. It turns out the
+smolagents library has changes in the branch we checked out from what is published to the net.
+At the time of this writing, this code has been out for only 3 days. We need to install the
+version of the library in this branch.</p>
+<p>I change the flake.nix to have <code>pip install -e ../.. -r requirements.txt</code>. This tells
+pip to install smolagents in development mode from the root of the git repository we cloned
+as well as the requirements needed for open deep research.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">.venv</span><span style="color:#5fb3b3;">)</span><span style="color:#6699cc;"> bash-5.2$ python run.py
+</span><span style="color:#6699cc;">Chat templates should be in a </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">chat_template.jinja</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> file but found key=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">chat_template</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> in the processor</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">s config. Make sure to move your template to its own file.
+</span><span style="color:#99c794;">
+</span><span style="color:#99c794;">    _|    _|  _|    _|    _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|_|_|_|    _|_|      _|_|_|  _|_|_|_|
+</span><span style="color:#99c794;">    _|    _|  _|    _|  _|        _|          _|    _|_|    _|  _|            _|        _|    _|  _|        _|
+</span><span style="color:#99c794;">    _|_|_|_|  _|    _|  _|  _|_|  _|  _|_|    _|    _|  _|  _|  _|  _|_|      _|_|_|    _|_|_|_|  _|        _|_|_|
+</span><span style="color:#99c794;">    _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|
+</span><span style="color:#99c794;">    _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|
+</span><span style="color:#99c794;">
+</span><span style="color:#99c794;">Enter your token (input will not be visible): 
+</span></code></pre>
+<p>This is great except why do I need a token to have it log in to Hugging Face? My goal is
+to run it completely locally. Time to dig into the code in <code>run.py</code> to see what is
+happening.</p>
+<p>It turns out there is a benchmarking dataset called <code>gaia-benchmark/GAIA</code>. I really do not have
+any interest in running the benchmark. I look more deeply at the file and it is completely built
+around these test datasets. I could probably modify <code>run.py</code> to do what I want; however, there
+are type Jupyter notebook files I can examine first.</p>
+<h4 id="modify-the-code-to-run-the-model-locally-and-use-my-prompts-rather-than-those-from-the-benchmark">Modify the code to run the model locally and use my prompts rather than those from the benchmark</h4>
+<p>I'm going to use Jupyter while figuring this all out. To do that, I modify the flake.nix file
+to install and run Jupyter. To make it a bit better than in my previous post
+<a href="https://bustin.tech/posts/diving-into-ai/">Diving into AI</a>, I made it not run jupyter if
+dependency installation fails. Otherwise, there could be a failure you don't notice
+causing you bang your head on the wall trying to figure
+out why nothing is working. Here is the relevant part.</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#f99157;">shellHook </span><span>= </span><span style="color:#5fb3b3;">&#39;&#39;
+</span><span style="color:#99c794;">    python -m venv .venv
+</span><span style="color:#99c794;">    source .venv/bin/activate
+</span><span style="color:#99c794;">    pip install jupyter -e ../.. -r requirements.txt \
+</span><span style="color:#99c794;">    &amp;&amp; jupyter lab
+</span><span style="color:#99c794;">    echo &quot;exiting open deep research shell&quot;
+</span><span style="color:#99c794;">    exit
+</span><span style="color:#5fb3b3;">&#39;&#39;</span><span>;
+</span></code></pre>
+<p>Now when I run <code>nix develop</code> jupyter lab opens. I look at both <code>analysis.ipynb</code> and <code>visual_vs_text_browser.ipynb</code>
+and they also are doing the same thing to a certain degree. I know at this point, that I should really
+go back to the start, examine LangChain/LangGraph, smolagents, and then find what other libraries. But,
+franky, I find this fun.</p>
+<p>The game plan? Create a new Jupyter notebook with snippets from existing code and try to figure out how
+it all fits together. In the end, I get it to work running locally.</p>
+<p>Here is the flake.nix so far</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#5fb3b3;">{
+</span><span>	</span><span style="color:#bb80b3;">description </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Shell for running Open Deep Research</span><span style="color:#5fb3b3;">&quot;;
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">inputs </span><span style="color:#5fb3b3;">= 
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= </span><span style="color:#99c794;">github:nixos/nixpkgs/nixos-unstable</span><span style="color:#5fb3b3;">;
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">outputs </span><span style="color:#5fb3b3;">= { </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">, ... }:
+</span><span>		</span><span style="color:#c594c5;">let
+</span><span>			</span><span style="color:#bb80b3;">system </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">aarch64-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span><span>			</span><span style="color:#bb80b3;">pkgs </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">legacyPackages</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">};
+</span><span>			</span><span style="color:#bb80b3;">pythonVersion </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">python313</span><span style="color:#5fb3b3;">&quot;;
+</span><span>		</span><span style="color:#c594c5;">in
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">devShells</span><span>.</span><span style="color:#5fb3b3;">${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">}</span><span>.</span><span style="color:#bb80b3;">default </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">mkShell 
+</span><span>				</span><span style="color:#5fb3b3;">{
+</span><span>					</span><span style="color:#bb80b3;">buildInputs </span><span style="color:#5fb3b3;">= [ 
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.&quot;${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Packages</span><span style="color:#5fb3b3;">&quot;.</span><span style="color:#f99157;">pip
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">ffmpeg
+</span><span>					</span><span style="color:#5fb3b3;">];
+</span><span>
+</span><span>					</span><span style="color:#bb80b3;">shellHook </span><span style="color:#5fb3b3;">= &#39;&#39;
+</span><span style="color:#99c794;">						python -m venv .venv
+</span><span style="color:#99c794;">						source .venv/bin/activate
+</span><span style="color:#99c794;">						pip install accelerate jupyter -e ../.. -r requirements.txt \
+</span><span style="color:#99c794;">						&amp;&amp; jupyter lab
+</span><span style="color:#99c794;">						echo &quot;exiting open deep research shell&quot;
+</span><span style="color:#99c794;">						exit
+</span><span style="color:#99c794;">					</span><span style="color:#5fb3b3;">&#39;&#39;;
+</span><span>				</span><span style="color:#5fb3b3;">};
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>Here is the python code I have so far. I have this in a jupyter notebook, but you could
+just as easily put it in a .py file and run it. (If you do that, you can edit the flake to not launch
+Jupyter or exit on its own.)</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># imports
+</span><span style="color:#c594c5;">import </span><span>os
+</span><span style="color:#c594c5;">from </span><span>datetime </span><span style="color:#c594c5;">import </span><span>datetime
+</span><span style="color:#c594c5;">from </span><span>typing </span><span style="color:#c594c5;">import </span><span>List
+</span><span>
+</span><span style="color:#c594c5;">from </span><span>scripts</span><span style="color:#5fb3b3;">.</span><span>reformulator </span><span style="color:#c594c5;">import </span><span>prepare_response
+</span><span style="color:#c594c5;">from </span><span>scripts</span><span style="color:#5fb3b3;">.</span><span>run_agents </span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">(
+</span><span>    get_single_file_description</span><span style="color:#5fb3b3;">,
+</span><span>    get_zip_description</span><span style="color:#5fb3b3;">,
+</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">from </span><span>scripts</span><span style="color:#5fb3b3;">.</span><span>text_inspector_tool </span><span style="color:#c594c5;">import </span><span>TextInspectorTool
+</span><span style="color:#c594c5;">from </span><span>scripts</span><span style="color:#5fb3b3;">.</span><span>text_web_browser </span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">(
+</span><span>    ArchiveSearchTool</span><span style="color:#5fb3b3;">,
+</span><span>    FinderTool</span><span style="color:#5fb3b3;">,
+</span><span>    FindNextTool</span><span style="color:#5fb3b3;">,
+</span><span>    PageDownTool</span><span style="color:#5fb3b3;">,
+</span><span>    PageUpTool</span><span style="color:#5fb3b3;">,
+</span><span>    SearchInformationTool</span><span style="color:#5fb3b3;">,
+</span><span>    SimpleTextBrowser</span><span style="color:#5fb3b3;">,
+</span><span>    VisitTool</span><span style="color:#5fb3b3;">,
+</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#c594c5;">from </span><span>smolagents </span><span style="color:#c594c5;">import </span><span style="color:#5fb3b3;">(
+</span><span>    MANAGED_AGENT_PROMPT</span><span style="color:#5fb3b3;">,
+</span><span>    CodeAgent</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#5f6364;">#HfApiModel,
+</span><span>    </span><span style="color:#5f6364;">#LiteLLMModel,
+</span><span>    TransformersModel</span><span style="color:#5fb3b3;">,
+</span><span>    Model</span><span style="color:#5fb3b3;">,
+</span><span>    ToolCallingAgent</span><span style="color:#5fb3b3;">,
+</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#5f6364;"># defines additional imports CodeAgent can use
+</span><span>AUTHORIZED_IMPORTS </span><span style="color:#5fb3b3;">= [
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">requests</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">zipfile</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">os</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">pandas</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">numpy</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">sympy</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">json</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">bs4</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">pubchempy</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">xml</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">yahoo_finance</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Bio</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">sklearn</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">scipy</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">pydub</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">io</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">PIL</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">chess</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">PyPDF2</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">pptx</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">torch</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">datetime</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">fractions</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">csv</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span style="color:#5f6364;"># this is used in a bunch of places. I will need to figure out what it is for.
+</span><span>custom_role_conversions </span><span style="color:#5fb3b3;">= {&quot;</span><span style="color:#99c794;">tool-call</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">assistant</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">tool-response</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">user</span><span style="color:#5fb3b3;">&quot;}
+</span><span>
+</span><span style="color:#5f6364;"># create the browser and the agents that will use it
+</span><span>user_agent </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span>BROWSER_CONFIG </span><span style="color:#5fb3b3;">= {
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">viewport_size</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">1024 </span><span style="color:#5fb3b3;">* </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">downloads_folder</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">downloads_folder</span><span style="color:#5fb3b3;">&quot;,
+</span><span>    </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">request_kwargs</span><span style="color:#5fb3b3;">&quot;: {
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">headers</span><span style="color:#5fb3b3;">&quot;: {&quot;</span><span style="color:#99c794;">User-Agent</span><span style="color:#5fb3b3;">&quot;: </span><span>user_agent</span><span style="color:#5fb3b3;">},
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">timeout</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">300</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#6699cc;">os</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">makedirs</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">./</span><span style="color:#5fb3b3;">{</span><span>BROWSER_CONFIG</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">downloads_folder</span><span style="color:#5fb3b3;">&#39;]}&quot;, </span><span style="color:#f99157;">exist_ok</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">create_agent_hierarchy</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">: </span><span>Model</span><span style="color:#5fb3b3;">):
+</span><span>    text_limit </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">100000
+</span><span>    ti_tool </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">TextInspectorTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">text_limit</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    browser </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">SimpleTextBrowser</span><span style="color:#5fb3b3;">(**</span><span>BROWSER_CONFIG</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    WEB_TOOLS </span><span style="color:#5fb3b3;">= [
+</span><span>        </span><span style="color:#6699cc;">SearchInformationTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">VisitTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">PageUpTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">PageDownTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">FinderTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">FindNextTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">ArchiveSearchTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">),
+</span><span>        </span><span style="color:#6699cc;">TextInspectorTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">text_limit</span><span style="color:#5fb3b3;">),
+</span><span>    </span><span style="color:#5fb3b3;">]
+</span><span>    text_webbrowser_agent </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">ToolCallingAgent</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">tools</span><span style="color:#5fb3b3;">=</span><span>WEB_TOOLS</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">max_steps</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">20</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">verbosity_level</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">planning_interval</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">name</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">search_agent</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">description</span><span style="color:#5fb3b3;">=&quot;&quot;&quot;</span><span style="color:#99c794;">A team member that will search the internet to answer your question.
+</span><span style="color:#99c794;">    Ask him for all your questions that require browsing the web.
+</span><span style="color:#99c794;">    Provide him as much context as possible, in particular if you need to search on a specific timeframe!
+</span><span style="color:#99c794;">    And don&#39;t hesitate to provide him with a complex search task, like finding a difference between two webpages.
+</span><span style="color:#99c794;">    Your request must be a real sentence, not a google search! Like &quot;Find me this information (...)&quot; rather than a few keywords.
+</span><span style="color:#99c794;">    </span><span style="color:#5fb3b3;">&quot;&quot;&quot;,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">provide_run_summary</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">managed_agent_prompt</span><span style="color:#5fb3b3;">=</span><span>MANAGED_AGENT_PROMPT
+</span><span style="color:#6699cc;">        </span><span style="color:#5fb3b3;">+ &quot;&quot;&quot;</span><span style="color:#99c794;">You can navigate to .txt online files.
+</span><span style="color:#99c794;">    If a non-html page is in another format, especially .pdf or a Youtube video, use tool &#39;inspect_file_as_text&#39; to inspect it.
+</span><span style="color:#99c794;">    Additionally, if after some searching you find out that you need more information to answer the question, you can use `final_answer` with your request for clarification as argument to request for more information.</span><span style="color:#5fb3b3;">&quot;&quot;&quot;,
+</span><span style="color:#6699cc;">    </span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    manager_agent </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">CodeAgent</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#5f6364;">#tools=[visualizer, ti_tool],
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">tools</span><span style="color:#5fb3b3;">=[</span><span style="color:#6699cc;">ti_tool</span><span style="color:#5fb3b3;">],
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">max_steps</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">12</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">verbosity_level</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">additional_authorized_imports</span><span style="color:#5fb3b3;">=</span><span>AUTHORIZED_IMPORTS</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">planning_interval</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">managed_agents</span><span style="color:#5fb3b3;">=[</span><span style="color:#6699cc;">text_webbrowser_agent</span><span style="color:#5fb3b3;">],
+</span><span style="color:#6699cc;">    </span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>manager_agent
+</span><span>    
+</span><span style="color:#5f6364;"># ability to actually answer a question
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">answer_single_question</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">question</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">model_id</span><span style="color:#5fb3b3;">):
+</span><span>    model </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">TransformersModel</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">model_id</span><span style="color:#5fb3b3;">)
+</span><span>    
+</span><span>    document_inspection_tool </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">TextInspectorTool</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">100000</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    agent </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">create_agent_hierarchy</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    augmented_question </span><span style="color:#5fb3b3;">= &quot;&quot;&quot;</span><span style="color:#99c794;">You have one question to answer. It is paramount that you provide a correct answer.
+</span><span style="color:#99c794;">Give it all you can: I know for a fact that you have access to all the relevant tools to solve it and find the correct answer (the answer does exist). Failure or &#39;I cannot answer&#39; or &#39;None found&#39; will not be tolerated, success will be rewarded.
+</span><span style="color:#99c794;">Run verification steps if that&#39;s needed, you must make sure you find the correct answer!
+</span><span style="color:#99c794;">Here is the task:
+</span><span style="color:#5fb3b3;">&quot;&quot;&quot; + </span><span>question
+</span><span>
+</span><span>    start_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">datetime</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">now</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">strftime</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">%Y-%m-%d %H:%M:%S</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">try</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#5f6364;"># Run agent 🚀
+</span><span>        final_result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">agent</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">run</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">augmented_question</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>        agent_memory </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">agent</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">write_memory_to_messages</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">summary_mode</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>        final_result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">prepare_response</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">augmented_question</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">agent_memory</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">reformulation_model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>        output </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">final_result</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#c594c5;">for </span><span>memory_step </span><span style="color:#c594c5;">in </span><span>agent</span><span style="color:#5fb3b3;">.</span><span>memory</span><span style="color:#5fb3b3;">.</span><span>steps</span><span style="color:#5fb3b3;">:
+</span><span>            memory_step</span><span style="color:#5fb3b3;">.</span><span>model_input_messages </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+</span><span>        intermediate_steps </span><span style="color:#5fb3b3;">= [</span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">step</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">for </span><span>step </span><span style="color:#c594c5;">in </span><span>agent</span><span style="color:#5fb3b3;">.</span><span>memory</span><span style="color:#5fb3b3;">.</span><span>steps</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># Check for parsing errors which indicate the LLM failed to follow the required format
+</span><span>        parsing_error </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">True </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">any</span><span style="color:#5fb3b3;">([&quot;</span><span style="color:#99c794;">AgentParsingError</span><span style="color:#5fb3b3;">&quot; in </span><span style="color:#6699cc;">step </span><span style="color:#c594c5;">for </span><span style="color:#6699cc;">step </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">intermediate_steps</span><span style="color:#5fb3b3;">]) </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">False
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># check if iteration limit exceeded
+</span><span>        iteration_limit_exceeded </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">True </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Agent stopped due to iteration limit or time limit.</span><span style="color:#5fb3b3;">&quot; in </span><span>output </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">False
+</span><span>        raised_exception </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">False
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">except </span><span style="color:#fac863;">Exception </span><span style="color:#c594c5;">as </span><span>e</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Error on </span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#6699cc;">augmented_question</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">)
+</span><span>        output </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+</span><span>        intermediate_steps </span><span style="color:#5fb3b3;">= []
+</span><span>        parsing_error </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">False
+</span><span>        iteration_limit_exceeded </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">False
+</span><span>        exception </span><span style="color:#5fb3b3;">= </span><span>e
+</span><span>        raised_exception </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">True
+</span><span>    end_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">datetime</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">now</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">strftime</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">%Y-%m-%d %H:%M:%S</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    annotated_example </span><span style="color:#5fb3b3;">= {
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">agent_name</span><span style="color:#5fb3b3;">&quot;: </span><span>model</span><span style="color:#5fb3b3;">.</span><span>model_id</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">question</span><span style="color:#5fb3b3;">&quot;: </span><span>question</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">augmented_question</span><span style="color:#5fb3b3;">&quot;: </span><span>augmented_question</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">prediction</span><span style="color:#5fb3b3;">&quot;: </span><span>output</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">intermediate_steps</span><span style="color:#5fb3b3;">&quot;: </span><span>intermediate_steps</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">parsing_error</span><span style="color:#5fb3b3;">&quot;: </span><span>parsing_error</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">iteration_limit_exceeded</span><span style="color:#5fb3b3;">&quot;: </span><span>iteration_limit_exceeded</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">agent_error</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">exception</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">if </span><span>raised_exception </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">start_time</span><span style="color:#5fb3b3;">&quot;: </span><span>start_time</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">end_time</span><span style="color:#5fb3b3;">&quot;: </span><span>end_time</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#c594c5;">return </span><span>annotated_example
+</span><span>    
+</span><span style="color:#6699cc;">answer_single_question</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">How high is the Eiffel Tower?</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">Qwen/Qwen2.5-7B-Instruct</span><span style="color:#5fb3b3;">&quot;)
+</span></code></pre>
+<p>This code all comes from <code>run.py</code>. I made some changes to run the model locally instead
+of calling an API to a cloud provider. I also removed all of the parts that rely on
+the GAIA benchmark. My goal here is to be able to ask a question and then have it go out
+and research the answer.</p>
+<p>There are still two large problems at this point:</p>
+<ol>
+<li>It is using the CPU, not the GPU. I will need to try to get it to use the MPS
+(Metal Performance Shaders), if possible.</li>
+<li>I am getting this error:</li>
+</ol>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>Here is the plan of action that I will follow to solve the task:
+</span><span>```
+</span><span>.imgur
+</span><span>user
+</span><span>
+</span><span>inspect_file_as_text(file_path=&quot;EiffelTowerHeight.txt&quot;,
+</span><span>```
+</span><span>
+</span><span>Output message of the LLM:
+</span><span>user                                                                                                               
+</span><span>thought: I will use the `inspect_file_as_text` tool to read the text    
+</span><span>
+</span><span>Error in code parsing:
+</span><span>Your code snippet is invalid, because the regex pattern ```(?:py|python)?\n(.*?)\n``` was not found in it.
+</span><span>Here is your code snippet:
+</span><span>ynchronized
+</span><span>user
+</span><span>thought: I will use the `inspect_file_as_text` tool to
+</span><span>Make sure to include code with the correct pattern, for instance:
+</span><span>Thoughts: Your thoughts
+</span><span>Code:
+</span><span>```py
+</span><span># Your python code here
+</span><span>```&lt;end_code&gt;
+</span><span>Make sure to provide correct code blobs.
+</span></code></pre>
+<p>There is no <code>EiffelTowerHeight.txt</code> file. <code>inspect_file_as_text</code> refers to the 'TextInspectorTool'
+class in <code>scripts/text_inspector_tool.py</code>. I think the model just does not understand that the
+file is not actually present. Maybe it would work around this if allowed to run long enough,
+or I may need to use a different model.</p>
+<h4 id="get-it-running-on-the-gpu">Get it running on the GPU</h4>
+<p>First I write a method that returns the most appropriate device to have pytorch use.
+You'll need to also add <code>import torch</code> with the rest of the imports for the code
+below to work.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># Check for CUDA and MPS availability
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">get_device</span><span style="color:#5fb3b3;">():
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot;
+</span><span style="color:#5f6364;">    Determine the available device for computation.
+</span><span style="color:#5f6364;">    
+</span><span style="color:#5f6364;">    Returns:
+</span><span style="color:#5f6364;">        torch.device: The device to use (CUDA, MPS, OpenCL, or CPU).
+</span><span style="color:#5f6364;">    &quot;&quot;&quot;
+</span><span>    </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cuda</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_available</span><span style="color:#5fb3b3;">():
+</span><span>        device </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">device</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">cuda</span><span style="color:#5fb3b3;">&quot;)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Using CUDA</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">elif </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">backends</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">mps</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_available</span><span style="color:#5fb3b3;">():
+</span><span>        device </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">device</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">mps</span><span style="color:#5fb3b3;">&quot;)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Using MPS</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">elif </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">backends</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">opencl</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">is_available</span><span style="color:#5fb3b3;">():  </span><span style="color:#5f6364;"># Example for an additional device (e.g., OpenCL)
+</span><span>        device </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">device</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">opencl</span><span style="color:#5fb3b3;">&quot;)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Using OpenCL</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>        device </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">torch</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">device</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">cpu</span><span style="color:#5fb3b3;">&quot;)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Using CPU</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>device
+</span><span>
+</span><span>device </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">get_device</span><span style="color:#5fb3b3;">()
+</span></code></pre>
+<p>Then, we need to modify the code creating the smolagent model to pass the device down the
+stack to Pytorch. This is easy. In method <code>answer_single_question</code> change the first
+line to <code>model = TransformersModel(model_id, device_map=get_device())</code>.</p>
+<p>Success!</p>
+<h4 id="fix-the-error-with-the-text-inspector-tool">Fix the error with the text_inspector_tool</h4>
+<p>The error I am seeing is coming from <code>src/smolagents/agents.py</code> in the <code>step</code> method of
+<code>MultiStepAgent</code> when it is calling <code>fix_final_answer_code(parse_code_blobs(model_output))</code>.
+I notice that the output of the model appears to be getting cut off. Changing the fist line
+in <code>answer_single_question</code> to
+<code>model = TransformersModel(model_id, device_map=get_device(), max_new_tokens=8192)</code> solves
+this problem.</p>
+<p>Now the problem I am encountering is that to search Google the serpapi is being used
+and this requires an API key. My plan is to modify this to use DuckDuckGo search.</p>
+<h4 id="change-to-using-duck-duck-go-search">Change to using Duck Duck Go search</h4>
+<p>Right now it is using serpapi to use Google search. This needs an API key and
+relies on an intermediary between us and the search. I am going to experiment
+with addressing this in two ways:</p>
+<ol>
+<li>Modify the code to just perform a regular DuckDuckGo search</li>
+<li>Use a Python library that hits the DuckDuckGo search API</li>
+</ol>
+<h5 id="perform-a-regular-duck-duck-go-search">Perform a regular Duck Duck Go Search</h5>
+<p>In <code>scripts/text_web_browser.py</code> I change line 389 from
+<code>self.browser.visit_page(f"google: {query}", filter_year=filter_year)</code></p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>url </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">https://duckduckgo.com/html/?q=</span><span style="color:#5fb3b3;">{</span><span>query</span><span style="color:#5fb3b3;">}&quot;
+</span><span style="color:#c594c5;">if </span><span>filter_year</span><span style="color:#5fb3b3;">:
+</span><span>    url </span><span style="color:#5fb3b3;">+= </span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">&amp;df=</span><span style="color:#5fb3b3;">{</span><span>filter_year</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">-01-01..</span><span style="color:#5fb3b3;">{</span><span>filter_year</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">-12-31</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">browser</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">visit_page</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">url</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>This is likely not going to be as good as structured output, but these LLMs
+often surprise me with their capacity to do unstructured tasks.</p>
+<p>I notice that as each step completes, the RAM utilization of the Python process
+goes up. There is likely a bug in my code where the model is getting loaded for each step
+rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instruct.</p>
+<p>It also significantly slows down on step 2. Maybe because it has so much more context.
+It did work in the end though when I asked <code>How high is the Eiffel Tower?</code>. When
+I asked a more complicated question <code>Compare and contrast the differences between  the various Python libraries to implement agentic AI</code>, it ended up running out of
+memory before it couls could complete.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">Error in generating model output:
+</span><span style="color:#6699cc;">MPS backend out of memory (MPS allocated: 67.09 GB, other allocations: 22.75 GB, max allowed: 81.60 GB</span><span>)</span><span style="color:#6699cc;">. Tried to 
+</span><span style="color:#6699cc;">allocate 30.25 KB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory 
+</span><span style="color:#6699cc;">allocations (may cause system failure</span><span>)</span><span style="color:#6699cc;">.
+</span></code></pre>
+<p>I may need to use a smaller model on this machine unless I figure out a way to reduce memory utilization.</p>
+<p>Additionally, I keep seeing the error:</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">Code execution failed at line </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">search_agent(query=&quot;Popular Python libraries for implementing agentic AI&quot;)</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> due to: 
+</span><span style="color:#6699cc;">TypeError:MultiStepAgent.__call__</span><span style="color:#5fb3b3;">()</span><span> missing 1 required positional argument: &#39;request&#39;
+</span></code></pre>
+<p>The agent does autonomously figure out it needs to pass <code>request</code> into <code>search_agent</code> instead of <code>query</code>. It
+would be nicer if it did not have to have an extra step. This could potnetially be accomplished by either:</p>
+<h5 id="fixing-the-code-so-the-first-call-to-search-agent-has-the-correct-parameter">Fixing the code so the first call to search_agent has the correct parameter</h5>
+<p>I followed the code and it looks like it is <code>MultiStepAgent.__call__</code> that expects the <code>request</code>
+parameter. <code>ToolCallingAgent</code> extends this class, and in my code I am creating a ToolCallingAgent.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#f99157;">...
+</span><span>text_webbrowser_agent </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">ToolCallingAgent</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">    </span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">model</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">    </span><span style="color:#f99157;">tools</span><span style="color:#5fb3b3;">=</span><span>WEB_TOOLS</span><span style="color:#5fb3b3;">,
+</span><span style="color:#f99157;">...
+</span></code></pre>
+<p><code>show_agents_descriptions</code> in the code refers to there needing to be a parameter called <code>request</code>,
+which is used by <code>format_prompt_with_managed_agents_descriptions</code> which is in turn used to create
+a system prompt in <code>MultiStepAgent.initialize_system_prompt</code>, which itself is called in <code>MultiStepAgent.run</code>
+and <code>CodeAgent.run</code>. <code>CodeAgent</code> has its own <code>initialize_system_prompt</code> method, but it calls
+<code>super().initialize_system_prompt</code> and just replaces <code>{{authorized_imports}}</code>.</p>
+<p>This looks like a chicken and egg problem. The prompt is not modified until a step runs. The step
+runs after the planning stage. Once the first step runs, the system prompt now reflects that the parameter
+is <code>request</code> and the LLM adjusts accordingly. I may have analyzed this incorrectly, but if I got this right,
+then it stands to reason that I need a system prompt earlier in the game to reflect the correct parameter
+to pass to <code>search_agent</code>.</p>
+<p>In my <code>answer_single_question</code> function, I modified <code>augmented_question</code> to contain <code>The search_agent tool requires a parameter called 'request'.</code> This worked. THe first call to <code>search_agent</code> used the <code>request</code>
+parameter. This small change might drastically reduce the amount of steps needed. Let's see if my more
+complex question can be completed now.</p>
+<p>Step 3 has an issue. I saw this on the previous run, so it is not a result of the most recent small change.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">Error in generating tool call with model:
+</span><span style="color:#6699cc;">Tool call </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">{</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">id</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">94707</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">type</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">function</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">function</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: {</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">name</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">visit_page</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">arguments</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: {</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">url</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: 
+</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">https://github.com/vectara/py-vectara-agentic</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">}}}</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> has an invalid JSON structure: Expecting property name enclosed
+</span><span style="color:#6699cc;">in double quotes: line 1 column 2 (char 1</span><span>)
+</span></code></pre>
+<p>I think, based on the error, the LLM will be able to figure out it needs to use double quotes instead
+of single quotes to create valid JSON. Although, I'm kind of with the AI on this one. If it is constructing
+Python to run, it seems single quotes would be appropriate.</p>
+<p>It really bogs down on step 4. I am almost definitely going to need to use a smaller model for these
+kinds of multi-step queries. I stop it and run it with <code>Qwen/Qwen2-0.5B-Instruct</code> instead. This
+is a <em>significantly smaller</em> model. It may be too small, but I want this to run faster so I
+can iterate much quicker.</p>
+<p><code>Qwen/Qwen2-0.5B-Instruct</code> does not appear to be up to the task.</p>
+<pre data-lang="Here is the plan of action that I will follow to solve the task:" style="background-color:#2b2c2f;color:#cccece;" class="language-Here is the plan of action that I will follow to solve the task: "><code class="language-Here is the plan of action that I will follow to solve the task:" data-lang="Here is the plan of action that I will follow to solve the task:"><span>```
+</span><span>user
+</span><span>&lt;end_plan&gt;
+</span><span>
+</span><span>I&#39;m sorry, but I am unable to assist with that
+</span></code></pre>
+<p>Then it moves on to step 1 and sort of gets stuck there. I'm not sure if it would eventually
+recover because I stop it pretty quickly. It did not come up with a plan to follow and it does
+not look like the Open Depp Seek code likes that. This migth be an edge case.</p>
+<p>The second run produced this initial plan and then got stuck:</p>
+<pre data-lang="Here is the plan of action that I will follow to solve the task:" style="background-color:#2b2c2f;color:#cccece;" class="language-Here is the plan of action that I will follow to solve the task: "><code class="language-Here is the plan of action that I will follow to solve the task:" data-lang="Here is the plan of action that I will follow to solve the task:"></code></pre>
+<p>user</p>
+<p>Plan: Compare and contrast the differences between the various Python libraries to implement agentic AI</p>
+<p>Output: {
+'agent_learning_libraries': ['PyTorch', 'Keras', 'TensorFlow'],
+'ai_rights': ['DeepMind', 'IBM Watson', 'Google DeepMind', 'Microsoft Cognitive Services', 'IBM Watson AI
+Engine'],
+'competitive_libraries': ['OpenAI GPT-4', 'GPT-3', 'BERT', 'EleutherAI/MNIST-10B', 'Stanford NLP'],
+'deprecated_libraries': [],
+'free_libraries': ['PyPI', 'Pypi', 'GitHub', 'Bitbucket', 'Docker Hub']
+}</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>
+</span><span>Please note that the order of the libraries may vary depending on the input.
+</span></code></pre>
+<p>Trying again with <code>Qwen/Qwen2.5-0.5B-Instruct</code>. My initial run was with version 2.
+This is 2.5 with the same number of parameters. It had always been my intention to use version 2.5
+as this is the same model as we used at the beginning with fewer parameters.</p>
+<p>This one is not working either. Let's try a qen2.5 model with more parameters. How
+about <code>Qwen/Qwen2.5-3B-Instruct</code>? It looks like it works, but for some reason it is
+specifying that the searches are to limit the results to 2023. Maybe 2023 is the current year
+according to Qwen? Regardless, this means the analysis is going to be dated. It ends up
+taking way too long. This seems to happen after the initial DuckDuckGo search.</p>
+<h5 id="search-duckduckgo-using-a-library">Search DuckDuckGo using a library</h5>
+<p>I think having more structured search data could make the context smaller, leading to
+faster execution. It might also allow the AI to make better use of the search results.
+I'll try using the <code>duckduckgo_search</code> library.</p>
+<p>First, I modify <code>flake.nix</code> to install the library. I try hard to set things up in
+a way where, if someone else uses this, it is more likely to work right off the
+bat. Otherwise I would just run <code>pip install duckduckgo_search</code> and be done.</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span>...
+</span><span style="color:#f99157;">shellHook </span><span>= </span><span style="color:#5fb3b3;">&#39;&#39;
+</span><span style="color:#99c794;">    python -m venv .venv
+</span><span style="color:#99c794;">    source .venv/bin/activate
+</span><span style="color:#99c794;">    pip install accelerate duckduckgo_search jupyter -e ../.. -r requirements.txt \
+</span><span style="color:#99c794;">    #&amp;&amp; jupyter lab
+</span><span style="color:#99c794;">    echo &quot;exiting open deep research shell&quot;
+</span><span style="color:#99c794;">    exit
+</span><span style="color:#5fb3b3;">&#39;&#39;</span><span>;
+</span><span>...
+</span></code></pre>
+<p>Since I will be making a lot of changes, I copy <code>scripts/text_web_browser.py</code> to
+<code>scripts/text_web_browser_ddg.py</code>. I then update the import in the main code I've been
+working on from <code>from scripts.text_web_browser import (</code> to <code>from scripts.text_web_browser_ddg import (</code>.</p>
+<p>The main changes I made were:</p>
+<ul>
+<li>remove <code>_serpapi_search</code> method</li>
+<li>remove all references to the <code>serpapi_key</code></li>
+<li>modify the <code>set_address</code> method to check for <code>ddg:</code> instead of <code>google:</code> and call <code>self._ddg_search</code> instead</li>
+<li>modify the <code>_split_pages</code> method to check for <code>ddg:</code> instead of <code>google:</code></li>
+<li></li>
+<li>Implement the <code>_ddg_search</code> method below</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">_ddg_search</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">query</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">filter_year</span><span style="color:#5fb3b3;">: </span><span>Optional</span><span style="color:#5fb3b3;">[</span><span style="color:#fac863;">int</span><span style="color:#5fb3b3;">] = </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#5f6364;"># If filter year provided, convert to DuckDuck Go&#39;s format for a date range
+</span><span>    </span><span style="color:#c594c5;">if </span><span>filter_year</span><span style="color:#5fb3b3;">:
+</span><span>        timelimit </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;{</span><span>filter_year</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">-01-01..</span><span style="color:#5fb3b3;">{</span><span>filter_year</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">-12-31</span><span style="color:#5fb3b3;">&quot;
+</span><span>    </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>        timelimit </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+</span><span>        
+</span><span>    results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">DDGS</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">text</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">backend</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">lite</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#f99157;">timelimit</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">timelimit</span><span style="color:#5fb3b3;">)
+</span><span>    
+</span><span>    content </span><span style="color:#5fb3b3;">= (
+</span><span>        </span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">A DuckDuckGo search for &#39;</span><span style="color:#5fb3b3;">{</span><span>query</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">&#39; found </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">results</span><span style="color:#5fb3b3;">)}</span><span style="color:#99c794;"> results:</span><span style="color:#5fb3b3;">\n\n</span><span style="color:#99c794;">## Web Results</span><span style="color:#5fb3b3;">\n&quot;
+</span><span>        </span><span style="color:#5fb3b3;">+ </span><span>results
+</span><span>    </span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">_set_page_content</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">content</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p><code>Qwen/Qwen2.5-3B-Instruct</code> just can not figure out how to convert the descriptions of the
+arguments for a tool into the proper Python format. I need to switch back to
+<code>Qwen/Qwen2.5-7B-Instruct</code> and see if the memory utilization is reduced by using
+the DuckDuckGo search library.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">╭─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╮
+</span><span style="color:#6699cc;">│ Calling tool: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">web_search</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> with arguments: </span><span style="color:#5fb3b3;">{&#39;</span><span style="color:#99c794;">query</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">Python libraries for agentic AI</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">filter_year</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">2022</span><span style="color:#5fb3b3;">&#39;}</span><span style="color:#6699cc;">  │
+</span><span style="color:#6699cc;">╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+</span><span>
+</span><span style="color:#6699cc;">Error in tool call execution: TypeError: can only concatenate str (not </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">list</span><span style="color:#5fb3b3;">&quot;</span><span>) </span><span style="color:#6699cc;">to str
+</span><span style="color:#6699cc;">You should only use this tool with a correct input.
+</span><span style="color:#6699cc;">As a reminder, this tool</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">s description is the following:
+</span><span style="color:#99c794;">
+</span><span style="color:#99c794;">- web_search: Perform a web search query (think a google search) and returns the search results.
+</span><span style="color:#99c794;">    Takes inputs: {</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: {</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">type</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">string</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">description</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">The web search query to perform.</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">}, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">filter_year</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: 
+</span><span style="color:#99c794;">{</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">type</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">string</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">description</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">: &quot;[Optional parameter]: filter the search results to only include pages from a 
+</span><span style="color:#99c794;">specific year. For example, </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">2020</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;"> will only include pages from 2020. Make sure to use this parameter if you</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">re 
+</span><span style="color:#6699cc;">trying to search for articles from a specific date!</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">, &#39;nullable&#39;: True}}
+</span><span style="color:#99c794;">    Returns an output of type: string
+</span></code></pre>
+<p>The same problem happens with <code>Qwen/Qwen2.5-7B-Instruct</code> and there are some issues
+with my <code>_ddg_search</code> method. I will get to the bottom of these problems.</p>
+<p>To be continued...</p>
+
+  </div>
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>
