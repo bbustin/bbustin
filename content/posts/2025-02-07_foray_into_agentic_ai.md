@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-12
+updated = 2025-02-20
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
@@ -20,16 +20,16 @@ The way they are able to accomplish this is by leveraging agentic AI.
 ```bash
 ollama run llama3.3 "What is agentic AI?"
 ```
-> Agentic AI refers to artificial intelligence (AI) systems that are capable 
-> of autonomous decision-making and action, often with a degree of 
-> self-directedness or goal-oriented behavior. The term "agentic" comes from 
-> the word "agent," which in this context means an entity that can act 
+> Agentic AI refers to artificial intelligence (AI) systems that are capable
+> of autonomous decision-making and action, often with a degree of
+> self-directedness or goal-oriented behavior. The term "agentic" comes from
+> the word "agent," which in this context means an entity that can act
 > independently to achieve its goals.
-> 
-> Agentic AI systems are designed to perceive their environment, reason 
-> about it, and take actions that influence their surroundings. They may be 
-> able to learn from experience, adapt to changing situations, and make 
-> decisions based on their own objectives, rather than simply following 
+>
+> Agentic AI systems are designed to perceive their environment, reason
+> about it, and take actions that influence their surroundings. They may be
+> able to learn from experience, adapt to changing situations, and make
+> decisions based on their own objectives, rather than simply following
 > pre-programmed instructions.
 >
 > ...
@@ -58,7 +58,7 @@ on its own when and how to use the tools.
 
 OpenAI recently created [DeepResearch](https://en.wikipedia.org/wiki/OpenAI_Deep_Research)
 which can autonomously research your questions by searching the web. Shortly thereafter
-the Hugging Face community came out with 
+the Hugging Face community came out with
 [Open Deep Research](https://huggingface.co/blog/open-deep-research) which purports to do the
 same thing. Just for funsies, I would like to get Open Deep Research running locally. Then
 I would like to ask it to research this area for me.
@@ -83,12 +83,12 @@ I put the following in a file called `flake.nix` in the `open_deep_research` dir
 ```nix
 {
 	description = "Shell for running Open Deep Research";
-	
-	inputs = 
+
+	inputs =
 		{
 			nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
 		};
-	
+
 	outputs = { self, nixpkgs, ... }:
 		let
 			system = "aarch64-darwin";
@@ -96,9 +96,9 @@ I put the following in a file called `flake.nix` in the `open_deep_research` dir
 			pythonVersion = "python313";
 		in
 		{
-			devShells.${system}.default = pkgs.mkShell 
+			devShells.${system}.default = pkgs.mkShell
 				{
-					buildInputs = [ 
+					buildInputs = [
 						pkgs.${pythonVersion}
 						pkgs."${pythonVersion}Packages".pip
 					];
@@ -109,7 +109,7 @@ I put the following in a file called `flake.nix` in the `open_deep_research` dir
 						pip install -r requirements.txt
 						echo "When done with this shell remember to press ctrl+d"
 					'';
-					
+
 				};
 		};
 }
@@ -188,7 +188,7 @@ Chat templates should be in a 'chat_template.jinja' file but found key='chat_tem
     _|    _|  _|    _|  _|    _|  _|    _|    _|    _|    _|_|  _|    _|      _|        _|    _|  _|        _|
     _|    _|    _|_|      _|_|_|    _|_|_|  _|_|_|  _|      _|    _|_|_|      _|        _|    _|    _|_|_|  _|_|_|_|
 
-Enter your token (input will not be visible): 
+Enter your token (input will not be visible):
 ```
 
 This is great except why do I need a token to have it log in to Hugging Face? My goal is
@@ -204,8 +204,8 @@ are type Jupyter notebook files I can examine first.
 
 I'm going to use Jupyter while figuring this all out. To do that, I modify the flake.nix file
 to install and run Jupyter. To make it a bit better than in my previous post
-[Diving into AI](@/posts/2025-02-06_diving_into_ai.md), I made it not run jupyter if 
-dependency installation fails. Otherwise, there could be a failure you don't notice 
+[Diving into AI](@/posts/2025-02-06_diving_into_ai.md), I made it not run jupyter if
+dependency installation fails. Otherwise, there could be a failure you don't notice
 causing you bang your head on the wall trying to figure
 out why nothing is working. Here is the relevant part.
 
@@ -232,12 +232,12 @@ Here is the flake.nix so far
 ```nix
 {
 	description = "Shell for running Open Deep Research";
-	
-	inputs = 
+
+	inputs =
 		{
 			nixpkgs.url = github:nixos/nixpkgs/nixos-unstable;
 		};
-	
+
 	outputs = { self, nixpkgs, ... }:
 		let
 			system = "aarch64-darwin";
@@ -245,9 +245,9 @@ Here is the flake.nix so far
 			pythonVersion = "python313";
 		in
 		{
-			devShells.${system}.default = pkgs.mkShell 
+			devShells.${system}.default = pkgs.mkShell
 				{
-					buildInputs = [ 
+					buildInputs = [
 						pkgs.${pythonVersion}
 						pkgs."${pythonVersion}Packages".pip
 						pkgs.ffmpeg
@@ -396,11 +396,11 @@ def create_agent_hierarchy(model: Model):
         managed_agents=[text_webbrowser_agent],
     )
     return manager_agent
-    
+
 # ability to actually answer a question
 def answer_single_question(question, model_id):
     model = TransformersModel(model_id)
-    
+
     document_inspection_tool = TextInspectorTool(model, 100000)
 
     agent = create_agent_hierarchy(model)
@@ -454,7 +454,7 @@ Here is the task:
         "end_time": end_time,
     }
     return annotated_example
-    
+
 answer_single_question("How high is the Eiffel Tower?", "Qwen/Qwen2.5-7B-Instruct")
 ```
 
@@ -478,8 +478,8 @@ inspect_file_as_text(file_path="EiffelTowerHeight.txt",
 ```
 
 Output message of the LLM:
-user                                                                                                               
-thought: I will use the `inspect_file_as_text` tool to read the text    
+user
+thought: I will use the `inspect_file_as_text` tool to read the text
 
 Error in code parsing:
 Your code snippet is invalid, because the regex pattern ```(?:py|python)?\n(.*?)\n``` was not found in it.
@@ -495,14 +495,14 @@ Code:
 ```<end_code>
 Make sure to provide correct code blobs.
 ````
-There is no `EiffelTowerHeight.txt` file. `inspect_file_as_text` refers to the 'TextInspectorTool' 
+There is no `EiffelTowerHeight.txt` file. `inspect_file_as_text` refers to the 'TextInspectorTool'
 class in `scripts/text_inspector_tool.py`. I think the model just does not understand that the
 file is not actually present. Maybe it would work around this if allowed to run long enough,
 or I may need to use a different model.
 
 #### Get it running on the GPU
 
-First I write a method that returns the most appropriate device to have pytorch use. 
+First I write a method that returns the most appropriate device to have pytorch use.
 You'll need to also add `import torch` with the rest of the imports for the code
 below to work.
 
@@ -511,7 +511,7 @@ below to work.
 def get_device():
     """
     Determine the available device for computation.
-    
+
     Returns:
         torch.device: The device to use (CUDA, MPS, OpenCL, or CPU).
     """
@@ -543,7 +543,7 @@ Success!
 The error I am seeing is coming from `src/smolagents/agents.py` in the `step` method of
 `MultiStepAgent` when it is calling `fix_final_answer_code(parse_code_blobs(model_output))`.
 I notice that the output of the model appears to be getting cut off. Changing the fist line
-in `answer_single_question` to 
+in `answer_single_question` to
 `model = TransformersModel(model_id, device_map=get_device(), max_new_tokens=8192)` solves
 this problem.
 
@@ -580,14 +580,14 @@ rather than just staying loaded. I should not be using 70GB for Qwen2.5-7B-Instr
 
 It also significantly slows down on step 2. Maybe because it has so much more context.
 It did work in the end though when I asked `How high is the Eiffel Tower?`. When
-I asked a more complicated question `Compare and contrast the differences between 
+I asked a more complicated question `Compare and contrast the differences between
 the various Python libraries to implement agentic AI`, it ended up running out of
 memory before it couls could complete.
 
 ```bash
 Error in generating model output:
-MPS backend out of memory (MPS allocated: 67.09 GB, other allocations: 22.75 GB, max allowed: 81.60 GB). Tried to 
-allocate 30.25 KB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory 
+MPS backend out of memory (MPS allocated: 67.09 GB, other allocations: 22.75 GB, max allowed: 81.60 GB). Tried to
+allocate 30.25 KB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory
 allocations (may cause system failure).
 ```
 
@@ -596,7 +596,7 @@ I may need to use a smaller model on this machine unless I figure out a way to r
 Additionally, I keep seeing the error:
 
 ```bash
-Code execution failed at line 'search_agent(query="Popular Python libraries for implementing agentic AI")' due to: 
+Code execution failed at line 'search_agent(query="Popular Python libraries for implementing agentic AI")' due to:
 TypeError:MultiStepAgent.__call__() missing 1 required positional argument: 'request'
 ```
 
@@ -637,7 +637,7 @@ Step 3 has an issue. I saw this on the previous run, so it is not a result of th
 
 ```bash
 Error in generating tool call with model:
-Tool call '{'id': '94707', 'type': 'function', 'function': {'name': 'visit_page', 'arguments': {'url': 
+Tool call '{'id': '94707', 'type': 'function', 'function': {'name': 'visit_page', 'arguments': {'url':
 'https://github.com/vectara/py-vectara-agentic'}}}' has an invalid JSON structure: Expecting property name enclosed
 in double quotes: line 1 column 2 (char 1)
 ```
@@ -673,7 +673,7 @@ Plan: Compare and contrast the differences between the various Python libraries 
 
 Output: {
   'agent_learning_libraries': ['PyTorch', 'Keras', 'TensorFlow'],
-  'ai_rights': ['DeepMind', 'IBM Watson', 'Google DeepMind', 'Microsoft Cognitive Services', 'IBM Watson AI 
+  'ai_rights': ['DeepMind', 'IBM Watson', 'Google DeepMind', 'Microsoft Cognitive Services', 'IBM Watson AI
 Engine'],
   'competitive_libraries': ['OpenAI GPT-4', 'GPT-3', 'BERT', 'EleutherAI/MNIST-10B', 'Stanford NLP'],
   'deprecated_libraries': [],
@@ -717,7 +717,7 @@ shellHook = ''
 ...
 ```
 
-Since I will be making a lot of changes, I copy `scripts/text_web_browser.py` to 
+Since I will be making a lot of changes, I copy `scripts/text_web_browser.py` to
 `scripts/text_web_browser_ddg.py`. I then update the import in the main code I've been
 working on from `from scripts.text_web_browser import (` to `from scripts.text_web_browser_ddg import (`.
 
@@ -727,7 +727,7 @@ The main changes I made were:
 * remove all references to the `serpapi_key`
 * modify the `set_address` method to check for `ddg:` instead of `google:` and call `self._ddg_search` instead
 * modify the `_split_pages` method to check for `ddg:` instead of `google:`
-* 
+*
 * Implement the `_ddg_search` method below
 
 ```python
@@ -737,9 +737,9 @@ def _ddg_search(self, query: str, filter_year: Optional[int] = None) -> None:
         timelimit = f"{filter_year}-01-01..{filter_year}-12-31"
     else:
         timelimit = None
-        
+
     results = DDGS().text(query, backend="lite", timelimit=timelimit)
-    
+
     content = (
         f"A DuckDuckGo search for '{query}' found {len(results)} results:\n\n## Web Results\n"
         + results
@@ -763,14 +763,82 @@ You should only use this tool with a correct input.
 As a reminder, this tool's description is the following:
 
 - web_search: Perform a web search query (think a google search) and returns the search results.
-    Takes inputs: {'query': {'type': 'string', 'description': 'The web search query to perform.'}, 'filter_year': 
-{'type': 'string', 'description': "[Optional parameter]: filter the search results to only include pages from a 
-specific year. For example, '2020' will only include pages from 2020. Make sure to use this parameter if you're 
+    Takes inputs: {'query': {'type': 'string', 'description': 'The web search query to perform.'}, 'filter_year':
+{'type': 'string', 'description': "[Optional parameter]: filter the search results to only include pages from a
+specific year. For example, '2020' will only include pages from 2020. Make sure to use this parameter if you're
 trying to search for articles from a specific date!", 'nullable': True}}
     Returns an output of type: string
 ```
 
-The same problem happens with `Qwen/Qwen2.5-7B-Instruct` and there are some issues 
+The same problem happens with `Qwen/Qwen2.5-7B-Instruct` and there are some issues
 with my `_ddg_search` method. I will get to the bottom of these problems.
+
+Since the model is just calling the tools, I figured I could iterate more quickly on fixing the issue
+by creating some code that directly does the same thing. That way I don't have to wait for the model to do it.
+
+```python
+import os
+from scripts.text_web_browser_ddg import (
+    SearchInformationTool,
+    SimpleTextBrowser,
+)
+
+# create the browser and the agents that will use it
+user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0"
+
+BROWSER_CONFIG = {
+    "viewport_size": 1024 * 5,
+    "downloads_folder": "downloads_folder",
+    "request_kwargs": {
+        "headers": {"User-Agent": user_agent},
+        "timeout": 300,
+    },
+}
+
+os.makedirs(f"./{BROWSER_CONFIG['downloads_folder']}", exist_ok=True)
+
+browser = SimpleTextBrowser(**BROWSER_CONFIG)
+search_tool = SearchInformationTool(browser)
+
+search_tool(query="Python libraries for agentic AI", filter_year="2022")
+```
+
+The code easily replicated the problem.
+
+```bash
+File ~/projects/smolagents/examples/open_deep_research/scripts/text_web_browser_ddg.py:213, in SimpleTextBrowser._ddg_search(self, query, filter_year)
+    208     timelimit = None
+    210 results = DDGS().text(query, backend="lite", timelimit=timelimit)
+    212 content = (
+--> 213     f"A DuckDuckGo search for '{query}' found {len(results)} results:\n\n## Web Results\n"
+    214     + results
+    215 )
+    217 self._set_page_content(content)
+
+TypeError: can only concatenate str (not "list") to str
+```
+
+This error makes complete sense. The results are a list of dictionaries. Since the data is
+nicely machine readable, I should return the results to the agent as JSON.
+I modified `text_web_browser_ddg.py` to import json. Then I made the following change.
+
+```python
+content = (
+    f"A DuckDuckGo search for '{query}' found {len(results)} results in JSON:\n\n## Web Results\n"
+    + json.dumps(results)
+)
+```
+
+Now I'm getting two successful web searches and then it starts failing with the following
+message.
+
+```bash
+Error in generating tool call with model:
+Tool call '{'id': '72834', 'type': 'function', 'function': {'name': 'web_search', 'arguments': {'query': 'popular
+Python libraries for agentic AI in AI/ML documentation'}}}' has an invalid JSON structure: Expecting property name
+enclosed in double quotes: line 1 column 2 (char 1)
+```
+
+I'm definitely closer.
 
 To be continued...
