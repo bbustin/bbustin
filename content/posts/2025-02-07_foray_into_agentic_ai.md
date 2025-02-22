@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-21
+updated = 2025-02-22
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
