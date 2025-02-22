@@ -1065,12 +1065,6 @@ to evaluate other functions than the provided tools or functions defined/importe
 execute web_search).
 ```
 
-
-Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`
-using the llama3.2 model.
-
----
-
-
+I gave up after a little while.
 
 ---
