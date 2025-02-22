@@ -64,7 +64,7 @@ the Hugging Face community came out with
 same thing. Just for funsies, I would like to get Open Deep Research running locally. Then
 I would like to ask it to research this area for me.
 
-***Note:* This section is long and meandering. Feel free to skip to the next section
+***Note:* This section is long and meandering. Feel free to [skip to the results](#results)
 if a play by play is not your idea of fun.**
 
 ### Setup
@@ -983,12 +983,15 @@ What I did:
 * Change the model name som it is preceeded by `ollama/` like this
 `answer_single_question("Compare and contrast the differences between the various Python libraries to implement agentic AI", "ollama/qwen2.5:7b")`
 
-### Open Deep Research's Answer (qwen2.5:7b)
+### Open Deep Research's Answers {#results}
 
-Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`
-using the qwen2.5:7b model.
+I am going to have Open Deep Research use multiple models to answer the following question:
 
-It went on the web, performed a few searches, and came up with this:
+> What libraries are available to implement agentic AI? What are their key differences?
+
+#### Using qwen2.5:7b
+
+Here is Qwen2.5:7b's answer:
 
 ---
 
@@ -1054,7 +1057,10 @@ extensive documentation and practical examples to get started with developing yo
 
 ---
 
-### Open Deep Research's Answer (llama3.2)
+This is not bad. The information is useful. The documentation links are not great though. At least
+they are not the official documentation for each of those libraries.
+
+### Using llama3.2
 
 Let's see what the response looks like if I use llama3.2. It seems to have a lot of issues following the instructions.
 It creates code that is not allowed and then I get errors like this:
@@ -1067,4 +1073,168 @@ execute web_search).
 
 I gave up after a little while.
 
+#### Using deepseek-r1:7b
+
+I try Deepseek-r1 and it has even more issues trying to figure out what to do. It
+essentially keeps returning the same answer which is not Python code. Deepseek-r1:7b
+is one of the distillation models. In this case, Qwen-7b was "re-trained" by
+Deepseek.
+
+Unfortunately, this one completely can not handle the task at hand.
+
+#### Using phi4
+
+I try Phi 4 and this goes much better than llama3.2 or deepseek-r1:4b. Its
+research approach appears sound and it is properly formatting python code
+to call the tools.
+
+To be completely fair, this is a 14 billion parameter model. All the others were
+7 billion. If this goes well, I will also try it with qwen2.5:14b. Just so no
+one looks at this and says Phi4 is so much better than Qwen when it was an
+unfair comparison.
+
+Here is Phi4's answer:
+
 ---
+
+To provide an accurate and comprehensive response to the question regarding libraries available for implementing agentic AI and their key differences, a detailed analysis has been conducted. Here is a concise summary of the findings:
+
+### Key Libraries for Agentic AI
+
+1. **Microsoft AutoGen**
+   - **Description**: An open-source framework designed to build and coordinate multi-agent conversational systems.
+   - **Key Features**:
+     - Supports dynamic collaboration among agents, allowing roles adjustment based on real-time demands.
+     - Facilitates modular architecture for maintainable processes.
+   - **Use Cases**: Best suited for applications that require a flexible and maintainable structure.
+
+2. **OpenAI Swarm**
+   - **Description**: An experimental multi-agent framework by OpenAI focusing on team-based task delegation among agents.
+   - **Key Features**:
+     - Implements a multi-agent design pattern for efficient task delegation.
+     - Promotes modularity, scalability, and maintainability in AI systems.
+   - **Use Cases**: Ideal for educational purposes and projects needing fluid collaboration among agents.
+
+### Comparative Analysis
+
+| Feature                  | Microsoft AutoGen                                                                 | OpenAI Swarm                                                                                  |
+|--------------------------|-----------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
+| **Design Focus**         | Multi-agent conversational systems.                                               | Team-based multi-agent orchestration framework.                                                |
+| **Dynamic Collaboration**| Allows agents to adjust roles based on real-time task demands.                    | Facilitates task delegation among agents using shared message contexts.                        |
+| **Modularity & Scalability**| Emphasizes modular architecture for maintainable processes.                     | Promotes modularity, scalability, and maintainability in AI systems.                           |
+| **Use Cases**            | Applications requiring flexible and maintainable structure.                       | Educational examples of multi-agent systems; projects needing fluid collaboration.             |
+| **Community Support**    | Active GitHub repository; extensive documentation.                                | Experimental framework with growing community support.                                         |
+
+### Recommendations
+
+- **Microsoft AutoGen**: Recommended for developing complex, flexible AI-driven conversational systems that require dynamic agent interactions.
+- **OpenAI Swarm**: Suitable for educational purposes and scenarios where task delegation among agents in a collaborative environment is essential.
+
+### Final Answer
+
+**FINAL ANSWER:**
+
+1. Microsoft AutoGen:
+   - Open-source framework
+   - Multi-agent conversational systems
+   - Dynamic collaboration
+   - Modular architecture
+
+2. OpenAI Swarm:
+   - Experimental multi-agent framework
+   - Team-based task delegation
+   - Modularity and scalability
+   - Educational use cases
+
+---
+
+It is not lost on me that Microsoft's model recommended a library created by Microsoft.
+
+This output is pretty good, but it really only dug into two libraries. My preference
+so far is for qwen2.5:7b. What can qwen2.5:14b do?
+
+### Using qwen2.5:14b
+
+Let's see how the 14 billion parameter Qwen2.5 model stacks up to the 7 billion
+parameter version I used earlier.
+
+Here is Qwen2.5:14b's answer.
+
+---
+
+Based on the information gathered by the search agent, I have compiled a list of popular Python libraries used for
+agentic AI along with their key features and functionalities.
+
+### Task Outcome (Short Version):
+Listed several popular Python libraries used for agentic AI.
+
+### Task Outcome (Detailed Version):
+
+1. **TensorFlow**:
+   - Introduction: Developed by Google for numerical computation and machine learning.
+   - Features: Supports deep learning, reinforcement learning, generative models.
+     Wide-ranging applications from natural language processing to computer vision.
+   - Functionality: Offers extensive documentation and a large community of developers.
+   - Use Cases: Applicable in industries ranging from finance to healthcare.
+
+2. **LangChain (Langchain)**:
+   - Introduction: An open-source framework simplifying LLM application development.
+   - Features: Integration with OpenAI API and Hugging Face Transformers.
+     Supports memory, retrieval, and agent-based systems.
+   - Functionality: Enables seamless creation of applications powered by large language models.
+   - Use Cases: Commonly used in chatbot development and customer service.
+
+3. **Phidata**:
+   - Introduction: A lightweight framework for building multi-modal agents from LLMs.
+   - Features: Conversion of LLMs into specialized AI assistants.
+     Support for APIs, databases, and other tools.
+   - Functionality: Facilitates the creation of intelligent assistants using large language models.
+   - Use Cases: Applicable in financial analysis and personalized assistance.
+
+4. **AutoGen**:
+   - Introduction: A framework providing a no-code GUI for multi-agent application development.
+   - Features: Autonomous workflows with human-in-the-loop support.
+     Supports agents using LLMs and tools.
+   - Functionality: Facilitates the creation of complex, collaborative workflows in agentic systems.
+   - Use Cases: Used for multi-agent collaboration in research and development.
+
+5. **CAMEL (Communicative Agents for Mind Exploration of Large Language Model Society)**:
+   - Introduction: A library designed for studying autonomous and communicative agents through scalable techniques.
+   - Features: Facilitates role-playing to understand agent behaviors.
+     Provides extensive documentation.
+   - Functionality: Enables research into the behavior, capabilities, and potential risks of large language
+model-driven agents.
+   - Use Cases: Used in academic research and advanced AI exploration.
+
+6. **OpenAI Swarm**:
+   - Introduction: A lightweight multi-agent orchestration framework released by OpenAI for experimental use.
+   - Features: Supports development of agentic systems that handle complex tasks.
+     Facilitates collaborative task handling.
+   - Functionality: Enables experimental projects in the field of agentic AI and multi-agent coordination.
+   - Use Cases: Used in academic research and advanced AI experimentation.
+
+7. **Vectara Agentic**:
+   - Introduction: A library enabling creation of specialized tasks-handling AI agents with financial inquiries or
+other specific domains.
+   - Features: Custom instructions for agent operation.
+     Tool integration support.
+   - Functionality: Facilitates the development and deployment of custom-tailored agentic systems.
+   - Use Cases: Applicable in specialized sectors requiring targeted intelligent assistance.
+
+### Additional Context:
+- Documentation Quality: High-quality documentation is available for TensorFlow, LangChain, Phidata, AutoGen,
+CAMEL, and Vectara Agentic, with active communities providing support.
+- Community Support: Each library benefits from a vibrant community of developers contributing to ongoing
+improvements and innovative use cases.
+- Common Applications: Applications range from chatbot development and customer service to advanced AI research in
+multi-agent collaboration.
+
+---
+
+Not bad. I do not really think TensorFlow can be considered a library for implementing agentic AI.
+I guess maybe at a very low level, but what it is implementing is a way to interact with the model,
+not really the creation of AI agents.
+
+I feel Qwen2.5:14b delivered the best output. It did not provide incorrect documentation links.
+This opinion is unscientific, subjective, and based on a very small sample size. Take it with a
+grain of salt.
