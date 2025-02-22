@@ -198,7 +198,7 @@ happening.
 It turns out there is a benchmarking dataset called `gaia-benchmark/GAIA`. I really do not have
 any interest in running the benchmark. I look more deeply at the file and it is completely built
 around these test datasets. I could probably modify `run.py` to do what I want; however, there
-are type Jupyter notebook files I can examine first.
+are Jupyter notebook files I can examine first.
 
 #### Modify the code to run the model locally and use my prompts rather than those from the benchmark
 
@@ -206,7 +206,7 @@ I'm going to use Jupyter while figuring this all out. To do that, I modify the f
 to install and run Jupyter. To make it a bit better than in my previous post
 [Diving into AI](@/posts/2025-02-06_diving_into_ai.md), I made it not run jupyter if
 dependency installation fails. Otherwise, there could be a failure you don't notice
-causing you bang your head on the wall trying to figure
+causing you to bang your head on the wall trying to figure
 out why nothing is working. Here is the relevant part.
 
 ```nix
@@ -221,7 +221,7 @@ shellHook = ''
 ```
 
 Now when I run `nix develop` jupyter lab opens. I look at both `analysis.ipynb` and `visual_vs_text_browser.ipynb`
-and they also are doing the same thing to a certain degree. I know at this point, that I should really
+and they also are doing the same thing to a certain degree. I know at this point that I should really
 go back to the start, examine LangChain/LangGraph, smolagents, and then find what other libraries. But,
 franky, I find this fun.
 
@@ -624,12 +624,12 @@ and `CodeAgent.run`. `CodeAgent` has its own `initialize_system_prompt` method, 
 
 This looks like a chicken and egg problem. The prompt is not modified until a step runs. The step
 runs after the planning stage. Once the first step runs, the system prompt now reflects that the parameter
-is `request` and the LLM adjusts accordingly. I may have analyzed this incorrectly, but if I got this right,
+is `request` and the LLM adjusts accordingly. I may have analyzed this incorrectly, but if I get this right,
 then it stands to reason that I need a system prompt earlier in the game to reflect the correct parameter
 to pass to `search_agent`.
 
-In my `answer_single_question` function, I modified `augmented_question` to contain `The search_agent tool
-requires a parameter called 'request'.` This worked. The first call to `search_agent` used the `request`
+In my `answer_single_question` function, I modify `augmented_question` to contain `The search_agent tool
+requires a parameter called 'request'.` This works. The first call to `search_agent` uses the `request`
 parameter. This small change might drastically reduce the amount of steps needed. Let's see if my more
 complex question can be completed now.
 
@@ -721,13 +721,12 @@ Since I will be making a lot of changes, I copy `scripts/text_web_browser.py` to
 `scripts/text_web_browser_ddg.py`. I then update the import in the main code I've been
 working on from `from scripts.text_web_browser import (` to `from scripts.text_web_browser_ddg import (`.
 
-The main changes I made were:
+The main changes I make are:
 
-* remove `_serpapi_search` method
-* remove all references to the `serpapi_key`
-* modify the `set_address` method to check for `ddg:` instead of `google:` and call `self._ddg_search` instead
-* modify the `_split_pages` method to check for `ddg:` instead of `google:`
-*
+* Remove `_serpapi_search` method
+* Remove all references to the `serpapi_key`
+* Modify the `set_address` method to check for `ddg:` instead of `google:` and call `self._ddg_search` instead
+* Modify the `_split_pages` method to check for `ddg:` instead of `google:`
 * Implement the `_ddg_search` method below
 
 ```python
@@ -773,7 +772,7 @@ trying to search for articles from a specific date!", 'nullable': True}}
 The same problem happens with `Qwen/Qwen2.5-7B-Instruct` and there are some issues
 with my `_ddg_search` method. I will get to the bottom of these problems.
 
-Since the model is just calling the tools, I figured I could iterate more quickly on fixing the issue
+Since the model is just calling the tools, I figure I can iterate more quickly on fixing the issue
 by creating some code that directly does the same thing. That way I don't have to wait for the model to do it.
 
 ```python
@@ -820,7 +819,7 @@ TypeError: can only concatenate str (not "list") to str
 
 This error makes complete sense. The results are a list of dictionaries. Since the data is
 nicely machine readable, I should return the results to the agent as JSON.
-I modified `text_web_browser_ddg.py` to import json. Then I made the following change.
+I modify `text_web_browser_ddg.py` to import json. Then I makr the following change:
 
 ```python
 content = (
@@ -962,32 +961,34 @@ class ToolCallingAgent(MultiStepAgent)
 ```
 
 That is not helping much either. I am going to really need to dig down and see what is
-happening. First, I found some places where I was creating duplicate objects in
-`create_agent_hierarchy`. I also modified `flake.nix` to install `memory_profiler`
-and annotated the `answer_single_question` with `@profile`.
+happening. First, I find some places where I was creating duplicate objects in
+`create_agent_hierarchy`. I also modify `flake.nix` to install `memory_profiler`
+and annotate the `answer_single_question` with `@profile`.
 
 While that runs, I am going to look more at how `MultiStepAgent` works since this seems
 to be the parent class for the agents we are using.
 
-I switched to using Ollama directly instead of the Transformers library. Memory
-utilization dropped like a rock. It is now using around 6GB instead of 90+ GB.
+I switch to using Ollama directly instead of the Transformers library. Memory
+utilization drops like a rock. It is now using around 6GB instead of 90+ GB.
 It is also running significantly faster.
 
 Memory problem solved!
 
 What I did:
 
-* Modified flake.nix to install `litellm`
-* Edited the imports to import `LiteLLMModel` from `smolagents`
-* In `answer_single_question`, I changed the definition of the model to
+* Modify flake.nix to install `litellm`
+* Edit the imports to import `LiteLLMModel` from `smolagents`
+* In `answer_single_question`, change the definition of the model to
 `model = LiteLLMModel(model_id, api_base="http://127.0.0.1:11434", num_ctx=99999)`
-* I changed the way I call it so that the model name is preceeded by `ollama/` like this
+* Change the model name som it is preceeded by `ollama/` like this
 `answer_single_question("Compare and contrast the differences between the various Python libraries to implement agentic AI", "ollama/qwen2.5:7b")`
 
-### Open Deep Research's Answer
+### Open Deep Research's Answer (qwen2.5:7b)
 
-Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`.
-It went on the web and performed a few searches and came up with this:
+Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`
+using the qwen2.5:7b model.
+
+It went on the web, performed a few searches, and came up with this:
 
 ---
 
@@ -1050,5 +1051,26 @@ AI, including Langchain and AI Fairness 360 by IBM, which can be used to ensure 
 deployment of these systems.
    For beginners or those looking for a simpler approach, resources like the GitHub repositories mentioned provide
 extensive documentation and practical examples to get started with developing your own agentic AI agents.
+
+---
+
+### Open Deep Research's Answer (llama3.2)
+
+Let's see what the response looks like if I use llama3.2. It seems to have a lot of issues following the instructions.
+It creates code that is not allowed and then I get errors like this:
+
+```bash
+Code execution failed at line 'output = web_search(request=request)' due to: InterpreterError:It is not permitted
+to evaluate other functions than the provided tools or functions defined/imported in previous code (tried to
+execute web_search).
+```
+
+
+Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`
+using the llama3.2 model.
+
+---
+
+
 
 ---
