@@ -1,6 +1,6 @@
 +++
 title = "Foray into Agentic AI"
-updated = 2025-02-20
+updated = 2025-02-21
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix"]
@@ -56,18 +56,18 @@ or a tool to perform mathematical operations. The AI needs to know about the exi
 of these tools and what they are for. Then it is either trained to or somehow figures out
 on its own when and how to use the tools.
 
-OpenAI recently created [DeepResearch](https://en.wikipedia.org/wiki/OpenAI_Deep_Research)
+## Open Deep Research
+OpenAI recently created [OpenAI Deep Research](https://en.wikipedia.org/wiki/OpenAI_Deep_Research)
 which can autonomously research your questions by searching the web. Shortly thereafter
 the Hugging Face community came out with
 [Open Deep Research](https://huggingface.co/blog/open-deep-research) which purports to do the
 same thing. Just for funsies, I would like to get Open Deep Research running locally. Then
 I would like to ask it to research this area for me.
 
-## Open Deep Research
-### Setup
-
-***Editor's note:* This section is long and meandering. Feel free to skip to the next section
+***Note:* This section is long and meandering. Feel free to skip to the next section
 if a play by play is not your idea of fun.**
+
+### Setup
 
 ```bash
 git clone https://github.com/huggingface/smolagents.git
@@ -542,7 +542,7 @@ Success!
 
 The error I am seeing is coming from `src/smolagents/agents.py` in the `step` method of
 `MultiStepAgent` when it is calling `fix_final_answer_code(parse_code_blobs(model_output))`.
-I notice that the output of the model appears to be getting cut off. Changing the fist line
+I notice that the output of the model appears to be getting cut off. Changing the first line
 in `answer_single_question` to
 `model = TransformersModel(model_id, device_map=get_device(), max_new_tokens=8192)` solves
 this problem.
@@ -629,7 +629,7 @@ then it stands to reason that I need a system prompt earlier in the game to refl
 to pass to `search_agent`.
 
 In my `answer_single_question` function, I modified `augmented_question` to contain `The search_agent tool
-requires a parameter called 'request'.` This worked. THe first call to `search_agent` used the `request`
+requires a parameter called 'request'.` This worked. The first call to `search_agent` used the `request`
 parameter. This small change might drastically reduce the amount of steps needed. Let's see if my more
 complex question can be completed now.
 
@@ -688,7 +688,7 @@ Trying again with `Qwen/Qwen2.5-0.5B-Instruct`. My initial run was with version 
 This is 2.5 with the same number of parameters. It had always been my intention to use version 2.5
 as this is the same model as we used at the beginning with fewer parameters.
 
-This one is not working either. Let's try a qen2.5 model with more parameters. How
+This one is not working either. Let's try a qwen2.5 model with more parameters. How
 about `Qwen/Qwen2.5-3B-Instruct`? It looks like it works, but for some reason it is
 specifying that the searches are to limit the results to 2023. Maybe 2023 is the current year
 according to Qwen? Regardless, this means the analysis is going to be dated. It ends up
@@ -841,4 +841,156 @@ enclosed in double quotes: line 1 column 2 (char 1)
 
 I'm definitely closer.
 
-To be continued...
+#### Addressing the elphant in the room - memory utilization
+
+This is never going to run successfully on my local machine if the python process ends up chewing
+up 90+ GB of virtual memory. I watched a video last night which may have given me a clue
+([AI Agent Fundamentals in 21 Minutes - Tina Huang](https://youtu.be/qU3fmidNbJE)). It is likely
+that the model is running multiple times. One for the main agent and then other times for the
+subagents it is delgating to. Would it be possible to unload a model that is not currently
+being used, but retain its context? Let's see.
+
+To figure this out, I need to dig more into the smolagent code. At this point I do not
+really have a great picture of what is going on. For all I know, smolagent has an option
+an option to do this and I have just failed to turn it on.
+
+`CodeAgent` does not have an option to do what I want...
+
+```python
+help(CodeAgent)
+
+class CodeAgent(MultiStepAgent)
+ |  CodeAgent(
+ |      tools: List[smolagents.tools.Tool],
+ |      model: Callable[[List[Dict[str, str]]], smolagents.models.ChatMessage],
+ |      system_prompt: Optional[str] = None,
+ |      grammar: Optional[Dict[str, str]] = None,
+ |      additional_authorized_imports: Optional[List[str]] = None,
+ |      planning_interval: Optional[int] = None,
+ |      use_e2b_executor: bool = False,
+ |      max_print_outputs_length: Optional[int] = None,
+ |      **kwargs
+ |  )
+ |
+ |  In this agent, the tool calls will be formulated by the LLM in code format, then parsed and executed.
+ |
+ |  Args:
+ |      tools (`list[Tool]`): [`Tool`]s that the agent can use.
+ |      model (`Callable[[list[dict[str, str]]], ChatMessage]`): Model that will generate the agent's actions.
+ |      system_prompt (`str`, *optional*): System prompt that will be used to generate the agent's actions.
+ |      grammar (`dict[str, str]`, *optional*): Grammar used to parse the LLM output.
+ |      additional_authorized_imports (`list[str]`, *optional*): Additional authorized imports for the agent.
+ |      planning_interval (`int`, *optional*): Interval at which the agent will run a planning step.
+ |      use_e2b_executor (`bool`, default `False`): Whether to use the E2B executor for remote code execution.
+ |      max_print_outputs_length (`int`, *optional*): Maximum length of the print outputs.
+ |      **kwargs: Additional keyword arguments.
+ ```
+
+It extends `MultiStepAgent`. Let's check there.
+
+```python
+from smolagents import MultiStepAgent
+help(MultiStepAgent)
+
+Help on class MultiStepAgent in module smolagents.agents:
+
+class MultiStepAgent(builtins.object)
+ |  MultiStepAgent(
+ |      tools: List[smolagents.tools.Tool],
+ |      model: Callable[[List[Dict[str, str]]], smolagents.models.ChatMessage],
+ |      system_prompt: Optional[str] = None,
+ |      tool_description_template: Optional[str] = None,
+ |      max_steps: int = 6,
+ |      tool_parser: Optional[Callable] = None,
+ |      add_base_tools: bool = False,
+ |      verbosity_level: int = 1,
+ |      grammar: Optional[Dict[str, str]] = None,
+ |      managed_agents: Optional[List] = None,
+ |      step_callbacks: Optional[List[Callable]] = None,
+ |      planning_interval: Optional[int] = None,
+ |      name: Optional[str] = None,
+ |      description: Optional[str] = None,
+ |      managed_agent_prompt: Optional[str] = None,
+ |      provide_run_summary: bool = False
+ |  )
+ |
+ |  Agent class that solves the given task step by step, using the ReAct framework:
+ |  While the objective is not reached, the agent will perform a cycle of action (given by the LLM) and observation (obtained from the environment).
+ |
+ |  Args:
+ |      tools (`list[Tool]`): [`Tool`]s that the agent can use.
+ |      model (`Callable[[list[dict[str, str]]], ChatMessage]`): Model that will generate the agent's actions.
+ |      system_prompt (`str`, *optional*): System prompt that will be used to generate the agent's actions.
+ |      tool_description_template (`str`, *optional*): Template used to describe the tools in the system prompt.
+ |      max_steps (`int`, default `6`): Maximum number of steps the agent can take to solve the task.
+ |      tool_parser (`Callable`, *optional*): Function used to parse the tool calls from the LLM output.
+ |      add_base_tools (`bool`, default `False`): Whether to add the base tools to the agent's tools.
+ |      verbosity_level (`int`, default `1`): Level of verbosity of the agent's logs.
+ |      grammar (`dict[str, str]`, *optional*): Grammar used to parse the LLM output.
+ |      managed_agents (`list`, *optional*): Managed agents that the agent can call.
+ |      step_callbacks (`list[Callable]`, *optional*): Callbacks that will be called at each step.
+ |      planning_interval (`int`, *optional*): Interval at which the agent will run a planning step.
+ |      name (`str`, *optional*): Necessary for a managed agent only - the name by which this agent can be called.
+ |      description (`str`, *optional*): Necessary for a managed agent only - the description of this agent.
+ |      managed_agent_prompt (`str`, *optional*): Custom prompt for the managed agent. Defaults to None.
+ |      provide_run_summary (`bool`, *optional*): Wether to provide a run summary when called as a managed agent.
+```
+
+That is not what I need. We essentially have a `CodeAgent` that has a managed_agent which is
+a `ToolCallingAgent` with access to various tools. Maybe what I seek is in `ToolCallingAgent`?
+
+```python
+help(ToolCallingAgent)
+
+class ToolCallingAgent(MultiStepAgent)
+ |  ToolCallingAgent(
+ |      tools: List[smolagents.tools.Tool],
+ |      model: Callable[[List[Dict[str, str]]], smolagents.models.ChatMessage],
+ |      system_prompt: Optional[str] = None,
+ |      planning_interval: Optional[int] = None,
+ |      **kwargs
+ |  )
+ |
+ |  This agent uses JSON-like tool calls, using method `model.get_tool_call` to leverage the LLM engine's tool calling capabilities.
+ |
+ |  Args:
+ |      tools (`list[Tool]`): [`Tool`]s that the agent can use.
+ |      model (`Callable[[list[dict[str, str]]], ChatMessage]`): Model that will generate the agent's actions.
+ |      system_prompt (`str`, *optional*): System prompt that will be used to generate the agent's actions.
+ |      planning_interval (`int`, *optional*): Interval at which the agent will run a planning step.
+ |      **kwargs: Additional keyword arguments
+```
+
+That is not helping much either. I am going to really need to dig down and see what is
+happening. First, I found some places where I was creating duplicate objects in
+`create_agent_hierarchy`. I also modified `flake.nix` to install `memory_profiler`
+and annotated the `answer_single_question` with `@profile`.
+
+While that runs, I am going to look more at how `MultiStepAgent` works since this seems
+to be the parent class for the agents we are using.
+
+I switched to using Ollama directly instead of the Transformers library. Memory
+utilization dropped like a rock. It is now using around 6GB instead of 90+ GB.
+It is also running significantly faster.
+
+Memory problem solved!
+
+What I did:
+
+* Modified flake.nix to install `litellm`
+* Edited the imports to import `LiteLLMModel` from `smolagents`
+* In `answer_single_question`, I changed the definition of the model to
+`model = LiteLLMModel(model_id, api_base="http://127.0.0.1:11434", num_ctx=99999)`
+* I changed the way I call it so that the model name is preceeded by `ollama/` like this
+`answer_single_question("Compare and contrast the differences between the various Python libraries to implement agentic AI", "ollama/qwen2.5:7b")`
+
+### Open Deep Research's Answer
+
+Here is the response to the prompt `What libraries are available to implement agentic AI? What are their key differences?`.
+It went on the web and performed a few searches and came up with this:
+
+---
+
+To be continued... it is still running and I need to take off.
+
+---
