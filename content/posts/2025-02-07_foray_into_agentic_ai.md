@@ -3,7 +3,7 @@ title = "Foray into Agentic AI"
 updated = 2025-02-22
 
 [taxonomies]
-tags = ["Research", "AI", "Agents", "Nix"]
+tags = ["Research", "AI", "Agents", "Nix", "smolagents"]
 +++
 
 I spoke with someone who is tasked with implementing AI systems at their organization.
