@@ -1,5 +1,6 @@
 +++
 title = "Open Deep Research using LangChain"
+updated = 2025-02-27
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix", "langchain"]
@@ -277,4 +278,132 @@ It looks like it did, indeed, generate two queries and those are not in the form
 error is specifying. I revert the code changes. Right now, I'm not sure if it is the model that is
 supposed to format them properly or some other code.
 
-To be continued...
+LangChain appears to have really good documentation.
+I read [How to return structured data from a model](https://github.com/langchain-ai/langchain/blob/master/docs/docs/how_to/structured_output.ipynb).
+
+First, the [model must support `.with_structured_output()`](https://github.com/langchain-ai/langchain/tree/master/docs/docs/integrations/chat).
+It looks like [Ollama does support structured output](https://github.com/langchain-ai/langchain/blob/master/docs/docs/integrations/chat/ollama.ipynb).
+It mentions installing `langchain-ollama` which I already did. It also mentions updating the `ollama` library
+to make sure the latest version supporting structured outputs is installed. That is worth trying.
+
+I open a terminal in Jupyter and type `pip install -U ollama`. Then I go back to my notebook
+and choose `Restart Kernel and Run All Cells...` from the `Kernel` menu. That does not help,
+but it was worth a shot.
+
+There really aren't any more clues in the LangChain Ollama documentation. I either need to debug
+the code, or create sample code. I am going to choose the latter.
+
+Here is my test code to see what is happening.
+
+```python
+from typing import List
+from langchain_ollama import ChatOllama
+from pydantic import BaseModel, Field
+from langchain_core.messages import HumanMessage, SystemMessage
+
+llm = ChatOllama(
+    model="qwen2.5-coder:7b",
+    temperature=0,
+)
+
+class SearchQuery(BaseModel):
+    search_query: str = Field(None, description="Query for web search.")
+
+class Queries(BaseModel):
+    queries: List[SearchQuery] = Field(
+        description="List of search queries.",
+)
+
+structured_llm = llm.with_structured_output(Queries)
+
+results = structured_llm.invoke([SystemMessage(content="You are a helpful research assistant who will be drafting a report. The subject of the report will be provided by the human.")]+[HumanMessage(content="Generate search queries that will help with planning sections of a report about LangChain.")])
+print(results)
+```
+
+I am getting similar errors with this code. That is very helpful because now I've pared this
+down quite a bit.
+
+If I change `structured_llm = llm.with_structured_output(Queries)` to `structured_llm = llm.with_structured_output(Queries, include_raw=True)`,
+then I can see the raw output. It looks like this:
+
+```python
+{'parsed': None,
+ 'parsing_error': 4 validation errors for Queries
+queries.0
+  Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='report structure', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+queries.1
+  Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='section planning', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+queries.2
+  Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='content organization', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type
+queries.3
+  Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='time management for report writing', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.10/v/model_type,
+ 'raw': AIMessage(content='', additional_kwargs={}, response_metadata={'model': 'qwen2.5-coder:7b', 'created_at': '2025-02-27T18:01:38.990692Z', 'done': True, 'done_reason': 'stop', 'total_duration': 1125161416, 'load_duration': 30422375, 'prompt_eval_count': 161, 'prompt_eval_duration': 162000000, 'eval_count': 71, 'eval_duration': 930000000, 'message': Message(role='assistant', content='', images=None, tool_calls=None)}, id='run-e4fef1f2-8f57-4c95-9f8e-16c452dafe7b-0', tool_calls=[{'name': 'Queries', 'args': {'queries': ['report structure', 'section planning', 'content organization', 'time management for report writing']}, 'id': '8e9cd5e8-c02b-44b2-a330-c71e75a6848f', 'type': 'tool_call'}], usage_metadata={'input_tokens': 161, 'output_tokens': 71, 'total_tokens': 232})}
+```
+
+In the `tool_calls` field, there is `Queries` tool call with a list of search queries. The
+validation errors are saying
+`Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='report structure', input_type=str]`.
+It is true the output is not a dictionary, but `SearchQuery` defines a single field that is a `str`.
+I suppose it wantas the output to look like this?
+
+```python
+[{'search_query': 'report structure'}, {'search_query': 'section planning'}, {'search_query': 'content organization'}, {'search_query': 'time management for report writing'}]
+```
+
+Time to learn more about [pydantic](https://docs.pydantic.dev/latest/). Yeah, that is the problem. Let's test my assumption above
+while taking LangChain completely out of the loop.
+
+```python
+from typing import List
+from pydantic import BaseModel, Field, ValidationError
+import json
+
+class SearchQuery(BaseModel):
+    search_query: str = Field(None, description="Query for web search.")
+
+class Queries(BaseModel):
+    queries: List[SearchQuery] = Field(
+        description="List of search queries.",
+)
+
+query_output_from_llm = {'queries': ['report structure', 'section planning', 'content organization', 'time management for report writing']}
+
+print("Original Data")
+try:
+    Queries(**query_output_from_llm)
+    print("Success!")
+except ValidationError as e:
+    print("Error..........")
+    print(e.errors())
+
+possibly_corrected_query_output = {'queries': [{'search_query': 'report structure'}, {'search_query': 'section planning'}, {'search_query': 'content organization'}, {'search_query': 'time management for report writing'}]}
+print("-" * 80)
+print("\nUpdated Data")
+try:
+    Queries(**possibly_corrected_query_output)
+    print("Success!")
+except ValidationError as e:
+    print("Error..........")
+    print(e.errors())
+```
+
+The output I get from running this is:
+```
+Original Data
+Error..........
+[{'type': 'model_type', 'loc': ('queries', 0), 'msg': 'Input should be a valid dictionary or instance of SearchQuery', 'input': 'report structure', 'ctx': {'class_name': 'SearchQuery'}, 'url': 'https://errors.pydantic.dev/2.10/v/model_type'}, {'type': 'model_type', 'loc': ('queries', 1), 'msg': 'Input should be a valid dictionary or instance of SearchQuery', 'input': 'section planning', 'ctx': {'class_name': 'SearchQuery'}, 'url': 'https://errors.pydantic.dev/2.10/v/model_type'}, {'type': 'model_type', 'loc': ('queries', 2), 'msg': 'Input should be a valid dictionary or instance of SearchQuery', 'input': 'content organization', 'ctx': {'class_name': 'SearchQuery'}, 'url': 'https://errors.pydantic.dev/2.10/v/model_type'}, {'type': 'model_type', 'loc': ('queries', 3), 'msg': 'Input should be a valid dictionary or instance of SearchQuery', 'input': 'time management for report writing', 'ctx': {'class_name': 'SearchQuery'}, 'url': 'https://errors.pydantic.dev/2.10/v/model_type'}]
+--------------------------------------------------------------------------------
+
+Updated Data
+Success!
+```
+
+This confirms my suspicions. The model needs to be informed how to format the data. It
+seems like the tooling should do it automatically, but that does not appear to be happening.
+Maybe there is a more cutting-edge version of langchain I can run that does this
+
+More research soon. To be continued...
