@@ -23,7 +23,7 @@ generate_feeds = true
 taxonomies = [
     # You can enable/disable RSS
     #{name = "categories", feed = true},
-    {name = "tags", feed = true},
+    { name = "tags", feed = true },
 ]
 
 [markdown]
@@ -56,17 +56,17 @@ timezone = "America/Los_Angeles"
 
 # Social links
 social_links = [
-  { platform = "github", user_id = "bbustin" },
-  { platform = "linkedin", user_id = "brianbustin" },
-  { platform = "feed", user_id = true },
-  # { platform = "keyoxide", user_id = "aspe:host:XXXXXXX" },
-  # { platform = "facebook", user_id = "" },
-  # { platform = "instagram", user_id = "" },
-  # { platform = "pinterest", user_id = "" },
-  # { platform = "twitter", user_id = "" },
-  # { platform = "stackoverflow", user_id = "" },
-  # { platform = "youtube", user_id = "" },
-  # { platform = "telegram", user_id = "" },
+    { platform = "github", user_id = "bbustin" },
+    { platform = "linkedin", user_id = "brianbustin" },
+    { platform = "feed", user_id = true },
+    # { platform = "keyoxide", user_id = "aspe:host:XXXXXXX" },
+    # { platform = "facebook", user_id = "" },
+    # { platform = "instagram", user_id = "" },
+    # { platform = "pinterest", user_id = "" },
+    # { platform = "twitter", user_id = "" },
+    # { platform = "stackoverflow", user_id = "" },
+    # { platform = "youtube", user_id = "" },
+    # { platform = "telegram", user_id = "" },
 ]
 
 # JSON-LD metadata
@@ -75,7 +75,20 @@ gender = "male"
 employer_name = "Citrix"
 employer_url = "https://citrix.com"
 job_title = "Lead Software Engineer"
-links = [
-  "https://github.com/bbustin",
-  "https://linkedin.com/in/brianbustin",
-]
+links = ["https://github.com/bbustin", "https://linkedin.com/in/brianbustin"]
+
+# Enable discussions using Github Issues
+[extra.giscus]
+repo = "bbustin/bbustin"
+repo_id = "R_kgDONz6DGA"
+category = "Announcements"
+category_id = "DIC_kwDONz6DGM4Cnh16"
+mapping = "pathname"
+strict = false
+reactions_enabled = true
+emit_metadata = false
+input_position = "bottom"
+theme = "dark"
+lang = "en"
+loading = "lazy"
+crossorigin = "anonymous"
