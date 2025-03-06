@@ -1,5 +1,6 @@
 +++
 title = "Open Deep Research using LangChain"
+updated = 2025-03-06
 
 [taxonomies]
 tags = ["Research", "AI", "Agents", "Nix", "langchain"]
@@ -589,7 +590,8 @@ It works... kind of. I think it has problems incorporating data from the search 
 constructing sections. I was watching outbound traffic and saw it connect to DuckDuckGo many times.
 What I did not see was it following any of the links.
 
-I will need to circle back soon to better understand what is going on.
+To see updates after this post was written, please see
+[Open Deep Research Using LangChain Working](@/posts/2025-03-06_open_deep_research_using_langchain_working.md).
 
 Here is what it generated. The original research question was
 `Overview of the AI inference market with focus on Fireworks, Together.ai, Groq`.
