@@ -2,7 +2,7 @@
 title = "My thoughts on coding interviews"
 
 [taxonomies]
-tags = ["Mentoring", "Interviewing", "Career"]
+tags = ["Mentoring", "Interviewing", "Career", "CodingInterview"]
 +++
 
 Let me start off by saying I am just plain bad at coding interviews. Some people
