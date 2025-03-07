@@ -532,7 +532,7 @@ Since these test cases came from AI, and AI is not typically great at math yet, 
 
 > Test Case: k=5, numbers=[5, 5], correct_answer=True returned False - FAILED
 
-I think this one should really be False. The problem says aby two numbers.
+I think this one should really be False. The problem says add two numbers.
 
 > Test Case: k=9, numbers=[1, 2, 3, 4, 5], correct_answer=False returned True - FAILED
 
@@ -734,5 +734,5 @@ print(first_try_time - more_efficient_time)
 
 
 # Huge diffence
-With 100 million records, the more efficient code finishes nearly 18 seconds faster. Not bad.
+With 100 million records, the more efficient code finishes nearly 6 seconds faster. Not bad.
 I need to remember the concept of using the complements for this.
