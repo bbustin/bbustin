@@ -325,7 +325,7 @@ various structures.
 
     1. **Incorrect Deserialization**:
        - Your `deserialize` function creates a tree with only one node (the root) and sets its left child to a
-    single node containing the entire serialized string, which is incorrect.\
+    single node containing the entire serialized string, which is incorrect.
 
 The original problem never stated how it should be deserialized. I do not think my approach is incorrect in the context of the problem. It was never stated you could not just stuff all values into a single node. That was easiest, so I did it. It probably is incorrect in the context of computer science though.
 
@@ -341,7 +341,7 @@ The example in the problem completely ignored the value of the node to the root'
     with mixed structures (both left and right children).
 
 * Single node trees: excluded due to example. The text `root` was not returned in the output
-* Mixed structure trees: deliberatelt excluded.
+* Mixed structure trees: deliberately excluded.
 
 Tree with no nodes? Let's test...
 
