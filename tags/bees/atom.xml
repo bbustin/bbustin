@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bustin Tech - bees</title>
+    <subtitle>A software engineer&#x27;s pragmatic perspectives</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://bustin.tech/tags/bees/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bustin.tech"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-02-24T00:00:00+00:00</updated>
+    <id>https://bustin.tech/tags/bees/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Farm Life: Rendering Beeswax</title>
+        <published>2025-02-24T00:00:00+00:00</published>
+        <updated>2025-02-24T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/farm-life-rendering-beeswax/"/>
+        <id>https://bustin.tech/posts/farm-life-rendering-beeswax/</id>
+        
+        <summary type="html">&lt;p&gt;My wife, the animal lover, got us into beekeeping several years ago. I had no idea how
+much I would like bees then. This weekend, after processing honey, I decided I wanted
+to render and filter the remaining wax. This is the first time I have ever done anything
+like this.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>
