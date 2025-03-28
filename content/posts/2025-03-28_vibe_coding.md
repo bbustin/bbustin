@@ -4,7 +4,6 @@ title = "Vibe Coding"
 [taxonomies]
 tags = ["AI", "Agents", "Coding", "Vibe Coding"]
 +++
-# Change to active present tense
 
 I have repeatedly heard the term [Vibe Coding](https://en.wikipedia.org/wiki/Vibe_coding) since last month. Having worked in Software Engineering for over 13 years, I naturally have a bit of skepticism. Determined not to fall into the curmudgeon trap, I am going to try out vibe coding and see what it is all about.
 
@@ -13,7 +12,7 @@ I have repeatedly heard the term [Vibe Coding](https://en.wikipedia.org/wiki/Vib
 # Tools
 To make this work, I am going to need to use tools that are made for vibe coding. There are a bunch to choose from, and I am not an expert... yet.
 
-My IDE of choice for personal projects is currently [Zed](https://zed.dev/). It is not really set up for vibe coding yet. There is a way to enable some aspects of it by adding `"enable_experimental_live_diffs": true` to the `assistant` section in `settings.json`, but I want to give this a fair shake.
+My IDE of choice for personal projects is currently [Zed](https://zed.dev/). It is not really set up for vibe coding. There is a way to enable some aspects of it by adding `"enable_experimental_live_diffs": true` to the `assistant` section in `settings.json`, but I want to give this a fair shake.
 
 There are two main Vibe Coding tools that caught my eye:
 
