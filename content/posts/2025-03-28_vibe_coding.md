@@ -508,4 +508,15 @@ Vibe coding feels more like throwing darts at a dartboard with a blindfold on. I
 
 I could have probably gotten a better result with improved prompts or letting the AI make different choices about the language to use. Frankly, though, if we all adapt to what the AI is trained the best to do it is like reversion to the mean. Lots of AI written software will likely all be using the same language, out of date libraries, and have the same security vulnerabilities.
 
-Vibe coding, in its current form, is not for me.
+Vibe coding, in its current form, is not for me. I am not a vibejockey producing vibejacked code.
+
+Thanks [qwq model](https://github.com/QwenLM/QwQ) running locally for vibejockey and vibejacked.
+
+```markdown
+**Adjective:** **"VibeJockey"**
+*(Pronounced "Vibe-JOCK-ee" for maximum snarky effect)*
+
+**Usage:**
+- "Their app is so *VibeJockey*, they probably just whispered 'Do the thing' to ChatGPT and called it a day."
+- "The entire startup is built on *VibeJockey* principles—0 code, 100% existential dread about the AI’s next mood swing."
+```
