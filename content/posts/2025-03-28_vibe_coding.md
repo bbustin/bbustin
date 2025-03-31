@@ -2,7 +2,7 @@
 title = "Vibe Coding"
 
 [taxonomies]
-tags = ["AI", "Agents", "Coding", "Vibe Coding"]
+tags = ["AI", "Agents", "Coding", "Vibe Coding", "Rust"]
 +++
 
 I have repeatedly heard the term [Vibe Coding](https://en.wikipedia.org/wiki/Vibe_coding) since last month. Having worked in Software Engineering for over 13 years, I naturally have a bit of skepticism. Determined not to fall into the curmudgeon trap, I am going to try out vibe coding and see what it is all about.
