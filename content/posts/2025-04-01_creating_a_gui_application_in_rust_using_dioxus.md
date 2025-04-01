@@ -1,5 +1,5 @@
 +++
-title = "Creating a GUI Application in Rust using Dioxus"
+title = "Creating an Application in Rust using Dioxus"
 
 [taxonomies]
 tags = ["Coding", "Rust", "Dioxus"]
