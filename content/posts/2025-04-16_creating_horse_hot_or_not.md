@@ -21,7 +21,7 @@ Here is what the site should do, at a minimum:
 * Keep a person from being able to rate the same horse multiple times
 * Not store user-identifiable data (I am a big fan of privacy and do not want to have more information than is needed)
 
-The last two items were the ones I spent the most time thinking about before I started coding. The system to prevent multiple votes on a horse does not need to work perfectly. This is not a high stakes site. How could I prevent the user from voting twice while not storing any identifiable information about them.
+The last two items are the ones I spent the most time thinking about before I started coding. The system to prevent multiple votes on a horse does not need to work perfectly. This is not a high stakes site. How could I prevent the user from voting twice while not storing any identifiable information about them?
 
 Then the idea strikes. I can use a hash. If I store the hash, I can not directly access the identifying information. It would take brute forcing or a [rainbow table](https://en.wikipedia.org/wiki/Rainbow_table). That is probably good enough, but what data should I hash? How about `user_ip:horse_id`. This would allow me to determine if the user voted for a particular horse before because I will have their IP address in the request and will know the id of the horse they are submitting a rating for. I can look up if the hash exists in a database table first, if not, record the vote and then add the hash to a table.
 
@@ -95,7 +95,7 @@ async fn main() {
 
 The initial idea of using the hashes to represent an individual rating submission for a certain horse is sound. The problem is that it does not allow for getting at some information that could be useful. I decide to hash the IP address, but then have a column for the horse_id, and when the rating was submitted. This does make revealing the user's IP address easier (at least in the case of IPv4) because you could simply create a rainbow table with hashes of all possible IP addresses, and then cross-reference each hash in the database against the rainbow table to reveal the address. That is definitely a downside.
 
-The upside is that it allows for more streamlined database queries. The main issue that convinced me to change course was picking a random horse for the a user to rate. It does not make sense to serve the user a horse they have already rated. In that scenario, the user would click a rating button, but the rating would not be successfully submitted.
+The upside is that it allows for more streamlined database queries. The main issue that convinced me to change course was picking a random horse for a user to rate. It does not make sense to serve the user a horse they have already rated. In that scenario, the user would click a rating button, but the rating would not be successfully submitted.
 
 Sure, I could:
 
