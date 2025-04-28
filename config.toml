@@ -58,6 +58,7 @@ timezone = "America/Los_Angeles"
 social_links = [
     { platform = "github", user_id = "bbustin" },
     { platform = "linkedin", user_id = "brianbustin" },
+    { platform = "youtube", user_id = "@BustinTech" },
     { platform = "feed", user_id = true },
     # { platform = "keyoxide", user_id = "aspe:host:XXXXXXX" },
     # { platform = "facebook", user_id = "" },
@@ -65,7 +66,6 @@ social_links = [
     # { platform = "pinterest", user_id = "" },
     # { platform = "twitter", user_id = "" },
     # { platform = "stackoverflow", user_id = "" },
-    # { platform = "youtube", user_id = "" },
     # { platform = "telegram", user_id = "" },
 ]
 

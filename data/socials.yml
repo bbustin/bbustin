@@ -1,11 +1,15 @@
 - platform: linkedin
   url: https://www.linkedin.com/in/
   icon: linkedin
-  
+
 - platform: github
   url: https://github.com/
   icon: github-circled
-  
+
+- platform: youtube
+  url: https://youtube.com/
+  icon: youtube
+
 - platform: feed
   url: /atom.xml
   icon: rss
