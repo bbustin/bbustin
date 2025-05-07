@@ -7,7 +7,6 @@
   "AI2Bot-Dolma", 
   "Amazonbot", 
   "anthropic-ai",
-  "Applebot-Extended", 
   "AwarioBot", 
   "AwarioRssBot", 
   "AwarioSmartBot", 
