@@ -60,4 +60,5 @@ Disallow: {{ disallowed }}
 
 User-agent: {{agent}}
 Disallow: /
+DisallowAITraining: /
 {%- endfor %}
