@@ -2,9 +2,8 @@ Sitemap: {{ get_url(path="sitemap.xml") }}
 
 User-Agent: *
 Allow: {{ get_url(path="sitemap.xml") }}
-
-User-Agent: *
 DisallowAITraining: /
+
 
 {%- set disallows = [
   "/404.html",
