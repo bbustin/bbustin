@@ -1,7 +1,16 @@
+Sitemap: {{ get_url(path="sitemap.xml") }}
+
+User-Agent: *
+Allow: {{ get_url(path="sitemap.xml") }}
+
+User-Agent: *
+DisallowAITraining: /
+
 {%- set disallows = [
   "/404.html",
   "/files/*"
 ] -%}
+
 {%- set block_useragents = [
   "AI2Bot", 
   "AI2Bot-Dolma", 
@@ -43,9 +52,6 @@
   "YouBot",  
   ] -%}
 
-User-Agent: *
-DisallowAITraining: /
-
 User-agent: *
 {%- for disallowed in disallows %}
 Disallow: {{ disallowed }}
@@ -56,6 +62,3 @@ Disallow: {{ disallowed }}
 User-agent: {{agent}}
 Disallow: /
 {%- endfor %}
-
-Allow: /
-Sitemap: {{ get_url(path="sitemap.xml") }}
