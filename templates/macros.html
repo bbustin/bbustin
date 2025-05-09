@@ -74,30 +74,15 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
 <link rel="canonical" href="{{ page_url | safe }}">
 
 {%- if config.extra.opengraph %}
-  <meta name="twitter:card" content="summary_large_image">
-  {%- if page.extra.images %}
-    {%- for image in page.extra.images %}
-      <meta name="twitter:image" content="{{ get_url(path=image) | safe }}">
-    {%- endfor %}
-  {%- elif section.extra.images %}
-    {%- for image in section.extra.images %}
-      <meta name="twitter:image" content="{{ get_url(path=image) | safe }}">
-    {%- endfor %}
-  {%- elif config.extra.logo %}
-    <meta name="twitter:image" content="{{ get_url(path=config.extra.logo) | safe }}">
-  {%- endif %}
-  <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ description }}">
-  
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
-  <meta property="og:type" content="{{ type }}">
-
 
   {%- if page.extra.youtube_id %}
+  <meta property="og:type" content="video">
   <meta property="og:video" content="https://www.youtube.com/v/{{ page.extra.youtube_id }}">
   {%- else %}
-  <meta property="og:url" content="{{ page_url | safe }}">
+  <meta property="og:type" content="{{ type }}">
+  <meta property="og:url" content="{{ page_url }}">
   {%- endif %}
 
   {%- if page.extra.images %}
