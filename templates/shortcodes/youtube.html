@@ -1,3 +1,7 @@
+{%- if config.extra.opengraph %}
+  <meta property="og:video" content="https://www.youtube.com/{{id}}">
+{%- endif %}
+
 <div {% if class %}class="{{class}}" {% else %} class="youtube" {% endif %}>
     <iframe
         src="https://www.youtube.com/embed/{{id}}{% if autoplay %}?autoplay=1{% endif %}"
