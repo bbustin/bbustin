@@ -69,6 +69,10 @@ social_links = [
     # { platform = "telegram", user_id = "" },
 ]
 
+# Add logo in OpenGraph for preview generation
+[extra.images]
+image = extra.logo
+
 # JSON-LD metadata
 [extra.bio]
 gender = "male"
