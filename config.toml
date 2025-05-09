@@ -71,7 +71,7 @@ social_links = [
 
 # Add logo in OpenGraph for preview generation
 [extra.images]
-image = extra.logo
+image = "favicon.svg"
 
 # JSON-LD metadata
 [extra.bio]
