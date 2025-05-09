@@ -82,7 +82,7 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
   <meta property="og:video" content="https://www.youtube.com/v/{{ page.extra.youtube_id }}">
   {%- else %}
   <meta property="og:type" content="{{ type }}">
-  <meta property="og:url" content="{{ page_url }}">
+  <meta property="og:url" content="{{ page_url | safe }}">
   {%- endif %}
 
   {%- if page.extra.images %}
