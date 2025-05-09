@@ -12,4 +12,4 @@ The story of how I thought I had invented the Modular Monolith.
 
 <!-- more -->
 
-{{ youtube(id="uMK-tYCv_g0") }}
+{{ youtube(id=extra.youtube_id) }}
