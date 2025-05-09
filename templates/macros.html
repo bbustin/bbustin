@@ -94,6 +94,10 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
   <meta property="og:type" content="{{ type }}">
   <meta property="og:url" content="{{ page_url | safe }}">
 
+  {%- if page.extra.youtube_id %}
+  <meta property="og:video" content="https://www.youtube.com/v/{{ page.extra.youtube_id }}">
+  {%- endif %}
+
   {%- if page.extra.images %}
     {%- for image in page.extra.images %}
       <meta property="og:image" content="{{ get_url(path=image) | safe }}">
