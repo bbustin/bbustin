@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bustin Tech - smolagents</title>
+    <subtitle>A software engineer&#x27;s pragmatic perspectives</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://bustin.tech/tags/smolagents/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bustin.tech"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-02-22T00:00:00+00:00</updated>
+    <id>https://bustin.tech/tags/smolagents/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Foray into Agentic AI</title>
+        <published>2025-02-07T00:00:00+00:00</published>
+        <updated>2025-02-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/foray-into-agentic-ai/"/>
+        <id>https://bustin.tech/posts/foray-into-agentic-ai/</id>
+        
+        <summary type="html">&lt;p&gt;I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone could ask, for example:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Compare the number of widgets sold in 2024 and 2025. Break down the data by quarter.
+Present the data in both a table as well as a line chart.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The way they are able to accomplish this is by leveraging agentic AI.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>
