@@ -56,7 +56,9 @@ Disallow: {{ disallowed }}
 
 User-Agent: Googlebot
 Allow: /
+{%- for disallowed in disallows %}
 Disallow: {{ disallowed }}
+{%- endfor %}
 
 {%- for agent in block_useragents %}
 
