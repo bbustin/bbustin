@@ -20,7 +20,8 @@
   "Diffbot", 
   "DuckAssistBot", 
   "Facebookbot", 
-  "GPTBot", 
+  "GPTBot",
+  "Googlebot-Extended",
   "Google-CloudVertexBot",
   "ImagesiftBot", 
   "Kangaroo Bot", 
@@ -52,6 +53,10 @@ DisallowAITraining: /
 {%- for disallowed in disallows %}
 Disallow: {{ disallowed }}
 {%- endfor %}
+
+User-Agent: Googlebot
+Allow: /
+Disallow: {{ disallowed }}
 
 {%- for agent in block_useragents %}
 
