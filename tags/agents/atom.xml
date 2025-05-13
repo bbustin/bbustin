@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title>Bustin Tech - Agents</title>
+    <subtitle>A software engineer&#x27;s pragmatic perspectives</subtitle>
+    <link rel="self" type="application/atom+xml" href="https://bustin.tech/tags/agents/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bustin.tech"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-03-28T00:00:00+00:00</updated>
+    <id>https://bustin.tech/tags/agents/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Vibe Coding</title>
+        <published>2025-03-28T00:00:00+00:00</published>
+        <updated>2025-03-28T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/vibe-coding/"/>
+        <id>https://bustin.tech/posts/vibe-coding/</id>
+        
+        <summary type="html">&lt;p&gt;I have repeatedly heard the term &lt;a href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Vibe_coding&quot;&gt;Vibe Coding&lt;&#x2F;a&gt; since last month. Having worked in Software Engineering for over 13 years, I naturally have a bit of skepticism. Determined not to fall into the curmudgeon trap, I am going to try out vibe coding and see what it is all about.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Open Deep Research using LangChain *Working*</title>
+        <published>2025-03-06T00:00:00+00:00</published>
+        <updated>2025-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/open-deep-research-using-langchain-working/"/>
+        <id>https://bustin.tech/posts/open-deep-research-using-langchain-working/</id>
+        
+        <summary type="html">&lt;p&gt;I have Open Deep Research using LangChain working. This builds upon the work in
+&lt;a href=&quot;https:&#x2F;&#x2F;bustin.tech&#x2F;posts&#x2F;open-deep-research-using-langchain&#x2F;&quot;&gt;Open Deep Research Using Langchain&lt;&#x2F;a&gt;.
+Just on a lark, I ran &lt;code&gt;git pull&lt;&#x2F;code&gt; and there were changes. I resolved merge conflicts and
+now it works!&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Open Deep Research using LangChain</title>
+        <published>2025-02-26T00:00:00+00:00</published>
+        <updated>2025-03-06T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/open-deep-research-using-langchain/"/>
+        <id>https://bustin.tech/posts/open-deep-research-using-langchain/</id>
+        
+        <summary type="html">&lt;p&gt;In &lt;a href=&quot;https:&#x2F;&#x2F;bustin.tech&#x2F;posts&#x2F;foray-into-agentic-ai&#x2F;&quot;&gt;Foray Into Agentic AI&lt;&#x2F;a&gt;, I adapted HuggingFace&#x27;s
+Open Deep Research work to run locally. Now I am going to try to do the same using
+&lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;langchain-ai&#x2F;open_deep_research&quot;&gt;LangChain&#x27;s Open Deep Research code&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>What is Agentic AI - Written by Agentic AI</title>
+        <published>2025-02-22T00:00:00+00:00</published>
+        <updated>2025-02-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            Open Deep Research with qwen2.5:14b
+          </name>
+        </author>
+        
+        <author>
+          <name>
+            Brian Bustin
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/what-is-agentic-ai-written-by-agentic-ai/"/>
+        <id>https://bustin.tech/posts/what-is-agentic-ai-written-by-agentic-ai/</id>
+        
+        <summary type="html">&lt;p&gt;The following post is written by Open Deep Research using Qwen2.5:14b.
+The prompt was:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Write an article on agentic AI. The audience is Software Engineers who do not have a
+lot of experience with AI. Please cover, among other things: what agentic AI is, the best
+use cases for agentic ai, pros and cons of using agentic ai, where agentic ai may be going
+in the future. Feel free to cover other aspects of agentic ai as well.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Foray into Agentic AI</title>
+        <published>2025-02-07T00:00:00+00:00</published>
+        <updated>2025-02-22T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Brian Bustin
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bustin.tech/posts/foray-into-agentic-ai/"/>
+        <id>https://bustin.tech/posts/foray-into-agentic-ai/</id>
+        
+        <summary type="html">&lt;p&gt;I spoke with someone who is tasked with implementing AI systems at their organization.
+The goal, for them, is to use AI to help fetch and format data in response to natural
+language queries. Someone could ask, for example:&lt;&#x2F;p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Compare the number of widgets sold in 2024 and 2025. Break down the data by quarter.
+Present the data in both a table as well as a line chart.&lt;&#x2F;p&gt;
+&lt;&#x2F;blockquote&gt;
+&lt;p&gt;The way they are able to accomplish this is by leveraging agentic AI.&lt;&#x2F;p&gt;
+</summary>
+        
+    </entry>
+</feed>
