@@ -2,6 +2,7 @@
   "/404.html",
   "/files/*"
 ] -%}
+
 {%- set block_useragents = [
   "AI2Bot", 
   "AI2Bot-Dolma", 
@@ -19,7 +20,8 @@
   "Diffbot", 
   "DuckAssistBot", 
   "Facebookbot", 
-  "GPTBot", 
+  "GPTBot",
+  "Googlebot-Extended",
   "Google-CloudVertexBot",
   "ImagesiftBot", 
   "Kangaroo Bot", 
@@ -43,19 +45,24 @@
   "YouBot",  
   ] -%}
 
-User-Agent: *
-DisallowAITraining: /
+Sitemap: {{ get_url(path="sitemap.xml") }}
 
-User-agent: *
+User-Agent: *
+Allow: {{ get_url(path="sitemap.xml") }}
+DisallowAITraining: /
+{%- for disallowed in disallows %}
+Disallow: {{ disallowed }}
+{%- endfor %}
+
+User-Agent: Googlebot
+Allow: /
 {%- for disallowed in disallows %}
 Disallow: {{ disallowed }}
 {%- endfor %}
 
 {%- for agent in block_useragents %}
 
-User-agent: {{agent}}
+User-Agent: {{agent}}
 Disallow: /
+DisallowAITraining: /
 {%- endfor %}
-
-Allow: /
-Sitemap: {{ get_url(path="sitemap.xml") }}
