@@ -27,6 +27,10 @@ transcribe your audio to captions. Without this functionality, you will either n
 manually enter your captions or use a third-party tool. It is much more pleasant and efficient
 to be able to do it all from within Final Cut.
 
+# Privacy Policy
+
+FCP Captions does not automatically collect or send any information back to us.
+
 # Getting Support
 
 If you are having any issues with the application, please let me know in the comment form
