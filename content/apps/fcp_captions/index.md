@@ -5,7 +5,7 @@ description = "Product page for the FCP Captions Final Cut workflow extension."
 summary = "Convert captions to editable titles without leaving Final Cut"
 
 [extra]
-images = ["apps/fcp-captions/fcpcaptions_logo.svg"]
+images = ["/apps/fcp-captions/fcpcaptions_logo.svg"]
 +++
 
 Convert captions to editable titles without leaving Final Cut
