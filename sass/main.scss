@@ -3,6 +3,7 @@
 .youtube {
     position: relative;
     padding-bottom: 56.25%;
+    margin-bottom: 1em;
     height: 0;
 }
 .youtube iframe {
@@ -11,4 +12,20 @@
     left: 0;
     width: 100%;
     height: 100%;
+}
+
+.app-item {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between icon and text */
+}
+
+.app-icon {
+    width: 128px; /* Adjust size as needed */
+    height: 128px;
+    flex-shrink: 0; /* Prevents the icon from shrinking */
+}
+
+.app-info {
+    flex: 1; /* Allows this container to take up remaining space */
 }

@@ -42,10 +42,10 @@ bottom_footnotes = true
 # Put all your custom variables here
 title_separator = "|" # set as |, -, _, etc
 
-logo = "images/logo.png"
+logo = "favicon.svg"
 
 # Menu items
-menu = [{ url = "/about", name = "About" }, { url = "/tags", name = "Tags" }]
+menu = [{ url = "/about", name = "About" }, { url = "/apps", name = "Apps" }, { url = "/tags", name = "Tags" }]
 
 language_code = "en-US"
 

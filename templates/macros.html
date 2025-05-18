@@ -25,6 +25,18 @@
 </article>
 {% endmacro page_in_list %}
 
+{%- macro app_in_list(page) -%}
+<a href="{{ page.permalink }}" class="app-item">
+  {%- if page.extra.images and page.extra.images | length > 0 %}
+  <img src="{{ page.extra.images[0] }}" alt="{{ page.title }} Application Icon" class="app-icon">
+  {%- endif -%}
+  <div class="app-info">
+    <h3>{{ page.title }}</h3>
+    <p>{{ page.summary | safe }}</p>
+  </div>
+</a>
+{% endmacro app_in_list %}
+
 {% macro get_edit_url(page) %}
 {%- set url = ["https://github.com", config.extra.github.username, config.extra.github.repo, "edit/master/content" , page.relative_path] | join(sep="/" ) %}
 <a href="{{ url | safe }}" title="Help improve page {{ page.permalink | safe }}">Improve this page</a>
@@ -74,21 +86,6 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
 <link rel="canonical" href="{{ page_url | safe }}">
 
 {%- if config.extra.opengraph %}
-  <meta name="twitter:card" content="summary_large_image">
-  {%- if page.extra.images %}
-    {%- for image in page.extra.images %}
-      <meta name="twitter:image" content="{{ get_url(path=image) | safe }}">
-    {%- endfor %}
-  {%- elif section.extra.images %}
-    {%- for image in section.extra.images %}
-      <meta name="twitter:image" content="{{ get_url(path=image) | safe }}">
-    {%- endfor %}
-  {%- elif config.extra.logo %}
-    <meta name="twitter:image" content="{{ get_url(path=config.extra.logo) | safe }}">
-  {%- endif %}
-  <meta name="twitter:title" content="{{ title }}">
-  <meta name="twitter:description" content="{{ description }}">
-  
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
   <meta property="og:type" content="{{ type }}">
@@ -234,4 +231,4 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
     </script>
   {%- endif %}
 {%- endif %}
-{%- endmacro %}
+{%- endmacro seo %}
