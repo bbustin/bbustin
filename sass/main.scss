@@ -26,6 +26,12 @@
     flex-shrink: 0; /* Prevents the icon from shrinking */
 }
 
+/* Smaller size for title on app page */
+.app-icon--title {
+    width: 64px;
+    height: 64px;
+}
+
 .app-info {
     flex: 1; /* Allows this container to take up remaining space */
 }

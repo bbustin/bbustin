@@ -12,7 +12,18 @@ description=description, type=type, s_page=true) }} {% endblock seo %} {%- block
 content %}
 <article class="page">
     <div class="header-container">
-        <h2>{{ page.title }}</h2>
+        <h2 href="{{ page.permalink }}" class="app-item">
+            {%- if page.extra.images and page.extra.images | length > 0 %}
+            <img
+                src="{{ page.extra.images[0] }}"
+                alt="{{ page.title }} Application Icon"
+                class="app-icon app-icon--title"
+            />
+            {%- endif -%}
+            <div class="app-info">
+                {{ page.title }}
+            </div>
+        </>
         {%- if config.extra.edit_page %}
         <div class="improve hide-on-mobiles">
             {{ macros::get_edit_url(page=page) }}

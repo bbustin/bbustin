@@ -7,8 +7,21 @@ title_addition = config.description %} {%- else %} {%- set title_addition = ""
 description=config.description, is_home=false) }} {%- endblock seo %} {%- block
 content %}
 <div class="pages">
-    {%- for page in paginator.pages %} {{ macros::app_in_list(page=page) }} {%-
-    endfor %}
+    {%- for page in paginator.pages %}
+    <a href="{{ page.permalink }}" class="app-item">
+        {%- if page.extra.images and page.extra.images | length > 0 %}
+        <img
+            src="{{ page.extra.images[0] }}"
+            alt="{{ page.title }} Application Icon"
+            class="app-icon"
+        />
+        {%- endif -%}
+        <div class="app-info">
+            <h3>{{ page.title }}</h3>
+            <p>{{ page.summary | safe }}</p>
+        </div>
+    </a>
+    {%- endfor %}
 </div>
 {%- if paginator.total_pages > 1 %}
 <div class="pagination">
