@@ -8,7 +8,7 @@ tags = ["YouTube", "Video", "App", "Swift"]
 youtube_id = "OgtdJ3LC6W8"
 +++
 
-FCP Captions converts captions in Final Cut into editable titles. It runs inside Final Cut
+[FCP Captions](@/apps/fcp_captions/index.md) converts captions in Final Cut into editable titles. It runs inside Final Cut
 and works with drag and drop. There's no longer any need to export captions, load them up into
 another app, have the other app generate FCPXML with the titles, and then import the FCPXML
 back into Final Cut.
