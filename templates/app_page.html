@@ -13,9 +13,9 @@ content %}
 <article class="page">
     <div class="header-container">
         <h2 href="{{ page.permalink }}" class="app-item">
-            {%- if page.extra.images and page.extra.images | length > 0 %}
+            {%- if page.extra.icon %}
             <img
-                src="{{ page.extra.images[0] }}"
+                src="{{ page.extra.icon }}"
                 alt="{{ page.title }} Application Icon"
                 class="app-icon app-icon--title"
             />

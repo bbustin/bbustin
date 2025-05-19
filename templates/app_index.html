@@ -9,9 +9,9 @@ content %}
 <div class="pages">
     {%- for page in paginator.pages %}
     <a href="{{ page.permalink }}" class="app-item">
-        {%- if page.extra.images and page.extra.images | length > 0 %}
+        {%- if page.extra.icon %}
         <img
-            src="{{ page.extra.images[0] }}"
+            src="{{ page.extra.icon }}"
             alt="{{ page.title }} Application Icon"
             class="app-icon"
         />

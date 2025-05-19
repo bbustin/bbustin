@@ -42,7 +42,7 @@ bottom_footnotes = true
 # Put all your custom variables here
 title_separator = "|" # set as |, -, _, etc
 
-logo = "favicon.svg"
+logo = "opengraph_logo.png"
 
 # Menu items
 menu = [{ url = "/about", name = "About" }, { url = "/apps", name = "Apps" }, { url = "/tags", name = "Tags" }]
