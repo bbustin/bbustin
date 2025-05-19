@@ -1,5 +1,5 @@
 +++
-title = "TitleBridge Captions is my first app"
+title = "TitleBridge is my first app"
 
 [taxonomies]
 tags = ["YouTube", "Video", "App", "Swift"]
