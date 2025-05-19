@@ -4,7 +4,7 @@ date = 2025-05-17
 description = "Product page for the FCP Captions Final Cut workflow extension."
 
 [extra]
-images = ["/apps/fcp-captions/fcpcaptions_logo.svg"]
+images = ["/apps/fcp-captions/titlebridge_logo.svg"]
 +++
 
 Convert captions to editable titles without leaving Final Cut
