@@ -41,4 +41,4 @@ account to figure out the best communication method to continue resolving the is
 
 # Backstory
 
-[The origin story of TitleBridge](@/posts/2025-05-18_fcp_captions_my_first_app.md)
+[The origin story of TitleBridge](@/posts/2025-05-18_titlebridge_my_first_app.md)
