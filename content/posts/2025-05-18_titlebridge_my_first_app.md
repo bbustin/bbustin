@@ -4,9 +4,6 @@ aliases = ["/posts/fcp-captions-my-first-app/"]
 
 [taxonomies]
 tags = ["YouTube", "Video", "App", "Swift"]
-
-[extra]
-youtube_id = "yUEACs1iDj8"
 +++
 
 [TitleBridge](@/apps/titlebridge/index.md) converts captions in Final Cut into editable titles. It runs inside Final Cut
@@ -16,7 +13,7 @@ back into Final Cut.
 
 <!-- more -->
 
-{{ youtube() }}
+{{ youtube(id="yUEACs1iDj8") }}
 
 # Backstory
 

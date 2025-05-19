@@ -76,21 +76,20 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
 {%- if config.extra.opengraph %}
   <meta property="og:title" content="{{ title }}">
   <meta property="og:description" content="{{ description }}">
-
   {%- if page.extra.youtube_id %}
-  <meta property="og:type" content="video">
-  <meta property="og:video" content="https://www.youtube.com/v/{{ page.extra.youtube_id }}">
+  <meta property="og:type" content="video.other">
+  <meta property="og:video" content="https://www.youtube.com/embed/{{ page.extra.youtube_id }}">
+  <meta property="og:image" content="https://i.ytimg.com/vi/{{ page.extra.youtube_id }}/maxresdefault.jpg">
   {%- else %}
   <meta property="og:type" content="{{ type }}">
-  <meta property="og:url" content="{{ page_url | safe }}">
-  {%- endif %}
 
-  {%- if page.extra.opengraph_logo %}
-    <meta property="og:image" content="{{ get_url(path=page.extra.opengraph_logo) | safe }}">
-  {%- elif section.extra.opengraph_logo %}
-    <meta property="og:image" content="{{ get_url(path=section.extra.opengraph_logo) | safe }}">
-  {%- elif config.extra.logo %}
-    <meta property="og:image" content="{{ get_url(path=config.extra.logo) | safe }}">
+      {%- if page.extra.opengraph_logo %}
+        <meta property="og:image" content="{{ get_url(path=page.extra.opengraph_logo) | safe }}">
+      {%- elif section.extra.opengraph_logo %}
+        <meta property="og:image" content="{{ get_url(path=section.extra.opengraph_logo) | safe }}">
+      {%- elif config.extra.logo %}
+        <meta property="og:image" content="{{ get_url(path=config.extra.logo) | safe }}">
+      {%- endif %}
   {%- endif %}
 
   <meta property="og:site_name" content="{{ title }}">
