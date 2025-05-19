@@ -1,5 +1,6 @@
 +++
 title = "TitleBridge is my first app"
+aliases = ["/posts/fcp-captions-my-first-app/"]
 
 [taxonomies]
 tags = ["YouTube", "Video", "App", "Swift"]
