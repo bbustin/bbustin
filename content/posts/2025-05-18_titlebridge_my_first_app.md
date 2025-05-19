@@ -9,7 +9,7 @@ youtube_id = "yUEACs1iDj8"
 +++
 
 [TitleBridge](@/apps/titlebridge/index.md) converts captions in Final Cut into editable titles. It runs inside Final Cut
-and works with drag and drop. There's no longer any need to export captions, load them up into
+and uses easy dragging and dropping. There's no longer any need to export captions, load them up into
 another app, have the other app generate FCPXML with the titles, and then import the FCPXML
 back into Final Cut.
 
