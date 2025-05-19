@@ -87,14 +87,14 @@ Posted on {{ page.date | date(format=config.extra.timeformat | default(value="%B
 
   {%- if page.extra.images %}
     {%- for image in page.extra.images %}
-      <meta property="og:image" content="{{ get_url(path=image) | safe }}">
+      <meta name="image" property="og:image" content="{{ get_url(path=image) | safe }}">
     {%- endfor %}
   {%- elif section.extra.images %}
     {%- for image in section.extra.images %}
-      <meta property="og:image" content="{{ get_url(path=image) | safe }}">
+      <meta name="image" property="og:image" content="{{ get_url(path=image) | safe }}">
     {%- endfor %}
   {%- elif config.extra.logo %}
-    <meta property="og:image" content="{{ get_url(path=config.extra.logo) | safe }}">
+    <meta name="image" property="og:image" content="{{ get_url(path=config.extra.logo) | safe }}">
   {%- endif %}
 
   <meta property="og:site_name" content="{{ title }}">
