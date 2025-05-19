@@ -1,7 +1,7 @@
 +++
 title = "TitleBridge"
 date = 2025-05-17
-description = "Product page for the TitleBridge Final Cut workflow extension."
+description = "TitleBridge is a Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut to add editable titles from your captions and no need to subscribe to any services."
 
 [extra]
 images = ["/apps/titlebridge/titlebridge_logo.svg"]
