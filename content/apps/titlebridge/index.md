@@ -1,17 +1,17 @@
 +++
-title = "FCP Captions"
+title = "TitleBridge"
 date = 2025-05-17
-description = "Product page for the FCP Captions Final Cut workflow extension."
+description = "Product page for the TitleBridge Final Cut workflow extension."
 
 [extra]
-images = ["/apps/fcp-captions/titlebridge_logo.svg"]
+images = ["/apps/titlebridge/titlebridge_logo.svg"]
 +++
 
 Convert captions to editable titles without leaving Final Cut
 
 <!--more-->
 
-FCP Captions is a Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut
+TitleBridge is a Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut
 to add editable titles from your captions and no need to subscribe to any services.
 
  {{ youtube(id="OgtdJ3LC6W8")}}
@@ -21,14 +21,14 @@ to add editable titles from your captions and no need to subscribe to any servic
 * Mac with Apple Silicon (M1 or better processor)*
 * Final Cut Pro 11.1+
 
-\* FCP Captions does not require Apple Silicon. We recommend this so Final Cut is able to
+\* TitleBridge does not require Apple Silicon. We recommend this so Final Cut is able to
 transcribe your audio to captions. Without this functionality, you will either need to
 manually enter your captions or use a third-party tool. It is much more pleasant and efficient
 to be able to do it all from within Final Cut.
 
 # Privacy Policy
 
-FCP Captions does not automatically collect or send any information back to us.
+TitleBridge does not automatically collect or send any information back to us.
 
 # Getting Support
 
@@ -41,4 +41,4 @@ account to figure out the best communication method to continue resolving the is
 
 # Backstory
 
-[The origin story of FCP Captions](@/posts/2025-05-18_fcp_captions_my_first_app.md)
+[The origin story of TitleBridge](@/posts/2025-05-18_fcp_captions_my_first_app.md)
