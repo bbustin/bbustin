@@ -14,7 +14,7 @@ Convert captions to editable titles without leaving Final Cut
 TitleBridge is a Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut
 to add editable titles from your captions and no need to subscribe to any services.
 
- {{ youtube(id="OgtdJ3LC6W8")}}
+ {{ youtube(id="yUEACs1iDj8")}}
 
 # System Requirements
 

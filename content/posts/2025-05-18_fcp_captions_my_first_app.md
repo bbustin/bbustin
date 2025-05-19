@@ -5,7 +5,7 @@ title = "TitleBridge is my first app"
 tags = ["YouTube", "Video", "App", "Swift"]
 
 [extra]
-youtube_id = "OgtdJ3LC6W8"
+youtube_id = "yUEACs1iDj8"
 +++
 
 [TitleBridge](@/apps/titlebridge/index.md) converts captions in Final Cut into editable titles. It runs inside Final Cut
