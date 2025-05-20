@@ -5,4 +5,7 @@ template = "app_index.html"
 page_template = "app_page.html"
 paginate_by = 5
 sort_by = "title"
+
+[extra]
+appstore = "/apps/appstore_button.svg"
 +++

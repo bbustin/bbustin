@@ -6,10 +6,11 @@ description = "TitleBridge is a Final Cut Pro workflow to make adding captions a
 [extra]
 opengraph_logo = "/apps/titlebridge/opengraph_logo.png"
 icon = "/apps/titlebridge/titlebridge_logo.svg"
+apple.appstore.id = "6745977309"
+apple.appstore.url = "https://apps.apple.com/us/app/titlebridge-for-final-cut/id6745977309"
 +++
 
 Convert captions to editable titles without leaving Final Cut
-
 <!--more-->
 
 TitleBridge is a Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut

@@ -1,4 +1,6 @@
-{%- extends "base.html" %} {%- block seo -%} {{- super() }} {%- set
+{%- extends "base.html" %} {%- block seo -%} {{- super() }}
+{%- if page.extra.apple.appstore.id -%}<meta name="apple-itunes-app" content="app-id={{ page.extra.apple.appstore.id }}">{%- endif -%}
+{%- set
 title_addition = "" %} {%- if page.title and config.title %} {%- set title =
 page.title %} {%- set title_addition = title_separator ~ config.title %} {%-
 elif page.title %} {%- set title = page.title %} {%- else %} {%- set title =
@@ -30,7 +32,13 @@ content %}
         </div>
         {%- endif %}
     </div>
-
+    {%- if page.extra.apple.appstore.url -%}
+    <p>
+        <a href="{{ page.extra.apple.appstore.url | safe }}">
+            <img src="/apps/appstore_button.svg" alt="Download on the App Store" />
+        </a>
+    </p>
+    {%- endif -%}
     <div class="entry">{{ page.content | safe }}</div>
     {%- include "partials/giscus.html" -%}
 </article>
