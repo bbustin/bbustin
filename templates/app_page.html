@@ -14,53 +14,29 @@ endif %} {%- set type = "website" %} {%- endif %} {{- macros::seo( title=title,
 title_addition=title_addition, description=description, type=type, s_page=true)
 }} {% endblock seo %} {%- block content %}
 <article class="page">
-    <div class="header-container">
-        <div class="app-item">
-            <div class="app-graphics">
-                {%- if page.extra.icon -%}
-                <a href="{{ page.permalink | safe }}">
-                    <img
-                        src="{{ page.extra.icon | safe }}"
-                        alt="{{ page.title }} Application Icon"
-                        class="app-icon"
-                    />
-                </a>
-                {%- endif -%} {%- if page.extra.apple.appstore.url -%}
-                <a
-                    href="{{ page.extra.apple.appstore.url | safe }}"
-                    alt="Download on the App Store"
-                >
-                    <img src="/apps/appstore_button.svg" />
-                </a>
-                {%- endif -%}
-            </div>
-            <div class="app-info">
-                <h2>{{ page.title }}</h2>
-                <p>{{ page.description | safe }}</p>
-            </div>
-        </div>
-        <!-- <h2 class="app-item">
-            {%- if page.extra.icon %}
-            <img
-                src="{{ page.extra.icon }}"
-                alt="{{ page.title }} Application Icon"
-                class="app-icon app-icon--title"
-            />
+    <div class="app-item">
+        <div class="app-graphics">
+            {%- if page.extra.icon -%}
+            <a href="{{ page.permalink | safe }}">
+                <img
+                    src="{{ page.extra.icon | safe }}"
+                    alt="{{ page.title }} Application Icon"
+                    class="app-icon"
+                />
+            </a>
+            {%- endif -%} {%- if page.extra.apple.appstore.url -%}
+            <a
+                href="{{ page.extra.apple.appstore.url | safe }}"
+                alt="Download on the App Store"
+            >
+                <img src="/apps/appstore_button.svg" />
+            </a>
             {%- endif -%}
-            <div class="app-info">
-                {{ page.title }}
-                {%- if page.extra.apple.appstore.url -%}
-                <a href="{{ page.extra.apple.appstore.url | safe }}">
-                    <img src="/apps/appstore_button.svg" alt="Download on the App Store" />
-                </a>
-                {%- endif -%}
-            </div>
-        </> -->
-        {%- if config.extra.edit_page %}
-        <div class="improve hide-on-mobiles">
-            {{ macros::get_edit_url(page=page) }}
         </div>
-        {%- endif %}
+        <div class="app-info">
+            <h2>{{ page.title }}</h2>
+            <p>{{ page.description | safe }}</p>
+        </div>
     </div>
     <div class="entry">{{ page.content | safe }}</div>
     {%- include "partials/giscus.html" -%}
