@@ -1,8 +1,13 @@
 @import "../themes/hacker/sass/main.scss";
 
+:root {
+    --border_radius: 20px;
+}
+
 .youtube {
     position: relative;
     padding-bottom: 56.25%;
+    margin-top: 1em;
     margin-bottom: 1em;
     height: 0;
 }
@@ -16,13 +21,26 @@
 
 .app-item {
     display: flex;
-    align-items: center;
-    gap: 20px; /* Space between icon and text */
+    align-items: stretch;
+    gap: 1em; /* Space between icon and text */
+    padding: 0.5em;
+    background-color: rgb(50, 50, 50);
+    border-radius: var(--border_radius);
+}
+
+.app-item a {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.app-graphics {
+    display: flex;
+    flex-direction: column;
 }
 
 .app-icon {
-    width: 128px; /* Adjust size as needed */
-    height: 128px;
+    width: 120px; /* Adjust size as needed */
+    height: 120px;
     flex-shrink: 0; /* Prevents the icon from shrinking */
 }
 

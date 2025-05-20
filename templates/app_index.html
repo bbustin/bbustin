@@ -9,43 +9,42 @@ content %}
 <div class="pages">
     {%- for page in paginator.pages %}
     <div class="app-item">
-        {%- if page.extra.icon -%}
-        <a href="{{ page.permalink | safe }}">
-            <img
-                src="{{ page.extra.icon | safe }}"
-                alt="{{ page.title }} Application Icon"
-                class="app-icon"
-            />
-        </a>
-        {%- endif -%}
-        <div class="app-info">
+        <div class="app-graphics">
+            {%- if page.extra.icon -%}
             <a href="{{ page.permalink | safe }}">
-                <h3>{{ page.title }}</h3>
+                <img
+                    src="{{ page.extra.icon | safe }}"
+                    alt="{{ page.title }} Application Icon"
+                    class="app-icon"
+                />
             </a>
-            <p>{{ page.summary | safe }}</p>
-            {%- if page.extra.apple.appstore.url -%}
-            <p>
-                <a href="{{ page.extra.apple.appstore.url | safe }}" alt="Download on the App Store">
-                    <img src="/apps/appstore_button.svg" />
-                </a>
-            </p>
+            {%- endif -%} {%- if page.extra.apple.appstore.url -%}
+            <a
+                href="{{ page.extra.apple.appstore.url | safe }}"
+                alt="Download on the App Store"
+            >
+                <img src="/apps/appstore_button.svg" />
+            </a>
             {%- endif -%}
         </div>
-    </a>
-    {%- endfor %}
+        <a href="{{ page.permalink | safe }}" class="app-info">
+            <h2>{{ page.title }}</h2>
+            <p>{{ page.description | safe }}</p>
+        </a>
+    </div>
+    {%- endfor %} {%- if paginator.total_pages > 1 %}
+    <div class="pagination">
+        {%- if paginator.previous %}
+        <a href="{{ paginator.previous | safe }}" class="previous-page"
+            >&lt;-- Previous</a
+        >
+        {%- else %}
+        <span class="previous-page">&lt;-- Previous</span>
+        {%- endif -%}{%- if paginator.next %}
+        <a href="{{ paginator.next | safe }}" class="next-page">Next --&gt;</a>
+        {%- else %}
+        <span class="next-page">Next --&gt;</span>
+        {%- endif %}
+    </div>
+    {%- endif -%} {%- endblock %}
 </div>
-{%- if paginator.total_pages > 1 %}
-<div class="pagination">
-    {%- if paginator.previous %}
-    <a href="{{ paginator.previous | safe }}" class="previous-page"
-        >&lt;-- Previous</a
-    >
-    {%- else %}
-    <span class="previous-page">&lt;-- Previous</span>
-    {%- endif -%}{%- if paginator.next %}
-    <a href="{{ paginator.next | safe }}" class="next-page">Next --&gt;</a>
-    {%- else %}
-    <span class="next-page">Next --&gt;</span>
-    {%- endif %}
-</div>
-{%- endif -%} {%- endblock %}
