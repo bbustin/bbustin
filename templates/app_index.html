@@ -11,7 +11,10 @@ content %}
     <div class="app-item">
         <div class="app-graphics">
             {%- if page.extra.icon -%}
-            <a href="{{ page.permalink | safe }}">
+            <a
+                href="{{ page.permalink | safe }}"
+                aria-label="Learn more about {{ page.title }}"
+            >
                 <img
                     src="{{ page.extra.icon | safe }}"
                     alt="{{ page.title }} Application Icon"
@@ -23,11 +26,18 @@ content %}
                 href="{{ page.extra.apple.appstore.url | safe }}"
                 alt="Download on the App Store"
             >
-                <img src="/apps/appstore_button.svg" />
+                <img
+                    src="/apps/appstore_button.svg"
+                    alt="Download on the App Store"
+                />
             </a>
             {%- endif -%}
         </div>
-        <a href="{{ page.permalink | safe }}" class="app-info">
+        <a
+            href="{{ page.permalink | safe }}"
+            class="app-info"
+            aria-label="Learn more about {{ page.title }}"
+        >
             <h2>{{ page.title }}</h2>
             <p>{{ page.description | safe }}</p>
         </a>

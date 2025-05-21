@@ -18,7 +18,7 @@ page.extra.apple.appstore.id -%}<meta
         {%- if page.extra.apple.appstore.url -%}
         <a
             href="{{ page.extra.apple.appstore.url | safe }}"
-            alt="Download on the App Store"
+            aria-label="Download on the App Store"
         >
             {%- endif -%}
             <div class="app-graphics">
@@ -29,7 +29,10 @@ page.extra.apple.appstore.id -%}<meta
                     class="app-icon"
                 />
                 {%- endif -%} {%- if page.extra.apple.appstore.url -%}
-                <img src="/apps/appstore_button.svg" />
+                <img
+                    src="/apps/appstore_button.svg"
+                    alt="Download on the App Store"
+                />
                 {%- endif -%}
             </div>
             {%- if page.extra.apple.appstore.url -%}
