@@ -32,7 +32,7 @@ If you are having any issues with the application, please let me know in the com
 at the bottom of this page. Do not include any private information as your comment will
 be publicly visible.
 
-The comments are through Github's Giscus, so I will reach out to you privately through your Github
+The comments are through Github Discussions, so I will reach out to you privately through your Github
 account to figure out the best communication method to continue resolving the issue facing you.
 
 # Backstory
