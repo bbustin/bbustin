@@ -2,6 +2,7 @@
 title = "TitleBridge"
 date = 2025-05-17
 description = "A Final Cut Pro workflow to make adding captions as titles easy. There is no need to leave Final Cut to add editable titles from your captions and no need to subscribe to any services."
+aliases = ["/apps/fcp-captions/"]
 
 [extra]
 opengraph_logo = "/apps/titlebridge/opengraph_logo.png"
