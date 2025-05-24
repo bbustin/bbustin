@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="0" y="0" width="1024" height="1024" rx="200" ry="200" fill="#0e72cc" />
+  
+  <!-- Film strip elements -->
+  <rect x="164" y="174" width="696" height="676" rx="40" ry="40" fill="#152a3a" stroke="#ffffff" stroke-width="12" />
+  
+  <!-- Caption text elements -->
+  <rect x="224" y="374" width="576" height="80" rx="15" ry="15" fill="#666666" opacity="0.8" />
+  <rect x="244" y="394" width="536" height="40" rx="5" ry="5" fill="#ffffff" />
+  
+  <!-- Title text element - larger and more prominent -->
+  <rect x="224" y="574" width="576" height="120" rx="15" ry="15" fill="#e0e0e0" />
+  
+  <!-- Stylized text for Title -->
+  <text x="512" y="654" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="bold" fill="#152a3a" text-anchor="middle">TITLE</text>
+  
+  <!-- Arrow indicating conversion -->
+  <path d="M512 484 L562 534 L512 584 L462 534 Z" fill="#ffffff" />
+  <path d="M512 484 L392 484 L392 534 L512 534 Z" fill="#ffffff" />
+  <path d="M512 584 L632 584 L632 534 L512 534 Z" fill="#ffffff" />
+  
+  <!-- FCP reference - stylized playhead -->
+  <rect x="262" y="224" width="500" height="8" fill="#ffcc00" />
+  <path d="M512 224 L532 194 L492 194 Z" fill="#ffcc00" />
+</svg>

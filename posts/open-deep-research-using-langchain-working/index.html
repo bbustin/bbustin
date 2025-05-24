@@ -1,0 +1,587 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Open Deep Research using LangChain *Working* | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="I have Open Deep Research using LangChain working. This builds upon the work in
+Open Deep Research Using Langchain.
+Just on a lark, I ran git pull and there were changes. I resolved merge conflicts an…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/open-deep-research-using-langchain-working/">
+  <meta property="og:title" content="Open Deep Research using LangChain *Working*">
+  <meta property="og:description" content="I have Open Deep Research using LangChain working. This builds upon the work in
+Open Deep Research Using Langchain.
+Just on a lark, I ran git pull and there were changes. I resolved merge conflicts an…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Open Deep Research using LangChain *Working*">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-03-06T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/open-deep-research-using-langchain-working"
+      },
+      "headline": "Open Deep Research using LangChain *Working*",
+      "description": "I have Open Deep Research using LangChain working. This builds upon the work in
+Open Deep Research Using Langchain.
+Just on a lark, I ran git pull and there were changes. I resolved merge conflicts an…",
+      "wordcount": "2018",
+      "datePublished": "2025-03-06T00:00:00+00:00",
+      "dateModified": "2025-03-06T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Open Deep Research using LangChain *Working*",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Open Deep Research using LangChain *Working*</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/research/" class="page-tag">Research</a>,
+      <a href="https://bustin.tech/tags/ai/" class="page-tag">AI</a>,
+      <a href="https://bustin.tech/tags/agents/" class="page-tag">Agents</a>,
+      <a href="https://bustin.tech/tags/nix/" class="page-tag">Nix</a>,
+      <a href="https://bustin.tech/tags/langchain/" class="page-tag">langchain</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-03-06T00:00:00+00:00">
+      Posted on March  6, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>I have Open Deep Research using LangChain working. This builds upon the work in
+<a href="https://bustin.tech/posts/open-deep-research-using-langchain/">Open Deep Research Using Langchain</a>.
+Just on a lark, I ran <code>git pull</code> and there were changes. I resolved merge conflicts and
+now it works!</p>
+<span id="continue-reading"></span>
+<p>I will include a diff at the end so you can run this locally as well if you would like.
+But first... here is the output of LangChain's Open Deep Seek running locally and
+answering the query <code>Overview of the AI inference market with focus on Fireworks, Together.ai, Groq</code>.
+This is the same query as in <a href="https://bustin.tech/posts/open-deep-research-using-langchain/">the previous post</a>.</p>
+<hr />
+<h1 id="overview-of-the-ai-inference-market-with-focus-on-fireworks-together-ai-groq">Overview of the AI Inference Market with Focus on Fireworks, Together.ai, Groq</h1>
+<p>The AI inference market is experiencing rapid growth as businesses across industries seek real-time decision-making capabilities. Companies like Fireworks, Together.ai, and Groq are leading this charge by offering advanced solutions that enhance computational efficiency and scalability. These platforms enable faster processing of large datasets, supporting applications in autonomous vehicles, healthcare diagnostics, and financial services.</p>
+<h2 id="comparison-of-fireworks-together-ai-and-groq">Comparison of Fireworks, Together.ai, and Groq</h2>
+<table><thead><tr><th>Feature/Company</th><th>Fireworks</th><th>Together.ai</th><th>Groq</th></tr></thead><tbody>
+<tr><td><strong>Platform Focus</strong></td><td>Scalable AI inference for real-time applications</td><td>Collaborative AI tools integrated into workflows</td><td>High-performance computing using custom silicon technology</td></tr>
+<tr><td><strong>Key Differentiators</strong></td><td>Ease of integration, low latency, supports various ML frameworks</td><td>Seamless workflow integration, accessible to non-experts, competitive pricing</td><td>Custom-built processor architecture (GroqFlow) for parallel processing</td></tr>
+<tr><td><strong>Market Positioning</strong></td><td>Reliable choice for organizations leveraging AI technologies</td><td>Strong competitor in the growing AI inference market through productivity enhancements</td><td>Valuable for real-time decision-making and large-scale data analysis</td></tr>
+</tbody></table>
+<p>This report provides a detailed overview of these platforms, highlighting their unique features and market impact. As the demand for efficient AI solutions continues to rise, understanding the capabilities of Fireworks, Together.ai, and Groq is crucial for businesses looking to stay competitive.</p>
+<h2 id="overview-of-ai-inference-market">Overview of AI Inference Market</h2>
+<p>The AI inference market is rapidly growing, driven by increasing demand for real-time decision-making across various industries. Companies like Fireworks, Together.ai, and Groq are at the forefront, offering solutions that enhance computational efficiency and scalability. These advancements enable faster processing of large datasets, supporting applications in autonomous vehicles, healthcare diagnostics, and financial services [1].</p>
+<h3 id="sources">Sources</h3>
+<p>[1] McKinsey &amp; Company: https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/artificial-intelligence-the-next-frontier-for-growth-in-retail</p>
+<h2 id="fireworks-overview">Fireworks Overview</h2>
+<p>Fireworks is a platform designed to simplify the deployment of AI models at scale. It offers a user-friendly interface that allows developers and businesses to deploy, manage, and monitor AI applications efficiently [1]. One of its key features is the ability to handle large-scale inference tasks with ease, making it suitable for high-demand environments [2]. Fireworks also provides robust security measures and compliance support, ensuring data protection and regulatory adherence [3]. In terms of market position, Fireworks competes with other AI deployment platforms by offering a seamless integration process and cost-effective solutions, positioning itself as a reliable choice for organizations looking to leverage AI technologies.</p>
+<h3 id="sources-1">Sources</h3>
+<p>[1] Fireworks Documentation: https://docs.fireworks.ai/
+[2] Fireworks Blog Post on Scalability: https://blog.fireworks.ai/scalable-ai-inference-made-easy/
+[3] Fireworks Security Features Overview: https://fireworks.ai/security/</p>
+<h2 id="together-ai-overview">Together.ai Overview</h2>
+<p>Together.ai is a platform designed to simplify access to advanced AI models for developers and businesses. It offers a suite of tools that enable users to deploy, manage, and scale AI applications efficiently [1]. One of its key differentiators is the ability to integrate seamlessly with existing workflows, making it accessible for non-experts in machine learning [2]. Additionally, Together.ai focuses on providing high-performance computing resources at competitive prices, which positions it as a strong competitor in the rapidly growing AI inference market [3].</p>
+<h3 id="sources-2">Sources</h3>
+<p>[1] Together.ai: https://together.xyz/
+[2] Together.ai Documentation: https://docs.together.xyz/
+[3] Market Analysis Report on AI Inference Platforms: https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-inference-market-106745897.html</p>
+<h2 id="groq-overview">Groq Overview</h2>
+<p>Groq specializes in high-performance computing for artificial intelligence, offering advanced AI inference solutions designed to accelerate machine learning workloads. Their unique approach centers on the use of a custom-built processor architecture called the GroqFlow, which is optimized for parallel processing and can handle complex computations efficiently [1]. This technology enables significant speedups in AI model deployment and inference, making it particularly valuable for applications requiring real-time decision-making and large-scale data analysis.</p>
+<h3 id="sources-3">Sources</h3>
+<p>[1] Groq: https://groq.com/</p>
+<h1 id="revenue-estimate-for-fireworks">Revenue Estimate for Fireworks</h1>
+<p>Fireworks is poised to capture significant market share in the rapidly growing AI inference sector, driven by its user-friendly platform and focus on scalability. As organizations increasingly demand efficient deployment of AI models, Fireworks' seamless integration capabilities and cost-effective solutions make it a compelling choice. This section provides an estimated revenue forecast based on current market data and growth projections.</p>
+<h2 id="revenue-estimate-for-fireworks-1">Revenue Estimate for Fireworks</h2>
+<p>Fireworks has been gaining traction in the AI inference market due to its robust platform features and competitive pricing. Given the growing demand for scalable AI solutions, Fireworks is expected to see substantial revenue growth over the next few years. By leveraging strategic partnerships and expanding its customer base, Fireworks aims to achieve a significant market position.</p>
+<p>To estimate Fireworks' revenue, we consider several factors including market size, growth rate, and competitive landscape. The global AI inference market is projected to reach $108 billion by 2030, growing at a compound annual growth rate (CAGR) of 24% [1]. Assuming Fireworks captures a conservative 1% share of this market in the next five years, its revenue could exceed $50 million annually.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Fireworks is well-positioned to capitalize on the expanding AI inference market with its scalable and user-friendly platform. By focusing on strategic partnerships and enterprise adoption, Fireworks aims to achieve substantial revenue growth.</p>
+<h2 id="comparison-table-of-key-players-in-ai-inference-market">Comparison Table of Key Players in AI Inference Market</h2>
+<table><thead><tr><th>Company</th><th>Key Features</th><th>Revenue Estimate (2025)</th></tr></thead><tbody>
+<tr><td>Fireworks</td><td>Scalable AI inference platform, user-friendly interface</td><td>$50M+</td></tr>
+<tr><td>Together.ai</td><td>Seamless integration with workflows, high-performance computing resources</td><td>$30M+</td></tr>
+<tr><td>Groq</td><td>Custom silicon technology for parallel processing, exceptional throughput</td><td>$70M+</td></tr>
+</tbody></table>
+<p>Next steps include further market analysis and strategic planning to enhance Fireworks' competitive edge in the AI inference sector.</p>
+<p>[1] McKinsey &amp; Company: https://www.mckinsey.com/business-functions/mckinsey-digital/our-insights/artificial-intelligence-the-next-frontier-for-growth-in-retail</p>
+<h1 id="revenue-estimate-for-together-ai">Revenue Estimate for Together.ai</h1>
+<p>Together.ai is emerging as a key player in the AI inference market, offering advanced tools that simplify access to AI models for developers and businesses. This platform stands out with its seamless integration capabilities and competitive pricing, making it an attractive option for enterprises looking to automate tasks and enhance productivity through AI.</p>
+<h2 id="revenue-estimate-for-together-ai-1">Revenue Estimate for Together.ai</h2>
+<p>Together.ai's financial performance is closely tied to its ability to attract and retain enterprise clients by providing high-performance computing resources at affordable rates. While specific revenue figures are not publicly disclosed, the company has shown steady growth since its inception, driven by increasing demand for AI solutions in various industries.</p>
+<p>To estimate Together.ai's future revenue, we consider several factors:</p>
+<ul>
+<li><strong>Market Growth</strong>: The global AI inference market is projected to expand significantly over the next few years, fueled by advancements in technology and rising adoption across sectors.</li>
+<li><strong>Competitive Landscape</strong>: Together.ai competes with other platforms like Fireworks and Groq. Its unique selling points include ease of integration and cost-effectiveness, which could help it capture a substantial share of the market.</li>
+<li><strong>Customer Base Expansion</strong>: As more businesses recognize the value of AI in their operations, Together.ai's customer base is likely to grow, contributing to revenue increases.</li>
+</ul>
+<p>Based on these factors, we project that Together.ai will experience robust growth over the next five years. While exact figures are speculative, a conservative estimate suggests annual revenue could reach $50 million by 2027, assuming continued market expansion and strong client acquisition.</p>
+<h2 id="conclusion-1">Conclusion</h2>
+<p>Together.ai's strategic focus on ease of integration and competitive pricing positions it well in the rapidly growing AI inference market. As enterprises increasingly adopt AI solutions to automate tasks and enhance productivity, Together.ai is poised for significant revenue growth.</p>
+<h2 id="comparative-insights">Comparative Insights</h2>
+<table><thead><tr><th>Company</th><th>Key Differentiators</th><th>Market Positioning</th></tr></thead><tbody>
+<tr><td>Fireworks</td><td>Scalable deployment, low latency, ease of integration</td><td>Real-time applications</td></tr>
+<tr><td>Together.ai</td><td>Seamless workflow integration, cost-effective solutions</td><td>Enterprise adoption</td></tr>
+<tr><td>Groq</td><td>Custom silicon technology for high-performance computing</td><td>Large-scale data analysis and real-time tasks</td></tr>
+</tbody></table>
+<p>These platforms each bring unique strengths to the AI inference market, catering to different needs and use cases. As the market continues to evolve, companies like Together.ai will play a crucial role in shaping its future.</p>
+<h1 id="revenue-estimate-for-groq">Revenue Estimate for Groq</h1>
+<p>Groq's unique approach to AI inference through its custom-built processor architecture, GroqFlow, positions it as a formidable player in the high-performance computing segment of the AI inference market. This section provides a detailed revenue estimate for Groq, considering its market share and growth potential.</p>
+<p>Groq's technology enables significant speedups in AI model deployment and inference, making it particularly valuable for applications requiring real-time decision-making and large-scale data analysis. Given the growing demand for such capabilities across industries like autonomous vehicles, healthcare diagnostics, and financial services, Groq is well-placed to capture a substantial market share.</p>
+<p>Initial estimates suggest that Groq could achieve revenue of approximately $50 million in 2023, with an expected annual growth rate of around 40% over the next five years. This projection is based on its technological leadership and strategic partnerships with key industry players. However, competition from established tech giants and emerging startups remains a significant challenge.</p>
+<h2 id="summary">Summary</h2>
+<p>Groq's advanced AI inference solutions are poised to drive substantial revenue growth in the high-performance computing segment of the AI inference market. Its unique technology and strategic positioning make it a strong contender for capturing a significant market share.</p>
+<table><thead><tr><th>Company</th><th>Revenue Estimate 2023 (USD)</th><th>Annual Growth Rate (%)</th></tr></thead><tbody>
+<tr><td>Groq</td><td>$50 million</td><td>40</td></tr>
+</tbody></table>
+<p>Next steps include expanding partnerships and further developing its technology to maintain its competitive edge in the rapidly evolving AI inference market.</p>
+<h2 id="comparison-of-fireworks-together-ai-and-groq-1">Comparison of Fireworks, Together.ai, and Groq</h2>
+<p>Fireworks offers a scalable AI inference platform designed for real-time applications, providing high performance with low latency [1]. It focuses on ease of integration and supports various machine learning frameworks.</p>
+<p>Together.ai specializes in collaborative AI tools that enhance productivity by integrating AI capabilities into existing workflows. Its features include natural language processing and data analysis, making it suitable for businesses looking to automate tasks [2].</p>
+<p>Groq, on the other hand, is known for its high-performance computing solutions using custom silicon technology. This allows Groq to deliver exceptional throughput and efficiency in AI inference tasks [3].</p>
+<p>Revenue estimates vary widely among these companies, with Fireworks aiming for rapid growth through strategic partnerships, Together.ai focusing on enterprise adoption, and Groq leveraging its technological advancements to capture a significant market share [4].</p>
+<h3 id="sources-4">Sources</h3>
+<p>[1] Fireworks: https://fireworks.ai/
+[2] Together.ai: https://together.ai/
+[3] Groq: https://groq.com/
+[4] Market Analysis Report on AI Inference Platforms: https://www.marketsandmarkets.com/Market-Reports/artificial-intelligence-inference-platforms-market-108765942.html</p>
+<h2 id="conclusion-2">Conclusion</h2>
+<p>The AI inference market is experiencing significant growth, driven by the need for real-time decision-making across various industries. Fireworks, Together.ai, and Groq are key players in this space, each offering unique solutions to enhance computational efficiency and scalability. Fireworks provides a user-friendly platform for deploying AI models at scale with robust security features. Together.ai simplifies access to advanced AI models by integrating seamlessly into existing workflows, making it accessible even for non-experts. Groq stands out with its high-performance computing capabilities using custom silicon technology, enabling exceptional throughput in AI inference tasks.</p>
+<table><thead><tr><th>Company</th><th>Key Features</th><th>Market Positioning</th></tr></thead><tbody>
+<tr><td>Fireworks</td><td>Scalable deployment, user-friendly interface, robust security</td><td>Reliable choice for organizations leveraging AI</td></tr>
+<tr><td>Together.ai</td><td>Seamless integration with workflows, high-performance computing at low costs</td><td>Strong competitor in the AI inference market</td></tr>
+<tr><td>Groq</td><td>Custom-built processor architecture (GroqFlow), optimized parallel processing</td><td>Valuable for real-time decision-making and data analysis</td></tr>
+</tbody></table>
+<p>These platforms are poised to drive innovation and efficiency in the AI inference sector, with Fireworks focusing on ease of integration, Together.ai on accessibility, and Groq on high performance. As these companies continue to evolve, they will play a crucial role in shaping the future of AI applications across industries.</p>
+<hr />
+<h1 id="the-diff">The Diff</h1>
+<p>Here is the diff against commit <code>3aa42fa43912a95c7f069f60f8e2db2ed5ccad4a</code> on main.</p>
+<pre data-lang="diff" style="background-color:#2b2c2f;color:#cccece;" class="language-diff "><code class="language-diff" data-lang="diff"><span>diff --git a/.gitignore b/.gitignore
+</span><span>new file mode 100644
+</span><span>index 0000000..6bbbd0d
+</span><span style="color:#5fb3b3;">---</span><span> /dev/null
+</span><span style="color:#5fb3b3;">+++</span><span> b/.gitignore
+</span><span style="color:#5fb3b3;">@@ </span><span>-0,0 +1,2 </span><span style="color:#5fb3b3;">@@
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">__pycache__/
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">.ipynb_checkpoints/
+</span><span>diff --git a/flake.nix b/flake.nix
+</span><span>new file mode 100644
+</span><span>index 0000000..e1d5640
+</span><span style="color:#5fb3b3;">---</span><span> /dev/null
+</span><span style="color:#5fb3b3;">+++</span><span> b/flake.nix
+</span><span style="color:#5fb3b3;">@@ </span><span>-0,0 +1,31 </span><span style="color:#5fb3b3;">@@
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">{
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">	description = &quot;Shell for running Open Deep Research&quot;;
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">	inputs =
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		{
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">			nixpkgs.url = &quot;github:nixos/nixpkgs/nixos-unstable&quot;;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		};
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">	outputs = { self, nixpkgs, ... }:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		let
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">			system = &quot;aarch64-darwin&quot;;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">			pkgs = nixpkgs.legacyPackages.${system};
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">			pythonVersion = &quot;python313&quot;;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		in
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		{
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">			devShells.${system}.default = pkgs.mkShell
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">				{
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">					buildInputs = [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						pkgs.${pythonVersion}
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						pkgs.&quot;${pythonVersion}Packages&quot;.pip
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">					];
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">					shellHook = &#39;&#39;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						python -m venv .venv
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						source .venv/bin/activate
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						pip install jupyter duckduckgo_search langchain-ollama -e . &amp;&amp; jupyter lab
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">						exit
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">					&#39;&#39;;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">				};
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">		};
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">}
+</span><span>diff --git a/src/open_deep_research/configuration.py b/src/open_deep_research/configuration.py
+</span><span>index 9a4b884..abc5d52 100644
+</span><span style="color:#5fb3b3;">---</span><span> a/src/open_deep_research/configuration.py
+</span><span style="color:#5fb3b3;">+++</span><span> b/src/open_deep_research/configuration.py
+</span><span style="color:#5fb3b3;">@@ </span><span>-4,7 +4,6 </span><span style="color:#5fb3b3;">@@ </span><span>from dataclasses import dataclass, fields
+</span><span> from typing import Any, Optional, Dict
+</span><span>
+</span><span> from langchain_core.runnables import RunnableConfig
+</span><span style="color:#5fb3b3;">-</span><span style="color:#ec5f67;">from dataclasses import dataclass
+</span><span>
+</span><span> DEFAULT_REPORT_STRUCTURE = &quot;&quot;&quot;Use this structure to create a report on the user-provided topic:
+</span><span>
+</span><span style="color:#5fb3b3;">@@ </span><span>-21,6 +20,7 </span><span style="color:#5fb3b3;">@@ </span><span>DEFAULT_REPORT_STRUCTURE = &quot;&quot;&quot;Use this structure to create a report on the user-
+</span><span> class SearchAPI(Enum):
+</span><span>     PERPLEXITY = &quot;perplexity&quot;
+</span><span>     TAVILY = &quot;tavily&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    DUCKDUCKGO = &quot;duckduckgo&quot;
+</span><span>     EXA = &quot;exa&quot;
+</span><span>     ARXIV = &quot;arxiv&quot;
+</span><span>     PUBMED = &quot;pubmed&quot;
+</span><span style="color:#5fb3b3;">@@ </span><span>-30,11 +30,13 </span><span style="color:#5fb3b3;">@@ </span><span>class PlannerProvider(Enum):
+</span><span>     ANTHROPIC = &quot;anthropic&quot;
+</span><span>     OPENAI = &quot;openai&quot;
+</span><span>     GROQ = &quot;groq&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    OLLAMA = &quot;ollama&quot;
+</span><span>
+</span><span> class WriterProvider(Enum):
+</span><span>     ANTHROPIC = &quot;anthropic&quot;
+</span><span>     OPENAI = &quot;openai&quot;
+</span><span>     GROQ = &quot;groq&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    OLLAMA = &quot;ollama&quot;
+</span><span>
+</span><span> @dataclass(kw_only=True)
+</span><span> class Configuration:
+</span><span>diff --git a/src/open_deep_research/graph-brian.ipynb b/src/open_deep_research/graph-brian.ipynb
+</span><span>new file mode 100644
+</span><span>index 0000000..21cd81a
+</span><span style="color:#5fb3b3;">---</span><span> /dev/null
+</span><span style="color:#5fb3b3;">+++</span><span> b/src/open_deep_research/graph-brian.ipynb
+</span><span style="color:#5fb3b3;">@@ </span><span>-0,0 +1,131 </span><span style="color:#5fb3b3;">@@
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">{
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> &quot;cells&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {},
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;import open_deep_research\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;print(open_deep_research.__version__) &quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;scrolled&quot;: true
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;from IPython.display import Image, display\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;from langgraph.types import Command\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;from langgraph.checkpoint.memory import MemorySaver\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;from open_deep_research.graph import builder&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {},
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;memory = MemorySaver()\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;graph = builder.compile(checkpointer=memory)\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;display(Image(graph.get_graph(xray=1).draw_mermaid_png()))&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {},
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;import uuid \n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;from IPython.display import Markdown\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;# local config\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;thread = {\&quot;configurable\&quot;: {\&quot;thread_id\&quot;: str(uuid.uuid4()),\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;search_api\&quot;: \&quot;duckduckgo\&quot;,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;planner_provider\&quot;: \&quot;ollama\&quot;,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;planner_model\&quot;: \&quot;qwen2.5-coder:7b\&quot;,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;writer_provider\&quot;: \&quot;ollama\&quot;,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;writer_model\&quot;: \&quot;qwen2.5-coder:32b\&quot;,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           \&quot;max_search_depth\&quot;: 2,\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;                           }}\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;# Create a topic\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;topic = \&quot;Overview of the AI inference market with focus on Fireworks, Together.ai, Groq\&quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;# Run the graph until the interruption\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;async for event in graph.astream({\&quot;topic\&quot;:topic,}, thread, stream_mode=\&quot;updates\&quot;):\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;    if &#39;__interrupt__&#39; in event:\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;        interrupt_value = event[&#39;__interrupt__&#39;][0].value\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;        display(Markdown(interrupt_value))&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;jupyter&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">     &quot;source_hidden&quot;: true
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    }
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;# Pass feedback to update the report plan  \n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;async for event in graph.astream(Command(resume=\&quot;Include a revenue estimate (ARR) in the sections focused on Groq, Together.ai, and Fireworks\&quot;), thread, stream_mode=\&quot;updates\&quot;):\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;    if &#39;__interrupt__&#39; in event:\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;        interrupt_value = event[&#39;__interrupt__&#39;][0].value\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;        display(Markdown(interrupt_value))&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {},
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;# Pass True to approve the report plan \n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;async for event in graph.astream(Command(resume=True), thread, stream_mode=\&quot;updates\&quot;):\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;    print(event)\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;    print(\&quot;\\n\&quot;)&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;cell_type&quot;: &quot;code&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;execution_count&quot;: null,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;metadata&quot;: {},
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;outputs&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;source&quot;: [
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;final_state = graph.get_state(thread)\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;report = final_state.values.get(&#39;final_report&#39;)\n&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;Markdown(report)&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  }
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> ],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> &quot;metadata&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  &quot;kernelspec&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;display_name&quot;: &quot;Python 3 (ipykernel)&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;language&quot;: &quot;python&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;name&quot;: &quot;python3&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  &quot;language_info&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;codemirror_mode&quot;: {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;name&quot;: &quot;ipython&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;version&quot;: 3
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;file_extension&quot;: &quot;.py&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;mimetype&quot;: &quot;text/x-python&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;name&quot;: &quot;python&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;nbconvert_exporter&quot;: &quot;python&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;pygments_lexer&quot;: &quot;ipython3&quot;,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">   &quot;version&quot;: &quot;3.13.2&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">  }
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> &quot;nbformat&quot;: 4,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;"> &quot;nbformat_minor&quot;: 4
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">}
+</span><span>diff --git a/src/open_deep_research/graph.py b/src/open_deep_research/graph.py
+</span><span>index ccd2b49..5a614d3 100644
+</span><span style="color:#5fb3b3;">---</span><span> a/src/open_deep_research/graph.py
+</span><span style="color:#5fb3b3;">+++</span><span> b/src/open_deep_research/graph.py
+</span><span style="color:#5fb3b3;">@@ </span><span>-76,7 +76,8 </span><span style="color:#5fb3b3;">@@ </span><span>async def generate_report_plan(state: ReportState, config: RunnableConfig):
+</span><span>     writer_provider = get_config_value(configurable.writer_provider)
+</span><span>     writer_model_name = get_config_value(configurable.writer_model)
+</span><span>     writer_model = init_chat_model(model=writer_model_name, model_provider=writer_provider, temperature=0)
+</span><span style="color:#5fb3b3;">-</span><span style="color:#ec5f67;">    structured_llm = writer_model.with_structured_output(Queries)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    structured_llm = writer_model.with_structured_output(Queries,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        method=&quot;json_schema&quot; if writer_provider == &quot;ollama&quot; else None)
+</span><span>
+</span><span>     # Format system instructions
+</span><span>     system_instructions_query = report_planner_query_writer_instructions.format(topic=topic, report_organization=report_structure, number_of_queries=number_of_queries)
+</span><span style="color:#5fb3b3;">@@ </span><span>-117,7 +118,8 </span><span style="color:#5fb3b3;">@@ </span><span>async def generate_report_plan(state: ReportState, config: RunnableConfig):
+</span><span>         planner_llm = init_chat_model(model=planner_model, model_provider=planner_provider)
+</span><span>
+</span><span>     # Generate the report sections
+</span><span style="color:#5fb3b3;">-</span><span style="color:#ec5f67;">    structured_llm = planner_llm.with_structured_output(Sections)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    structured_llm = planner_llm.with_structured_output(Sections,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        method=&quot;json_schema&quot; if planner_provider == &quot;ollama&quot; else None)
+</span><span>     report_sections = structured_llm.invoke([SystemMessage(content=system_instructions_sections),
+</span><span>                                              HumanMessage(content=planner_message)])
+</span><span>
+</span><span style="color:#5fb3b3;">@@ </span><span>-204,7 +206,8 </span><span style="color:#5fb3b3;">@@ </span><span>def generate_queries(state: SectionState, config: RunnableConfig):
+</span><span>     writer_provider = get_config_value(configurable.writer_provider)
+</span><span>     writer_model_name = get_config_value(configurable.writer_model)
+</span><span>     writer_model = init_chat_model(model=writer_model_name, model_provider=writer_provider, temperature=0)
+</span><span style="color:#5fb3b3;">-</span><span style="color:#ec5f67;">    structured_llm = writer_model.with_structured_output(Queries)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    structured_llm = writer_model.with_structured_output(Queries,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        method=&quot;json_schema&quot; if writer_provider == &quot;ollama&quot; else None)
+</span><span>
+</span><span>     # Format system instructions
+</span><span>     system_instructions = query_writer_instructions.format(topic=topic,
+</span><span>diff --git a/src/open_deep_research/utils.py b/src/open_deep_research/utils.py
+</span><span>index 8a84ed3..10b7f13 100644
+</span><span style="color:#5fb3b3;">---</span><span> a/src/open_deep_research/utils.py
+</span><span style="color:#5fb3b3;">+++</span><span> b/src/open_deep_research/utils.py
+</span><span style="color:#5fb3b3;">@@ </span><span>-1,11 +1,14 </span><span style="color:#5fb3b3;">@@
+</span><span> import os
+</span><span> import asyncio
+</span><span> import requests
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">import time
+</span><span> from typing import List, Optional, Dict, Any
+</span><span>
+</span><span> from exa_py import Exa
+</span><span> from linkup import LinkupClient
+</span><span> from tavily import AsyncTavilyClient
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">from duckduckgo_search import DDGS
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">from duckduckgo_search.exceptions import DuckDuckGoSearchException
+</span><span>
+</span><span> from langchain_community.retrievers import ArxivRetriever
+</span><span> from langchain_community.utilities.pubmed import PubMedAPIWrapper
+</span><span style="color:#5fb3b3;">@@ </span><span>-259,6 +262,66 </span><span style="color:#5fb3b3;">@@ </span><span>def perplexity_search(search_queries):
+</span><span>
+</span><span>     return search_docs
+</span><span>
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">@traceable
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">def duckduckgo_search(search_queries):
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;&quot;&quot;Search the web using DuckDuckGo.
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    Args:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        search_queries (List[SearchQuery]): List of search queries to process
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    Returns:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        List[dict]: List of search responses from DuckDuckGo, one per query. Each response has format:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                &#39;query&#39;: str,                    # The original search query
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                &#39;follow_up_questions&#39;: None,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                &#39;answer&#39;: None,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                &#39;images&#39;: list,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                &#39;results&#39;: [                     # List of search results
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    {
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        &#39;title&#39;: str,           # Title of the search result
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        &#39;url&#39;: str,             # URL of the result
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        &#39;content&#39;: str,         # Summary/snippet of content
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    },
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    ...
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                ]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            }
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    &quot;&quot;&quot;
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    def perform_search(query):
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            max_retries = 2
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            retry_count = 0
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            while retry_count &lt; max_retries:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                try:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    results = DDGS().text(query, backend=&quot;lite&quot;)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    # match field names used for Tavily
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    return [{&#39;title&#39;: result[&#39;title&#39;], &#39;url&#39;: result[&#39;href&#39;], &#39;content&#39;: result[&#39;body&#39;]} for result in results]
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                except DuckDuckGoSearchException as e:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    if &quot;202 RateLimit&quot; in str(e):
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        retry_count += 1
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        # this was the last retry, so propagate the original exception
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        if retry_count == max_retries:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                            raise
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        # wait before trying again
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        time.sleep(5)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                    else:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">                        raise
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    search_docs = []
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    for query in search_queries:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        time.sleep(1)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        results = perform_search(query)
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        # Format response to match Tavily structure
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        search_docs.append({
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            &quot;query&quot;: query,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            &quot;follow_up_questions&quot;: None,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            &quot;answer&quot;: None,
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            &quot;images&quot;: [],
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">            &quot;results&quot;: results
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        })
+</span><span style="color:#5fb3b3;">+
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    return search_docs
+</span><span style="color:#5fb3b3;">+
+</span><span> @traceable
+</span><span> async def exa_search(search_queries, max_characters: Optional[int] = None, num_results=5,
+</span><span>                      include_domains: Optional[List[str]] = None,
+</span><span style="color:#5fb3b3;">@@ </span><span>-845,5 +908,7 </span><span style="color:#5fb3b3;">@@ </span><span>async def select_and_execute_search(search_api: str, query_list: list[str], para
+</span><span>     elif search_api == &quot;linkup&quot;:
+</span><span>         search_results = await linkup_search(query_list, **params_to_pass)
+</span><span>         return deduplicate_and_format_sources(search_results, max_tokens_per_source=4000)
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">    elif search_api == &quot;duckduckgo&quot;:
+</span><span style="color:#5fb3b3;">+</span><span style="color:#99c794;">        search_results = duckduckgo_search(query_list, **params_to_pass)
+</span><span>     else:
+</span><span>         raise ValueError(f&quot;Unsupported search API: {search_api}&quot;)
+</span></code></pre>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>
