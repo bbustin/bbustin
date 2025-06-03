@@ -10,7 +10,7 @@ apple.appstore.id = "6745977309"
 apple.appstore.url = "https://apps.apple.com/us/app/titlebridge-for-final-cut/id6745977309"
 +++
 
- {{ youtube(id="yUEACs1iDj8")}}
+ {{ youtube(id="bOwA_x2_u4g")}}
 
 # System Requirements
 

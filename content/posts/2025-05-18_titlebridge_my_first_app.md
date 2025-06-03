@@ -13,7 +13,7 @@ back into Final Cut.
 
 <!-- more -->
 
-{{ youtube(id="yUEACs1iDj8") }}
+{{ youtube(id="bOwA_x2_u4g") }}
 
 # Backstory
 
