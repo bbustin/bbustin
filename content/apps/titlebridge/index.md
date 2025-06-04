@@ -23,6 +23,12 @@ transcribe your audio to captions. Without this functionality, you will either n
 manually enter your captions or use a third-party tool. It is much more pleasant and efficient
 to be able to do it all from within Final Cut.
 
+# Title Styling
+
+Version 1.1 and beyond allow for choosing from many of the built-in Final Cut titles.
+
+{{ youtube(id="xbYwk79WYGM") }}
+
 # Privacy Policy
 
 TitleBridge does not automatically collect or send any information back to us.
