@@ -23,6 +23,8 @@ transcribe your audio to captions. Without this functionality, you will either n
 manually enter your captions or use a third-party tool. It is much more pleasant and efficient
 to be able to do it all from within Final Cut.
 
+Note: Final Cut transcription only works with English at this point. I hope it is on their roadmap to add other languages too, but have no visibility into that. 
+
 # Title Styling
 
 Version 1.1 and beyond allow for choosing from many of the built-in Final Cut titles.
