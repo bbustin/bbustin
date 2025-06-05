@@ -1,0 +1,163 @@
+Sitemap: https://bustin.tech/sitemap.xml
+
+User-Agent: *
+Allow: https://bustin.tech/sitemap.xml
+DisallowAITraining: /
+Disallow: /404.html
+Disallow: /files/*
+
+User-Agent: AI2Bot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: AI2Bot-Dolma
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Amazonbot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: anthropic-ai
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: AwarioBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: AwarioRssBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: AwarioSmartBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Bytespider
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: CCBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: ChatGPT-User
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Claude-Web
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: ClaudeBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: DataForSeoBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Diffbot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: DuckAssistBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Facebookbot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: GPTBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Googlebot-Extended
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Google-CloudVertexBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: ImagesiftBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Kangaroo Bot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Meltwater
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Meta-ExternalAgent
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: OAI-SearchBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Omgili
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Omgilibot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: PanguBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: peer39_crawler
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: PerplexityBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Petalbot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Scrapy
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Seekr
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: SemrushBot-OCOB
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Sentibot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: Timpibot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: TurnitinBot
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: VelenPublicWebCrawler
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: webzio-extended
+Disallow: /
+DisallowAITraining: /
+
+User-Agent: YouBot
+Disallow: /
+DisallowAITraining: /

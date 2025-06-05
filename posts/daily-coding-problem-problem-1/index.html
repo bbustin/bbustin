@@ -1,0 +1,791 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Daily Coding Problem: Problem #1 | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="One of my friends on LinkedIn recommended I sign up for the
+Daily Coding Problem email. This is
+Problem #1. I did the work in a Jupyter notebook and then exported it to include here.Note: The color ou…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/daily-coding-problem-problem-1/">
+  <meta property="og:title" content="Daily Coding Problem: Problem #1">
+  <meta property="og:description" content="One of my friends on LinkedIn recommended I sign up for the
+Daily Coding Problem email. This is
+Problem #1. I did the work in a Jupyter notebook and then exported it to include here.Note: The color ou…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Daily Coding Problem: Problem #1">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-03-07T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/daily-coding-problem-problem-1"
+      },
+      "headline": "Daily Coding Problem: Problem #1",
+      "description": "One of my friends on LinkedIn recommended I sign up for the
+Daily Coding Problem email. This is
+Problem #1. I did the work in a Jupyter notebook and then exported it to include here.Note: The color ou…",
+      "wordcount": "1756",
+      "datePublished": "2025-03-07T00:00:00+00:00",
+      "dateModified": "2025-03-07T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Daily Coding Problem: Problem #1",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Daily Coding Problem: Problem #1</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/codinginterview/" class="page-tag">CodingInterview</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-03-07T00:00:00+00:00">
+      Posted on March  7, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>One of my friends on LinkedIn recommended I sign up for the
+<a href="https://www.dailycodingproblem.com/">Daily Coding Problem</a> email. This is
+Problem #1. I did the work in a Jupyter notebook and then exported it to include here.</p>
+<span id="continue-reading"></span>
+<p>Note: The color output of the grader method does work, but it did not export properly.</p>
+<hr />
+<h1 id="the-problem">The problem</h1>
+<p>(Daily Coding Problem: Problem #1 [Easy])</p>
+<p>This problem was recently asked by Google.</p>
+<p>Given a list of numbers and a number k, return whether any two numbers from the list add up to k.</p>
+<p>For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.</p>
+<p>Bonus: Can you do this in one pass?</p>
+<h1 id="my-thoughts">My thoughts</h1>
+<ul>
+<li>Addition is commutative, so we only need to try each combination once</li>
+<li>Should be able to easily do this in one pass by taking first number and adding it to each other number. Then slide forward and do the same. In this way we should not repeat any combinations.</li>
+<li>It looks like the ask is only to see if any two numbers add up to k, so there is no need to keep track of the combinations and we can exit out if any combinations are found.</li>
+</ul>
+<h2 id="possible-edge-cases">Possible edge cases</h2>
+<ul>
+<li>Negative numbers, but this should still work fine as -1 and 10, or 10 and -1 should be the same. Let's test, but addition is commutative, so I'm pretty sure.</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">-1 + 10 = </span><span style="color:#5fb3b3;">{ -</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">10 </span><span style="color:#5fb3b3;">}&quot;)
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">10 + -1 = </span><span style="color:#5fb3b3;">{ </span><span style="color:#f99157;">10 </span><span style="color:#5fb3b3;">+ -</span><span style="color:#f99157;">1 </span><span style="color:#5fb3b3;">}&quot;)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>-1 + 10 = 9
+</span><span>10 + -1 = 9
+</span></code></pre>
+<h1 id="common-setup-code-test-cases-and-grading-code">common setup code - test cases and grading code</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_cases </span><span style="color:#5fb3b3;">= [
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span style="color:#5f6364;"># ANSI escape codes for color on the terminal
+</span><span>RED </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[91m</span><span style="color:#5fb3b3;">&quot;
+</span><span>GREEN </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[92m</span><span style="color:#5fb3b3;">&quot;
+</span><span>RESET </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[0m</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#c594c5;">import </span><span>time
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">code_under_test</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">show_passed</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">):
+</span><span>    test_failed </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">False
+</span><span>
+</span><span>    start_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">()
+</span><span>    </span><span style="color:#c594c5;">for </span><span>test_case </span><span style="color:#c594c5;">in </span><span>test_cases</span><span style="color:#5fb3b3;">:
+</span><span>        k </span><span style="color:#5fb3b3;">= </span><span>test_case</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;]
+</span><span>        numbers </span><span style="color:#5fb3b3;">= </span><span>test_case</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;]
+</span><span>        correct_answer </span><span style="color:#5fb3b3;">= </span><span>test_case</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;]
+</span><span>
+</span><span>        result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">code_under_test</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>        test_passed </span><span style="color:#5fb3b3;">= </span><span>result </span><span style="color:#5fb3b3;">== </span><span>correct_answer
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># so we can print at the end that not all tests succeeded
+</span><span>        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span>test_passed</span><span style="color:#5fb3b3;">: </span><span>test_failed </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">True
+</span><span>
+</span><span>        test_result </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">PASSED</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span>test_passed </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">FAILED</span><span style="color:#5fb3b3;">&quot;
+</span><span>        line_color </span><span style="color:#5fb3b3;">= </span><span>GREEN </span><span style="color:#c594c5;">if </span><span>test_passed </span><span style="color:#c594c5;">else </span><span>RED
+</span><span>        </span><span style="color:#c594c5;">if </span><span>show_passed </span><span style="color:#5fb3b3;">or not </span><span>test_passed</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;{</span><span style="color:#6699cc;">line_color</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Test Case: k=</span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">k</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">, numbers=</span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">, correct_answer=</span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">correct_answer</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> returned </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> - </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">test_result</span><span style="color:#5fb3b3;">}{</span><span>RESET</span><span style="color:#5fb3b3;">}&quot;)
+</span><span>
+</span><span>    execution_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">() - </span><span>start_time
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;\n</span><span style="color:#99c794;">This answer </span><span style="color:#5fb3b3;">{</span><span>RED </span><span style="color:#5fb3b3;">+ &#39;</span><span style="color:#99c794;">did not pass</span><span style="color:#5fb3b3;">&#39; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">test_failed </span><span style="color:#c594c5;">else </span><span>GREEN </span><span style="color:#5fb3b3;">+ &#39;</span><span style="color:#99c794;">passed</span><span style="color:#5fb3b3;">&#39;}{</span><span>RESET</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> all </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">test_cases</span><span style="color:#5fb3b3;">)}</span><span style="color:#99c794;"> tests. Ran for </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">execution_time:.8f</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> seconds.</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">{&#39;</span><span style="color:#99c794;">passed</span><span style="color:#5fb3b3;">&#39;: </span><span>test_passed</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">time</span><span style="color:#5fb3b3;">&#39;: </span><span>execution_time</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># First try
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># range is start_inclusive, but stop exclusive
+</span><span>    </span><span style="color:#c594c5;">for </span><span>left_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#5f6364;"># if we are on the last number, there is nothing to do
+</span><span>        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span>left_index </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) == </span><span>numbers_length</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">break
+</span><span>
+</span><span>        </span><span style="color:#c594c5;">for </span><span>right_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">left_index </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">):
+</span><span>            left_number </span><span style="color:#5fb3b3;">= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>left_index</span><span style="color:#5fb3b3;">]
+</span><span>            right_number </span><span style="color:#5fb3b3;">= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>right_index</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span>left_number </span><span style="color:#5fb3b3;">+ </span><span>right_number</span><span style="color:#5fb3b3;">) == </span><span>k</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">show_passed</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">)
+</span><span>
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>[92mTest Case: k=10, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=5, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=-1, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=11, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=False returned False - PASSED[0m
+</span><span>
+</span><span>This answer [92mpassed[0m all 4 tests. Ran for 0.00003576 seconds.
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>{&#39;passed&#39;: True, &#39;time&#39;: 3.5762786865234375e-05}
+</span></code></pre>
+<p>I know this does not satisfy the one pass criteria as there are two loops. I queried qwen2.5-coder for assistance...</p>
+<blockquote>
+</blockquote>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>... Given the question:
+</span><span>...
+</span><span>... Given a list of numbers and a number k, return whether any two numbers from the list add up to k.
+</span><span>...
+</span><span>... For example, given [10, 15, 3, 7] and k of 17, return true since 10 + 7 is 17.
+</span><span>...
+</span><span>... Bonus: Can you do this in one pass?
+</span><span>...
+</span><span>... Is this a good answer? What is its o complexity and could it be accomplished more efficiently?
+</span><span>...
+</span><span>... def first_try(k, numbers):
+</span><span>...     numbers_length = len(numbers)
+</span><span>...
+</span><span>...     # range is start_inclusive, but stop exclusive
+</span><span>...     for left_index in range(0, numbers_length):
+</span><span>...         # if we are on the last number, there is nothing to do
+</span><span>...         if (left_index + 1) == numbers_length:
+</span><span>...             break
+</span><span>...
+</span><span>...         for right_index in range(left_index + 1, numbers_length):
+</span><span>...             left_number = numbers[left_index]
+</span><span>...             right_number = numbers[right_index]
+</span><span>...
+</span><span>...             if (left_number + right_number) == k:
+</span><span>...                 return True
+</span><span>...
+</span><span>...     return False
+</span></code></pre>
+<p>Your provided solution is a valid approach to solving the problem, but it can be improved in terms of time
+complexity. Let's analyze your solution and then discuss more efficient alternatives.</p>
+<h3 id="analysis-of-your-solution">Analysis of Your Solution</h3>
+<p><strong>Code:</strong></p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># range is start_inclusive, but stop exclusive
+</span><span>    </span><span style="color:#c594c5;">for </span><span>left_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#5f6364;"># if we are on the last number, there is nothing to do
+</span><span>        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span>left_index </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">) == </span><span>numbers_length</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">break
+</span><span>
+</span><span>        </span><span style="color:#c594c5;">for </span><span>right_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">left_index </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">):
+</span><span>            left_number </span><span style="color:#5fb3b3;">= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>left_index</span><span style="color:#5fb3b3;">]
+</span><span>            right_number </span><span style="color:#5fb3b3;">= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>right_index</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>            </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">(</span><span>left_number </span><span style="color:#5fb3b3;">+ </span><span>right_number</span><span style="color:#5fb3b3;">) == </span><span>k</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span></code></pre>
+<p><strong>Time Complexity:</strong></p>
+<ul>
+<li>The outer loop runs <code>n</code> times, where <code>n</code> is the length of the list.</li>
+<li>For each iteration of the outer loop, the inner loop runs on average <code>n/2</code> times (since it starts from
+<code>left_index + 1</code>).</li>
+<li>Therefore, the overall time complexity is (O(n^2)).</li>
+</ul>
+<p><strong>Space Complexity:</strong></p>
+<ul>
+<li>The space complexity is (O(1)) because you are not using any additional data structures that grow with
+input size.</li>
+</ul>
+<h3 id="more-efficient-solution">More Efficient Solution</h3>
+<p>To solve this problem in one pass (i.e., (O(n)) time complexity), you can use a set to keep track of the
+numbers you have seen so far. This allows you to check if the complement of the current number (i.e., <code>k - current_number</code>) has already been encountered.</p>
+<p><strong>Code:</strong></p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    seen_numbers </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">for </span><span>number </span><span style="color:#c594c5;">in </span><span>numbers</span><span style="color:#5fb3b3;">:
+</span><span>        complement </span><span style="color:#5fb3b3;">= </span><span>k </span><span style="color:#5fb3b3;">- </span><span>number
+</span><span>        </span><span style="color:#c594c5;">if </span><span>complement </span><span style="color:#5fb3b3;">in </span><span>seen_numbers</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+</span><span>        </span><span style="color:#6699cc;">seen_numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">number</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span></code></pre>
+<p><strong>Time Complexity:</strong></p>
+<ul>
+<li>The loop runs <code>n</code> times, where <code>n</code> is the length of the list.</li>
+<li>Each operation (checking membership and adding to a set) on average takes (O(1)) time.</li>
+<li>Therefore, the overall time complexity is (O(n)).</li>
+</ul>
+<p><strong>Space Complexity:</strong></p>
+<ul>
+<li>The space complexity is (O(n)) because in the worst case, you might store all <code>n</code> numbers in the set.</li>
+</ul>
+<h3 id="explanation-of-the-efficient-solution">Explanation of the Efficient Solution</h3>
+<ol>
+<li><strong>Initialization</strong>: Start with an empty set <code>seen_numbers</code>.</li>
+<li><strong>Iteration</strong>: Loop through each number in the list.</li>
+<li><strong>Complement Check</strong>: For each number, calculate its complement (<code>k - number</code>). If this complement is
+already in <code>seen_numbers</code>, return <code>True</code> because you have found two numbers that add up to <code>k</code>.</li>
+<li><strong>Add to Set</strong>: If the complement is not found, add the current number to <code>seen_numbers</code>.</li>
+<li><strong>Completion</strong>: If the loop completes without finding any such pair, return <code>False</code>.</li>
+</ol>
+<h3 id="conclusion">Conclusion</h3>
+<ul>
+<li>Your original solution has a time complexity of (O(n^2)), which is less efficient for large lists.</li>
+<li>The more efficient solution using a set has a time complexity of (O(n)) and a space complexity of
+(O(n)), making it suitable for larger inputs.</li>
+</ul>
+<p>The efficient solution meets the bonus requirement of solving the problem in one pass.</p>
+<h1 id="let-s-try-the-ai-answer-and-get-a-better-understanding-of-it">Let's try the AI answer and get a better understanding of it...</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    seen_numbers </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">for </span><span>number </span><span style="color:#c594c5;">in </span><span>numbers</span><span style="color:#5fb3b3;">:
+</span><span>        complement </span><span style="color:#5fb3b3;">= </span><span>k </span><span style="color:#5fb3b3;">- </span><span>number
+</span><span>        </span><span style="color:#c594c5;">if </span><span>complement </span><span style="color:#5fb3b3;">in </span><span>seen_numbers</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+</span><span>        </span><span style="color:#6699cc;">seen_numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">number</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">show_passed</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>[92mTest Case: k=10, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=5, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=-1, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=True returned True - PASSED[0m
+</span><span>[92mTest Case: k=11, numbers=[2, 8, 5, 0, -1, 5, 4], correct_answer=False returned False - PASSED[0m
+</span><span>
+</span><span>This answer [92mpassed[0m all 4 tests. Ran for 0.00003123 seconds.
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>{&#39;passed&#39;: True, &#39;time&#39;: 3.123283386230469e-05}
+</span></code></pre>
+<p>I asked the AI for more guidance as my math skills are not the greatest...</p>
+<blockquote>
+<p>What is a complement as it pertains to mathematics?</p>
+</blockquote>
+<p>In mathematics, the term "complement" can have different meanings depending on the context. However, in the
+specific context of the problem you're working on—checking if any two numbers from a list add up to a given
+number ( k )—the concept of a complement is used to identify the number that, when added to the current
+number, equals ( k ).</p>
+<h3 id="complement-in-this-context">Complement in This Context</h3>
+<p>Given a number ( \text{number} ) and a target sum ( k ), the <strong>complement</strong> of ( \text{number} ) with
+respect to ( k ) is:</p>
+<p>[ \text{complement} = k - \text{number} ]</p>
+<p>This complement is the value that, when added to ( \text{number} ), results in ( k ).</p>
+<h3 id="example">Example</h3>
+<p>Consider the list <code>[10, 15, 3, 7]</code> and the target sum ( k = 17 ):</p>
+<ul>
+<li>For <code>number = 10</code>, the complement is ( 17 - 10 = 7 ).</li>
+<li>For <code>number = 15</code>, the complement is ( 17 - 15 = 2 ).</li>
+<li>For <code>number = 3</code>, the complement is ( 17 - 3 = 14 ).</li>
+<li>For <code>number = 7</code>, the complement is ( 17 - 7 = 10 ).</li>
+</ul>
+<p>In this example, when you check the number <code>10</code>, its complement is <code>7</code>. Since <code>7</code> is present in the list,
+the function should return <code>True</code>.</p>
+<h3 id="efficient-solution-using-complements">Efficient Solution Using Complements</h3>
+<p>Here's a step-by-step breakdown of how the efficient solution works using complements:</p>
+<ol>
+<li><strong>Initialization</strong>: Start with an empty set <code>seen_numbers</code>.</li>
+<li><strong>Iteration</strong>: Loop through each number in the list.</li>
+<li><strong>Complement Check</strong>: For each number, calculate its complement (<code>k - number</code>). If this complement is
+already in <code>seen_numbers</code>, return <code>True</code> because you have found two numbers that add up to ( k ).</li>
+<li><strong>Add to Set</strong>: If the complement is not found, add the current number to <code>seen_numbers</code>.</li>
+<li><strong>Completion</strong>: If the loop completes without finding any such pair, return <code>False</code>.</li>
+</ol>
+<h3 id="code-example">Code Example</h3>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">k</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    seen_numbers </span><span style="color:#5fb3b3;">= </span><span style="color:#fac863;">set</span><span style="color:#5fb3b3;">()
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">for </span><span>number </span><span style="color:#c594c5;">in </span><span>numbers</span><span style="color:#5fb3b3;">:
+</span><span>        complement </span><span style="color:#5fb3b3;">= </span><span>k </span><span style="color:#5fb3b3;">- </span><span>number
+</span><span>        </span><span style="color:#c594c5;">if </span><span>complement </span><span style="color:#5fb3b3;">in </span><span>seen_numbers</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">True
+</span><span>        </span><span style="color:#6699cc;">seen_numbers</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">add</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">number</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">False
+</span></code></pre>
+<h3 id="summary">Summary</h3>
+<ul>
+<li><strong>Complement</strong>: In this context, the complement of a number with respect to ( k ) is the value that,
+when added to the number, equals ( k ).</li>
+<li><strong>Efficient Solution</strong>: By using a set to track numbers you've seen so far and checking if the complement
+of the current number exists in the set, you can solve the problem in one pass with a time complexity of (
+O(n) ).</li>
+</ul>
+<p>This approach leverages the properties of sets for fast membership testing, making it much more efficient
+than the nested loop method.</p>
+<h1 id="more-test-cases">More test cases</h1>
+<p>This now makes sense to me. :-)</p>
+<p>I asked the AI to create some more test cases so I can retest, maybe see some of the performance difference,
+as well as validate against addiitonal edge cases it identified.</p>
+<p>From the AI:</p>
+<h3 id="explanation-of-test-cases">Explanation of Test Cases</h3>
+<ol>
+<li>
+<p><strong>Basic Tests</strong>:</p>
+<ul>
+<li>Simple cases with positive and negative numbers.</li>
+<li>Edge cases with zero and single-element lists.</li>
+</ul>
+</li>
+<li>
+<p><strong>Edge Cases</strong>:</p>
+<ul>
+<li>Lists with no elements (<code>[]</code>).</li>
+<li>Lists with a single element (<code>[0]</code>, <code>[5]</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Duplicates</strong>:</p>
+<ul>
+<li>Lists with duplicate numbers that can sum to <code>k</code> (<code>[5, 5]</code>, <code>[10, 10]</code>).</li>
+</ul>
+</li>
+<li>
+<p><strong>Floating Point Numbers</strong>:</p>
+<ul>
+<li>Lists with floating-point numbers to ensure the function handles them correctly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Negative Numbers</strong>:</p>
+<ul>
+<li>Lists with negative numbers to test the function's ability to handle negative complements and sums.</li>
+</ul>
+</li>
+<li>
+<p><strong>Various Sums</strong>:</p>
+<ul>
+<li>Multiple test cases with different target sums (<code>k</code>) to ensure the function works for various
+scenarios.</li>
+</ul>
+</li>
+</ol>
+<p>These test cases should cover a wide range of possible inputs and edge cases, ensuring that the function is
+robust and handles different types of input effectively.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_cases </span><span style="color:#5fb3b3;">= [
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">17</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">16</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">20</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [-</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [-</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>[91mTest Case: k=5, numbers=[5, 5], correct_answer=True returned False - FAILED[0m
+</span><span>[91mTest Case: k=9, numbers=[1, 2, 3, 4, 5], correct_answer=False returned True - FAILED[0m
+</span><span>
+</span><span>This answer [91mdid not pass[0m all 22 tests. Ran for 0.00008297 seconds.
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>{&#39;passed&#39;: True, &#39;time&#39;: 8.296966552734375e-05}
+</span></code></pre>
+<h1 id="first-try-shows-some-failed-test-cases">first_try shows some failed test cases</h1>
+<blockquote>
+<p>Test Case: k=5, numbers=[5, 5], correct_answer=True returned False - FAILED
+Test Case: k=9, numbers=[1, 2, 3, 4, 5], correct_answer=False returned True - FAILED</p>
+</blockquote>
+<p>Since these test cases came from AI, and AI is not typically great at math yet, I need to dobule-check the test cases.</p>
+<blockquote>
+<p>Test Case: k=5, numbers=[5, 5], correct_answer=True returned False - FAILED</p>
+</blockquote>
+<p>I think this one should really be False. The problem says add two numbers.</p>
+<blockquote>
+<p>Test Case: k=9, numbers=[1, 2, 3, 4, 5], correct_answer=False returned True - FAILED</p>
+</blockquote>
+<p>4 + 5 = 9</p>
+<p>I need to fix those two test cases.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_cases </span><span style="color:#5fb3b3;">= [
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">11</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">17</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">16</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">20</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">9</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [-</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: -</span><span style="color:#f99157;">15</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [-</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">7</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">False
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<h1 id="grade-first-try-again">grade first_try again</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>This answer [92mpassed[0m all 22 tests. Ran for 0.00001407 seconds.
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>{&#39;passed&#39;: True, &#39;time&#39;: 1.4066696166992188e-05}
+</span></code></pre>
+<h1 id="grade-more-efficient">grade more_efficient</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>This answer [92mpassed[0m all 22 tests. Ran for 0.00001192 seconds.
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>
+</span><span>{&#39;passed&#39;: True, &#39;time&#39;: 1.1920928955078125e-05}
+</span></code></pre>
+<h1 id="now-let-s-show-the-real-performance-difference-between-them">Now, let's show the real performance difference between them!</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_cases </span><span style="color:#5fb3b3;">= []
+</span><span style="color:#c594c5;">for </span><span>i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">100_000_000</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#6699cc;">test_cases</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">        </span><span style="color:#5fb3b3;">{
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">k</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">8</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True
+</span><span style="color:#6699cc;">        </span><span style="color:#5fb3b3;">}
+</span><span style="color:#6699cc;">    </span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>first_try_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">)[&#39;</span><span style="color:#99c794;">time</span><span style="color:#5fb3b3;">&#39;]
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>This answer [92mpassed[0m all 100000000 tests. Ran for 24.29532194 seconds.
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>more_efficient_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">more_efficient</span><span style="color:#5fb3b3;">)[&#39;</span><span style="color:#99c794;">time</span><span style="color:#5fb3b3;">&#39;]
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>This answer [92mpassed[0m all 100000000 tests. Ran for 17.80483794 seconds.
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try_time </span><span style="color:#5fb3b3;">- </span><span style="color:#6699cc;">more_efficient_time</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>6.490483999252319
+</span></code></pre>
+<h1 id="huge-diffence">Huge diffence</h1>
+<p>With 100 million records, the more efficient code finishes nearly 6 seconds faster. Not bad.
+I need to remember the concept of using the complements for this.</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>

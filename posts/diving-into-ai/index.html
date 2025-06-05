@@ -1,0 +1,369 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Diving into AI | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="Artificial Intelligence (AI) is taking the world by storm. It is easy to naysay and dismiss it
+as just a fad. That would be a mistake. I think AI is here to stay and want to learn how it works
+and how…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/diving-into-ai/">
+  <meta property="og:title" content="Diving into AI">
+  <meta property="og:description" content="Artificial Intelligence (AI) is taking the world by storm. It is easy to naysay and dismiss it
+as just a fad. That would be a mistake. I think AI is here to stay and want to learn how it works
+and how…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Diving into AI">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-02-06T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/diving-into-ai"
+      },
+      "headline": "Diving into AI",
+      "description": "Artificial Intelligence (AI) is taking the world by storm. It is easy to naysay and dismiss it
+as just a fad. That would be a mistake. I think AI is here to stay and want to learn how it works
+and how…",
+      "wordcount": "1262",
+      "datePublished": "2025-02-06T00:00:00+00:00",
+      "dateModified": "2025-02-06T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Diving into AI",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Diving into AI</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/research/" class="page-tag">Research</a>,
+      <a href="https://bustin.tech/tags/ai/" class="page-tag">AI</a>,
+      <a href="https://bustin.tech/tags/nix/" class="page-tag">Nix</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-02-06T00:00:00+00:00">
+      Posted on February  6, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>Artificial Intelligence (AI) is taking the world by storm. It is easy to naysay and dismiss it
+as just a fad. That would be a mistake. I think AI is here to stay and want to learn how it works
+and how to leverage it.</p>
+<p>I am very concerned with privacy and not giving companies information for free they can
+monetize. This means I need to run all of the models locally. Here I will document what I
+have done, and why. I hope this information helps you and also helps future me.</p>
+<span id="continue-reading"></span><h1 id="computer">Computer</h1>
+<p>To run the models quickly, I need a pretty capable machine to run them on.
+I have chosen one with an Apple M4 processor and ample RAM. The main reasons I went
+with an M4 are:</p>
+<ul>
+<li>I already use MacOS as my daily driver. I'd rather get a machine I can use for more than
+just running AI models.</li>
+<li>The unified memory architecture allows the system to share memory between the processor
+and the GPUs. This should allow me to do more with less.</li>
+</ul>
+<h1 id="ollama">Ollama</h1>
+<p>I start my journey with Ollama. It is the local AI gateway drug.</p>
+<p>Installation is a breeze:</p>
+<ol>
+<li>Go to <a href="https://ollama.com/download">ollama.com/download</a></li>
+<li>Download installer</li>
+<li>Run installer</li>
+</ol>
+<p>Running models is simple</p>
+<ul>
+<li><code>ollama run model_name</code></li>
+</ul>
+<p>I try a bunch of models including:</p>
+<ul>
+<li>llama3.2</li>
+<li>llama3.3</li>
+<li>qwen2.5</li>
+</ul>
+<p>I find Ollama amazing. The people who worked on this did a fantastic job. It just worked. Perfectly.
+The downside for my particular goal of learning more about AI is I do not get to see the
+gnarly stuff that makes this all work.</p>
+<p><em><strong>Note:</strong> Ollama keeps a local history of what you send in <code>~/.ollama/history</code>. If you would like to
+temporarily disable this, send <code>/set nohistory</code> first before anything you do not want saved.
+No history will be saved after that for the current session.</em></p>
+<h1 id="getting-into-the-weeds">Getting Into the Weeds</h1>
+<p>To really see how to leverage local AI, I need to work at a lower level. I want to go through the
+<a href="https://d2l.ai/">Dive into Deep Learning</a> book. The
+<a href="https://d2l.ai/chapter_installation/index.html">installation instructions</a> involve making global
+changes to my machine. I read that different AI/ML libraries often require different versions
+of python. I want to be able to create little mini-environments for each of my AI experiments.</p>
+<p>I could go the route of <a href="https://www.docker.com/">Docker</a>/<a href="https://podman.io/">podman</a> containers,
+but I've already done that before. There are also articles detailing the difficulties getting
+containers to be able to access GPUs.</p>
+<h2 id="down-the-nix-rabbithole">Down the Nix Rabbithole</h2>
+<p>With my old computer, I leveraged <a href="https://brew.sh/">Homebrew</a> to install all of the tools
+I was going to use. I really liked Homebrew, but it installs things globally. What I need
+is a tool which can install things either globally or locally. I am choosing use the
+<a href="https://en.wikipedia.org/wiki/Nix_(package_manager)">Nix Package Manager</a> because it
+pretty much does that.</p>
+<p>The <code>nix develop</code> or <code>nix-shell</code> commands can create a bash shell that has certain libraries
+available to it. When you exit the shell, poof they're gone. (Well not really, they still
+are there taking up disk space somewhere, but your global configuration has not changed.)</p>
+<h3 id="confusion">Confusion</h3>
+<p>I definitely find Nix a bit confusing. At this point in my journey I am starting to wonder if I
+bit off more than I can chew. First off, Nix can refer to one of 3 things:</p>
+<ol>
+<li><a href="https://nix.dev/manual/nix/latest/language/index.html">Nix</a>, the programming language</li>
+<li><a href="https://en.wikipedia.org/wiki/Nix_(package_manager)">Nix</a>, the package manager</li>
+<li><a href="https://en.wikipedia.org/wiki/NixOS">NixOS</a>, the operating system</li>
+</ol>
+<p>I will use Nix, the package manager which you can get from <a href="https://nixos.org/">nixos.org</a>. Once more, it
+is confusing that you get the package manager from a site with a name ending in os. I will put that
+aside. In the rest of this post Nix refers to the package manager.</p>
+<p>Second, there are some splits in the Nix community. The first is whether to use
+<a href="https://nixos.wiki/wiki/flakes">Nix flakes</a>. The second is whether to use the
+<a href="https://nixos.wiki/wiki/Nix_command">Nix command</a> instead of having different commands
+for each function (ie <code>nix build</code> instead of <code>nix-build</code>).</p>
+<p>Third, there are multiple ways to install it on MacOS:</p>
+<ol>
+<li><a href="https://nixos.org/download/">nixos site</a></li>
+<li><a href="https://github.com/DeterminateSystems/nix-installer">Determinate Nix Installer</a></li>
+</ol>
+<p><em><strong>note:</strong> I do not recommend piping the output from curl into sh. Instead, download the
+installation script, inspect it, and then run the downloaded copy.</em></p>
+<h3 id="nix-package-manager-installation">Nix Package Manager Installation</h3>
+<p>I will use the <a href="https://github.com/DeterminateSystems/nix-installer">Determinate Nix Installer</a>.
+The main reason I am choosing this is because it has an uninstaller and looks like it is more
+likely to survive OS upgrades. It also enables <a href="https://nixos.wiki/wiki/flakes">Nix flakes</a> and
+<a href="https://nixos.wiki/wiki/Nix_command">Nix command</a>. I plan to leverage flakes. This
+might not be the right choice, I am but a Nix n00b, but their promise of "improving reproducibility
+of Nix installations" sounds nice. When I first started using <a href="https://en.wikipedia.org/wiki/ZFS">ZFS</a>,
+I loved how everything used the same command. It made it easy to discover all the different subcommands
+and their options. This makes Nix command sound appealing.</p>
+<p>I am not nuts about how many changes it will make to my system,
+but at least they are clearly spelled out and reversible.</p>
+<p>I follow the steps to install Nix using the shell installer without installing determinate.
+I did download the script, inspect it, and then run it. This all goes off without a hitch.</p>
+<h3 id="nix-darwin-installation">nix-darwin Installation</h3>
+<p>I decide also to install <a href="https://github.com/LnL7/nix-darwin/">nix-darwin</a>. This lets me
+control some of the settings on my computer declaratively using a Nix flake. Doing this
+is not really related to setting up a machine for running AI models, but it sounds nice
+to be able to make certain system-level changes.</p>
+<p>I follow the steps at
+<a href="https://nixcademy.com/posts/nix-on-macos/">nixcademy.com/posts/nix-on-macos/</a>.
+and end up with this flake:</p>
+<pre data-linenos data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><table><tbody><tr><td>1</td><td><span style="color:#5fb3b3;">{
+</span></td></tr><tr><td>2</td><td><span>  </span><span style="color:#bb80b3;">description </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">nix-darwin system flake</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>3</td><td><span>
+</span></td></tr><tr><td>4</td><td><span>  </span><span style="color:#bb80b3;">inputs </span><span style="color:#5fb3b3;">= {
+</span></td></tr><tr><td>5</td><td><span>    </span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">github:NixOS/nixpkgs/nixpkgs-unstable</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>6</td><td><span>    </span><span style="color:#bb80b3;">nix-darwin</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">github:LnL7/nix-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>7</td><td><span>    </span><span style="color:#bb80b3;">nix-darwin</span><span>.</span><span style="color:#bb80b3;">inputs</span><span>.</span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">follows </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">nixpkgs</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>8</td><td><span>  </span><span style="color:#5fb3b3;">};
+</span></td></tr><tr><td>9</td><td><span>
+</span></td></tr><tr><td>10</td><td><span>  </span><span style="color:#bb80b3;">outputs </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">inputs</span><span>@</span><span style="color:#5fb3b3;">{ </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nix-darwin</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nixpkgs </span><span style="color:#5fb3b3;">}:
+</span></td></tr><tr><td>11</td><td><span>  </span><span style="color:#c594c5;">let
+</span></td></tr><tr><td>12</td><td><span>    </span><span style="color:#bb80b3;">configuration </span><span style="color:#5fb3b3;">= { </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">, ... }: {
+</span></td></tr><tr><td>13</td><td><span>      </span><span style="color:#5f6364;"># List packages installed in system profile. To search by name, run:
+</span></td></tr><tr><td>14</td><td><span>      </span><span style="color:#5f6364;"># $ nix-env -qaP | grep wget
+</span></td></tr><tr><td>15</td><td><span>      </span><span style="color:#bb80b3;">environment</span><span>.</span><span style="color:#bb80b3;">systemPackages </span><span style="color:#5fb3b3;">=
+</span></td></tr><tr><td>16</td><td><span>        </span><span style="color:#5fb3b3;">[ 
+</span></td></tr><tr><td>17</td><td><span>          </span><span style="color:#5f6364;"># Friendly Interactive Shell
+</span></td></tr><tr><td>18</td><td><span>          </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">fish
+</span></td></tr><tr><td>19</td><td><span>          
+</span></td></tr><tr><td>20</td><td><span>          </span><span style="color:#5f6364;"># Nice CLI text editor - hx
+</span></td></tr><tr><td>21</td><td><span>          </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">helix
+</span></td></tr><tr><td>22</td><td><span>          
+</span></td></tr><tr><td>23</td><td><span>          </span><span style="color:#5f6364;"># Prompt that provides lots of relevant information such as git branch
+</span></td></tr><tr><td>24</td><td><span>          </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">starship
+</span></td></tr><tr><td>25</td><td><span>          
+</span></td></tr><tr><td>26</td><td><span>          </span><span style="color:#5f6364;"># Like cat, but built in Rust and has syntax highlighting
+</span></td></tr><tr><td>27</td><td><span>          </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">bat
+</span></td></tr><tr><td>28</td><td><span>          
+</span></td></tr><tr><td>29</td><td><span>          </span><span style="color:#5f6364;"># recursive grep written in Rust - rg
+</span></td></tr><tr><td>30</td><td><span>          </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">ripgrep
+</span></td></tr><tr><td>31</td><td><span>        </span><span style="color:#5fb3b3;">];
+</span></td></tr><tr><td>32</td><td><span>
+</span></td></tr><tr><td>33</td><td><span>      </span><span style="color:#5f6364;"># Necessary for using flakes on this system.
+</span></td></tr><tr><td>34</td><td><span>      </span><span style="color:#bb80b3;">nix</span><span>.</span><span style="color:#bb80b3;">settings</span><span>.</span><span style="color:#bb80b3;">experimental-features </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">nix-command flakes</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>35</td><td><span>
+</span></td></tr><tr><td>36</td><td><span>      </span><span style="color:#5f6364;"># Enable alternative shell support in nix-darwin.
+</span></td></tr><tr><td>37</td><td><span>      </span><span style="color:#bb80b3;">programs</span><span>.</span><span style="color:#bb80b3;">fish</span><span>.</span><span style="color:#bb80b3;">enable </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+</span></td></tr><tr><td>38</td><td><span>
+</span></td></tr><tr><td>39</td><td><span>      </span><span style="color:#5f6364;"># Set Git commit hash for darwin-version.
+</span></td></tr><tr><td>40</td><td><span>      </span><span style="color:#bb80b3;">system</span><span>.</span><span style="color:#bb80b3;">configurationRevision </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">rev </span><span style="color:#5fb3b3;">or </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">dirtyRev </span><span style="color:#5fb3b3;">or </span><span style="color:#f99157;">null</span><span style="color:#5fb3b3;">;
+</span></td></tr><tr><td>41</td><td><span>
+</span></td></tr><tr><td>42</td><td><span>      </span><span style="color:#5f6364;"># Used for backwards compatibility, please read the changelog before changing.
+</span></td></tr><tr><td>43</td><td><span>      </span><span style="color:#5f6364;"># $ darwin-rebuild changelog
+</span></td></tr><tr><td>44</td><td><span>      </span><span style="color:#bb80b3;">system</span><span>.</span><span style="color:#bb80b3;">stateVersion </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">;
+</span></td></tr><tr><td>45</td><td><span>
+</span></td></tr><tr><td>46</td><td><span>      </span><span style="color:#5f6364;"># The platform the configuration will be used on.
+</span></td></tr><tr><td>47</td><td><span>      </span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">hostPlatform </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">aarch64-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>48</td><td><span>      
+</span></td></tr><tr><td>49</td><td><span>      </span><span style="color:#5f6364;"># allow using touch id for sudo
+</span></td></tr><tr><td>50</td><td><span>      </span><span style="color:#bb80b3;">security</span><span>.</span><span style="color:#bb80b3;">pam</span><span>.</span><span style="color:#bb80b3;">enableSudoTouchIdAuth </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">;
+</span></td></tr><tr><td>51</td><td><span>      
+</span></td></tr><tr><td>52</td><td><span>      </span><span style="color:#bb80b3;">system</span><span>.</span><span style="color:#bb80b3;">defaults </span><span style="color:#5fb3b3;">= {
+</span></td></tr><tr><td>53</td><td><span>        </span><span style="color:#5f6364;"># default to finder column view
+</span></td></tr><tr><td>54</td><td><span>        </span><span style="color:#bb80b3;">finder</span><span>.</span><span style="color:#bb80b3;">FXPreferredViewStyle </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">clmv</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>55</td><td><span>        
+</span></td></tr><tr><td>56</td><td><span>        </span><span style="color:#5f6364;"># custom message on login window
+</span></td></tr><tr><td>57</td><td><span>        </span><span style="color:#bb80b3;">loginwindow</span><span>.</span><span style="color:#bb80b3;">LoginwindowText </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Brian&#39;s Laptop</span><span style="color:#5fb3b3;">&quot;;
+</span></td></tr><tr><td>58</td><td><span>      </span><span style="color:#5fb3b3;">};
+</span></td></tr><tr><td>59</td><td><span>    </span><span style="color:#5fb3b3;">};
+</span></td></tr><tr><td>60</td><td><span>  </span><span style="color:#c594c5;">in
+</span></td></tr><tr><td>61</td><td><span>  </span><span style="color:#5fb3b3;">{
+</span></td></tr><tr><td>62</td><td><span>    </span><span style="color:#5f6364;"># Build darwin flake using:
+</span></td></tr><tr><td>63</td><td><span>    </span><span style="color:#5f6364;"># $ darwin-rebuild build --flake .
+</span></td></tr><tr><td>64</td><td><span>    </span><span style="color:#bb80b3;">darwinConfigurations</span><span>.</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">&lt;your computer&#39;s hostname&gt;</span><span style="color:#5fb3b3;">&quot; = </span><span style="color:#f99157;">nix-darwin</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">lib</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">darwinSystem </span><span style="color:#5fb3b3;">{
+</span></td></tr><tr><td>65</td><td><span>      </span><span style="color:#bb80b3;">modules </span><span style="color:#5fb3b3;">= [ </span><span style="color:#f99157;">configuration </span><span style="color:#5fb3b3;">];
+</span></td></tr><tr><td>66</td><td><span>    </span><span style="color:#5fb3b3;">};
+</span></td></tr><tr><td>67</td><td><span>  </span><span style="color:#5fb3b3;">};
+</span></td></tr><tr><td>68</td><td><span style="color:#5fb3b3;">}
+</span></td></tr></tbody></table></code></pre>
+<p>I really like this configuration. The only setting that is not working
+is trying to default the Finder to column view. My research indicates
+Apple took the ability to default to column view out of Sequoia.</p>
+<p>If you'd like to use my configuration, you will need to change line 64
+to reflect the hostname of your system.</p>
+<h2 id="dive-into-deep-learning-book">Dive Into Deep Learning book</h2>
+<p>The prerequisites are now in place. I download the pytorch code.</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>mkdir d2l-en &amp;&amp; cd d2l-en
+</span><span>curl https://d2l.ai/d2l-en-1.0.3.zip -o d2l-en.zip
+</span><span>unzip d2l-en.zip &amp;&amp; rm d2l-en.zip
+</span><span>cd pytorch
+</span></code></pre>
+<p>Now I am going to leverage Nix to create a local shell with everything that's
+needed. I am using a Nix flake. This may not have been the right choice as
+most examples on the web are for nix-shell. But I'm stubborn and I finally get
+it working after lots of frustration.</p>
+<p>I create a <code>flake.nix</code> file in the <code>pytorch</code> directory.</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#5fb3b3;">{
+</span><span>	</span><span style="color:#bb80b3;">description </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Shell for running d2l Jupyter lab</span><span style="color:#5fb3b3;">&quot;;
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">inputs </span><span style="color:#5fb3b3;">= 
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= </span><span style="color:#99c794;">github:nixos/nixpkgs/nixos-unstable</span><span style="color:#5fb3b3;">;
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span>	
+</span><span>	</span><span style="color:#bb80b3;">outputs </span><span style="color:#5fb3b3;">= { </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">, ... }:
+</span><span>		</span><span style="color:#c594c5;">let
+</span><span>			</span><span style="color:#bb80b3;">system </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">aarch64-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span><span>			</span><span style="color:#bb80b3;">pkgs </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">legacyPackages</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">};
+</span><span>			</span><span style="color:#bb80b3;">pythonVersion </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">python39</span><span style="color:#5fb3b3;">&quot;;
+</span><span>		</span><span style="color:#c594c5;">in
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">devShells</span><span>.</span><span style="color:#5fb3b3;">${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">}</span><span>.</span><span style="color:#bb80b3;">default </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">mkShell 
+</span><span>				</span><span style="color:#5fb3b3;">{
+</span><span>					</span><span style="color:#bb80b3;">buildInputs </span><span style="color:#5fb3b3;">= [ 
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.&quot;${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Packages</span><span style="color:#5fb3b3;">&quot;.</span><span style="color:#f99157;">pip
+</span><span>						</span><span style="color:#5f6364;"># Install Jupyter using pip, otherwise it cannot access other libraries we install using pip
+</span><span>						</span><span style="color:#5f6364;"># pkgs.jupyter
+</span><span>					</span><span style="color:#5fb3b3;">];
+</span><span>
+</span><span>					</span><span style="color:#bb80b3;">shellHook </span><span style="color:#5fb3b3;">= &#39;&#39;
+</span><span style="color:#99c794;">						python -m venv .venv
+</span><span style="color:#99c794;">						source .venv/bin/activate
+</span><span style="color:#99c794;">						pip install torch==2.0.0 torchvision==0.15.1 d2l==1.0.3
+</span><span style="color:#99c794;">						echo &quot;Running &#39;jupyter lab&#39;&quot;
+</span><span style="color:#99c794;">						jupyter lab
+</span><span style="color:#99c794;">						echo &quot;exiting nix development shell&quot;
+</span><span style="color:#99c794;">						exit
+</span><span style="color:#99c794;">					</span><span style="color:#5fb3b3;">&#39;&#39;;
+</span><span>					
+</span><span>				</span><span style="color:#5fb3b3;">};
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>It turns out that I probably would have needed much less boiler-plate if I had gone
+the <code>nix-shell</code> route.</p>
+<p>To use this, open Terminal and change to the <code>pytorch</code> directory. The first time
+you run this you must add it to git with <code>git add flake.nix</code>. Then run
+<code>nix develop</code>. This command, along with the flake takes care of everything. Your default
+web browser will pop up in Jupyter lab and you're ready to follow along.</p>
+<h1 id="where-next">Where Next?</h1>
+<p>Once I have a better sense of the fundamentals I will likely explore various libraries.
+Next on my list is <a href="https://huggingface.co/docs/transformers/main/en/index">Hugging Face's Transformer library</a>.</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>
