@@ -1,0 +1,698 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Daily Coding Problem: Problem #2 | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="This is
+Daily Coding Problem #2. I did the work in a Jupyter
+notebook and then exported it to include here.Note: The color output of the grader method does work, but it did not export properly.Daily C…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/daily-coding-problem-problem-2/">
+  <meta property="og:title" content="Daily Coding Problem: Problem #2">
+  <meta property="og:description" content="This is
+Daily Coding Problem #2. I did the work in a Jupyter
+notebook and then exported it to include here.Note: The color output of the grader method does work, but it did not export properly.Daily C…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Daily Coding Problem: Problem #2">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-03-11T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/daily-coding-problem-problem-2"
+      },
+      "headline": "Daily Coding Problem: Problem #2",
+      "description": "This is
+Daily Coding Problem #2. I did the work in a Jupyter
+notebook and then exported it to include here.Note: The color output of the grader method does work, but it did not export properly.Daily C…",
+      "wordcount": "1712",
+      "datePublished": "2025-03-11T00:00:00+00:00",
+      "dateModified": "2025-03-11T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Daily Coding Problem: Problem #2",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Daily Coding Problem: Problem #2</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/codinginterview/" class="page-tag">CodingInterview</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-03-11T00:00:00+00:00">
+      Posted on March 11, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>This is
+<a href="https://www.dailycodingproblem.com/">Daily Coding Problem</a> #2. I did the work in a Jupyter
+notebook and then exported it to include here.</p>
+<span id="continue-reading"></span>
+<p>Note: The color output of the grader method does work, but it did not export properly.</p>
+<hr />
+<h1 id="daily-coding-problem">Daily Coding Problem</h1>
+<h2 id="problem-2-hard">Problem #2 (Hard)</h2>
+<blockquote>
+<p>This problem was asked by Uber.</p>
+</blockquote>
+<blockquote>
+<p>Given an array of integers, return a new array such that each element at index i of the new array is the product of all the numbers in the original array except the one at i.</p>
+</blockquote>
+<blockquote>
+<p>For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our input was [3, 2, 1], the expected output would be [2, 3, 6].</p>
+</blockquote>
+<blockquote>
+<p>Follow-up: what if you can't use division?</p>
+</blockquote>
+<h1 id="my-thoughts">My Thoughts</h1>
+<p>We're back to math, not my strong suit. If I remember correctly, product is the result of multiplying two numbers.</p>
+<p>To make sure I am understanding the problem correctly, let me manually work through the problem.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># given an input of [1, 2, 3, 4, 5] - expected output of [120, 60, 40, 30, 24]
+</span><span>
+</span><span style="color:#5fb3b3;">[
+</span><span>    </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">,
+</span><span>    </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>[120, 60, 20]
+</span></code></pre>
+<p>My initial understanding of the problem is not correct. It is not just advancing down the line. Otherwise the result would always have two less than the input.</p>
+<p>Having that 1 at the beginning also threw me off a little because the second number in my result was
+correct. If you look at the third number, it needed to be multiplied by 2 as well.</p>
+<p>So, basically, we are just excluding the one number we are on.</p>
+<p>The follow-up question mentions trying to do it without division. Had I not had that clue, I would not have realized I could just multiply all numbers and then divide by the number I am currently on.</p>
+<p>Wait a sec, let me validate that assumption...</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># given an input of [1, 2, 3, 4, 5] - expected output of [120, 60, 40, 30, 24]
+</span><span>
+</span><span>p_all </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5
+</span><span>
+</span><span style="color:#5fb3b3;">[
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">5
+</span><span style="color:#5fb3b3;">]
+</span><span>
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>[120.0, 60.0, 40.0, 30.0, 24.0]
+</span></code></pre>
+<p>That does work, for this example...</p>
+<p>I think it might fail in certain scenarios. What if one value was a 0?</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>p_all </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4
+</span><span>
+</span><span style="color:#5fb3b3;">[
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">4
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>---------------------------------------------------------------------------
+</span><span>
+</span><span>ZeroDivisionError                         Traceback (most recent call last)
+</span><span>
+</span><span>Cell In[3], line 4
+</span><span>      1 p_all = 0*1*2*3*4
+</span><span>      3 [
+</span><span>----&gt; 4     p_all/0,
+</span><span>      5     p_all/1,
+</span><span>      6     p_all/2,
+</span><span>      7     p_all/3,
+</span><span>      8     p_all/4
+</span><span>      9 ]
+</span><span>
+</span><span>
+</span><span>ZeroDivisionError: division by zero
+</span></code></pre>
+<p>It does not work in that case because you can't divide by zero. Also the product of all of the numbers is 0, but the first product returned should not be 0, but rather 24!</p>
+<p>I think this will also fail if some of the numbers are negative.</p>
+<p>Let's try.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>p_all </span><span style="color:#5fb3b3;">= -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5
+</span><span>
+</span><span style="color:#5fb3b3;">[
+</span><span>    p_all</span><span style="color:#5fb3b3;">/-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">5
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>p_all </span><span style="color:#5fb3b3;">= -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">*-</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">*</span><span style="color:#f99157;">5
+</span><span>
+</span><span style="color:#5fb3b3;">[
+</span><span>    p_all</span><span style="color:#5fb3b3;">/-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/-</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">,
+</span><span>    p_all</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">5
+</span><span style="color:#5fb3b3;">]
+</span></code></pre>
+<p>Negative numbers do not break this. So, here are some of the edge cases identified so far which need to be in our testing.</p>
+<ul>
+<li>The number 0 is included</li>
+<li>One or more numbers is negative</li>
+<li>The list only has 1 number</li>
+<li>The list has no numbers</li>
+</ul>
+<h1 id="game-plan">Game plan</h1>
+<ul>
+<li>Create some test cases and grading code</li>
+<li>Create a naïve implementation that is definitely not optimized, but hopefully will not fall victim to the 0 and negative number issue identified from using division, which I only tried beccause of the follow-up in the question.</li>
+<li>Maybe see if I can create a division implementation that does not fall victim to these issues</li>
+<li>See if I casn think of anything more efficient</li>
+<li>Use AI to see how close or far I got from the optimal answer (I'm not doing any research or using external tools until this - otherwise this will not really help prepare me for a real coding interview - ick)</li>
+</ul>
+<h1 id="test-cases-and-grading-code">Test cases and grading code</h1>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_cases </span><span style="color:#5fb3b3;">= [
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">120</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">60</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">40</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">30</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">24</span><span style="color:#5fb3b3;">]
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">24</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [-</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">120</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">60</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">40</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">30</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">24</span><span style="color:#5fb3b3;">]
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: [</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">] </span><span style="color:#5f6364;">#I&#39;m assuming 0 is the correct answer here?
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span>    </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;: [],
+</span><span>        </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;: [] </span><span style="color:#5f6364;">#we always return a list the same size as the input list
+</span><span>    </span><span style="color:#5fb3b3;">},
+</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span style="color:#5f6364;"># ANSI escape codes for color on the terminal
+</span><span>RED </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[91m</span><span style="color:#5fb3b3;">&quot;
+</span><span>GREEN </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[92m</span><span style="color:#5fb3b3;">&quot;
+</span><span>RESET </span><span style="color:#5fb3b3;">= &quot;\033</span><span style="color:#99c794;">[0m</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#c594c5;">import </span><span>time
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">code_under_test</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">show_passed</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">):
+</span><span>    test_failed </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">False
+</span><span>
+</span><span>    start_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">()
+</span><span>    </span><span style="color:#c594c5;">for </span><span>test_case </span><span style="color:#c594c5;">in </span><span>test_cases</span><span style="color:#5fb3b3;">:
+</span><span>        numbers </span><span style="color:#5fb3b3;">= </span><span>test_case</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">numbers</span><span style="color:#5fb3b3;">&#39;]
+</span><span>        correct_answer </span><span style="color:#5fb3b3;">= </span><span>test_case</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">correct_answer</span><span style="color:#5fb3b3;">&#39;]
+</span><span>
+</span><span>        result </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">code_under_test</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>        test_passed </span><span style="color:#5fb3b3;">= </span><span>result </span><span style="color:#5fb3b3;">== </span><span>correct_answer
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># so we can print at the end that not all tests succeeded
+</span><span>        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span>test_passed</span><span style="color:#5fb3b3;">: </span><span>test_failed </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">True
+</span><span>
+</span><span>        test_result </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">PASSED</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span>test_passed </span><span style="color:#c594c5;">else </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">FAILED</span><span style="color:#5fb3b3;">&quot;
+</span><span>        line_color </span><span style="color:#5fb3b3;">= </span><span>GREEN </span><span style="color:#c594c5;">if </span><span>test_passed </span><span style="color:#c594c5;">else </span><span>RED
+</span><span>        </span><span style="color:#c594c5;">if </span><span>show_passed </span><span style="color:#5fb3b3;">or not </span><span>test_passed</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;{</span><span style="color:#6699cc;">line_color</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Test Case: numbers=</span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">, correct_answer=</span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">correct_answer</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> returned </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> - </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">test_result</span><span style="color:#5fb3b3;">}{</span><span>RESET</span><span style="color:#5fb3b3;">}&quot;)
+</span><span>
+</span><span>    execution_time </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">() - </span><span>start_time
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;\n</span><span style="color:#99c794;">This answer </span><span style="color:#5fb3b3;">{</span><span>RED </span><span style="color:#5fb3b3;">+ &#39;</span><span style="color:#99c794;">did not pass</span><span style="color:#5fb3b3;">&#39; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">test_failed </span><span style="color:#c594c5;">else </span><span>GREEN </span><span style="color:#5fb3b3;">+ &#39;</span><span style="color:#99c794;">passed</span><span style="color:#5fb3b3;">&#39;}{</span><span>RESET</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> all </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">test_cases</span><span style="color:#5fb3b3;">)}</span><span style="color:#99c794;"> tests. Ran for </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">execution_time:.8f</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> seconds.</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">{&#39;</span><span style="color:#99c794;">passed</span><span style="color:#5fb3b3;">&#39;: </span><span>test_passed</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">time</span><span style="color:#5fb3b3;">&#39;: </span><span>execution_time</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h1 id="naive-implementation">Naïve implementation</h1>
+<p>For this, I'm just going to perform the mutiplication for each step. I will need to exclude the current number from the list.</p>
+<p>I'm not going to try anything fancy here or even to use great data structures...</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#5f6364;"># I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        </span><span style="color:#5f6364;"># I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;">#set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#5f6364;"># the current number we are on should be excluded from the product
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">first_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>That's embarrassing... I did not even return anything. 🤦</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#5f6364;"># I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        </span><span style="color:#5f6364;"># I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;">#set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#5f6364;"># the current number we are on should be excluded from the product
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>I am not off to a great start here. Notice that only the last number is the only one that is right. The only test case that passed was <code>[]</code>.</p>
+<p>I can easily fix the edge case with just one number by just detecting that at the beginning. I don't need to calculate the length twice, even though that is not really a big performance issue.</p>
+<p>The main algorithm; however, is flawed. I need to figure out what is wrong. Sure, I could go through this and pretend I am a computer, but since I have a computer, let's just use trusty old print...</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">=</span><span style="color:#5fb3b3;">&quot;*</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">)
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">There are </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> numbers</span><span style="color:#5fb3b3;">&quot;)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># edge case - only 1 number should return 0
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#5f6364;"># I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Working on index </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">index</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> which corresponds to number </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">index</span><span style="color:#5fb3b3;">]}&quot;)
+</span><span>        </span><span style="color:#5f6364;"># I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;">#set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">- inner index </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">inner_index</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;"> which corresponds to number </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">inner_index</span><span style="color:#5fb3b3;">]}&quot;)
+</span><span>            </span><span style="color:#5f6364;"># the current number we are on should be excluded from the product
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">-- ignoring</span><span style="color:#5fb3b3;">&quot;)
+</span><span>                </span><span style="color:#c594c5;">break</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>            </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">-- product: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">}&quot;)
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">&gt; result so far: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">}&quot;)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>Ok, color me embarrassed once more. The problem was the <code>break</code>. It should have been <code>continue</code>. I was just dumping out of the inner loop.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># edge case - only 1 number should return 0
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#5f6364;"># I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        </span><span style="color:#5f6364;"># I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;">#set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#5f6364;"># the current number we are on should be excluded from the product
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>Much better. I still flubbed the two edge cases, but at least the other tests are working. Huzzah. Look at that, I was testing for <code>numbers_length == 0</code> when I needed to test for <code>if numbers_length == 1</code>. Even the comment indicated that.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># edge case - only 1 number should return 0
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#5f6364;"># I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        </span><span style="color:#5f6364;"># I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;">#set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#5f6364;"># the current number we are on should be excluded from the product
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>Much better. My first passing one. Does this count as having done the challenge? I did not use division.</p>
+<h1 id="division-implementation-which-does-not-fall-victim-to-the-edge-cases">Division implementation which does not fall victim to the edge cases</h1>
+<p>To do this, I am going to need to look out for a few things.</p>
+<ol>
+<li>If the number is a 0, will need to get the product of all other numbers.</li>
+<li>If there is only 1 number, return [0]</li>
+<li>If there are no numbers, return []</li>
+</ol>
+<p>Pseudo-code</p>
+<ul>
+<li>Get length of input numbers</li>
+<li>Check for 3 and 4, return the appropriate reponse if either condition</li>
+<li>Get the product of all numbers</li>
+<li>Go through each number, divide the product of all numbers by this number</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">import </span><span>math
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">division_answer</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># two edge cases
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[]
+</span><span>    </span><span style="color:#c594c5;">elif </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    p_all </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prod</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>number </span><span style="color:#c594c5;">in </span><span>numbers</span><span style="color:#5fb3b3;">:
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span>p_all</span><span style="color:#5fb3b3;">/</span><span>number
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">division_answer</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>Argh! Forgot about the divide by zero edge case. What do I need to do there? Let me look at an example from the test cases with a 0...</p>
+<p><code>[0, 1, 2, 3, 4]</code> which should return <code>[24, 0, 0, 0, 0]</code>. So, essentially, if the number we are currently working on is 0 then there is a nonzero product (as long as there are no other 0).</p>
+<p>The product of all is going to be 0, so, in this kind of scenario I am assuming we need just need the product of every other number minus this one. It makes this division route seem not as nice; however, there would still be fewer mathematical operations, I guess.</p>
+<p>But now we need to keep the index too. I think there is a construct in Python to get the index and item without having to do alength call and using the range. That would be so much cleaner. I am going to allow myself to <code>cheat</code> on this aspect and research it.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">import </span><span>math
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">division_answer</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># two edge cases
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[]
+</span><span>    </span><span style="color:#c594c5;">elif </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    p_all </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prod</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index</span><span style="color:#5fb3b3;">, </span><span>number </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">enumerate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#5f6364;"># edge case of a 0
+</span><span>        </span><span style="color:#c594c5;">if </span><span>number </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#5f6364;"># ok, I &#39;cheated&#39; on this one as well. I did not want to create another loop in here. It would make the code way too crappy.
+</span><span>            </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prod</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">value </span><span style="color:#c594c5;">for </span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">value </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">enumerate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">i </span><span style="color:#5fb3b3;">!= </span><span style="color:#6699cc;">index</span><span style="color:#5fb3b3;">]))
+</span><span>        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>            product </span><span style="color:#5fb3b3;">= </span><span>p_all</span><span style="color:#5fb3b3;">/</span><span>number
+</span><span>            </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#6699cc;">grade</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">division_answer</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>All tests are now passing for the division way of doing it as well.</p>
+<h1 id="what-does-qwen2-5-coder-think">What does Qwen2.5-coder think?</h1>
+<blockquote>
+</blockquote>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>I was given the following coding question:
+</span><span>... &#39;
+</span><span>...
+</span><span>...     Given an array of integers, return a new array such that each element at index i of the new array is the p
+</span><span>... roduct of all the numbers in the original array except the one at i.
+</span><span>...
+</span><span>...     For example, if our input was [1, 2, 3, 4, 5], the expected output would be [120, 60, 40, 30, 24]. If our
+</span><span>... input was [3, 2, 1], the expected output would be [2, 3, 6].
+</span><span>...
+</span><span>...     Follow-up: what if you can&#39;t use division?
+</span><span>... &#39;
+</span><span>...
+</span><span>... I answered in two ways. The first was without using division:
+</span><span>... ```python
+</span><span>... def second_try(numbers):
+</span><span>...     numbers_length = len(numbers)
+</span><span>...
+</span><span>...     # edge case - only 1 number should return 0
+</span><span>...     if numbers_length == 1:
+</span><span>...         return [0]
+</span><span>...
+</span><span>...     result = []
+</span><span>...     # I bet there is a much more &#39;pythonic&#39; way. I&#39;m just coming back to Python after years of Java on the job
+</span><span>...
+</span><span>...     for index in range(len(numbers)):
+</span><span>...         # I think there is a way to use slices here instead of another loop, but bear with me...
+</span><span>...         product = 1 #set to 1 so we can just multiply it - this might break for some edge cases - we will see
+</span><span>...         for inner_index in range(len(numbers)):
+</span><span>...             # the current number we are on should be excluded from the product
+</span><span>...             if inner_index == index:
+</span><span>...                 continue;
+</span><span>...             product *= numbers[inner_index]
+</span><span>...         result.append(product)
+</span><span>...     return result```
+</span><span>...
+</span><span>... In my second answer, I used division:
+</span><span>... ```python
+</span><span>... def division_answer(numbers):
+</span><span>...     numbers_length = len(numbers)
+</span><span>...
+</span><span>...     # two edge cases
+</span><span>...     if numbers_length == 0:
+</span><span>...         return []
+</span><span>...     elif numbers_length == 1:
+</span><span>...         return [0]
+</span><span>...
+</span><span>...     p_all = math.prod(numbers)
+</span><span>...
+</span><span>...     result = []
+</span><span>...     for index, number in enumerate(numbers):
+</span><span>...         # edge case of a 0
+</span><span>...         if number == 0:
+</span><span>...             # ok, I &#39;cheated&#39;on this one as well. I did not want to create another loop in here. It would make
+</span><span>...  the code way too crappy.
+</span><span>...             result.append(math.prod([value for i, value in enumerate(numbers) if i != index]))
+</span><span>...         else:
+</span><span>...             product = p_all/number
+</span><span>...             result.append(product)
+</span><span>...
+</span><span>...     return result```
+</span><span>...
+</span><span>... Can you analyze these two responses for big O. Then please comment on them.  Finally, please suggest the most
+</span><span>... optimal way to solve the question.
+</span><span>... &quot;&quot;&quot;
+</span></code></pre>
+<p>Certainly! Let's analyze your solutions in terms of time complexity and then discuss their efficiency and
+readability. We'll also explore a more optimal solution.</p>
+<h3 id="analysis-of-your-solutions">Analysis of Your Solutions</h3>
+<h4 id="first-solution-without-division">First Solution: Without Division</h4>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">second_try</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># edge case - only 1 number should return 0
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>        product </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1
+</span><span>        </span><span style="color:#c594c5;">for </span><span>inner_index </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)):
+</span><span>            </span><span style="color:#c594c5;">if </span><span>inner_index </span><span style="color:#5fb3b3;">== </span><span>index</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">continue</span><span style="color:#5fb3b3;">;
+</span><span>            product </span><span style="color:#5fb3b3;">*= </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>inner_index</span><span style="color:#5fb3b3;">]
+</span><span>        </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span></code></pre>
+<p><strong>Time Complexity:</strong></p>
+<ul>
+<li>The outer loop runs <code>n</code> times, where <code>n</code> is the length of the input list.</li>
+<li>The inner loop also runs <code>n</code> times for each iteration of the outer loop.</li>
+<li>Therefore, the overall time complexity is (O(n^2)).</li>
+</ul>
+<p><strong>Space Complexity:</strong></p>
+<ul>
+<li>The space complexity is (O(1)) extra space (excluding the output list), as we are only using a few
+variables.</li>
+</ul>
+<p><strong>Comments:</strong></p>
+<ul>
+<li>This solution works correctly but is inefficient for large lists due to its quadratic time complexity.</li>
+<li>It is straightforward and easy to understand, which is good for educational purposes.</li>
+</ul>
+<h4 id="second-solution-with-division">Second Solution: With Division</h4>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">import </span><span>math
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">division_answer</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># two edge cases
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[]
+</span><span>    </span><span style="color:#c594c5;">elif </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    p_all </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prod</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    result </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>index</span><span style="color:#5fb3b3;">, </span><span>number </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">enumerate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#5f6364;"># edge case of a 0
+</span><span>        </span><span style="color:#c594c5;">if </span><span>number </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">math</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prod</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">value </span><span style="color:#c594c5;">for </span><span style="color:#6699cc;">i</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">value </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">enumerate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">) </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">i </span><span style="color:#5fb3b3;">!= </span><span style="color:#6699cc;">index</span><span style="color:#5fb3b3;">]))
+</span><span>        </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>            product </span><span style="color:#5fb3b3;">= </span><span>p_all </span><span style="color:#5fb3b3;">/ </span><span>number
+</span><span>            </span><span style="color:#6699cc;">result</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">product</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span></code></pre>
+<p><strong>Time Complexity:</strong></p>
+<ul>
+<li>Calculating the total product <code>p_all</code> takes (O(n)).</li>
+<li>For each element, if it is zero, calculating the product of the rest of the elements takes (O(n)). This
+means in the worst case (when there are multiple zeros), this could be inefficient.</li>
+<li>Therefore, the overall time complexity is (O(n^2)) in the worst case due to handling multiple zeros.</li>
+</ul>
+<p><strong>Space Complexity:</strong></p>
+<ul>
+<li>The space complexity is (O(1)) extra space (excluding the output list).</li>
+</ul>
+<p><strong>Comments:</strong></p>
+<ul>
+<li>This solution is more efficient than nested loops when there are no zeros, but it becomes inefficient with
+zeros.</li>
+<li>It uses division, which is not allowed by the follow-up constraint.</li>
+</ul>
+<h3 id="optimal-solution-without-division">Optimal Solution Without Division</h3>
+<p>To solve this problem without using division and achieve a better time complexity, we can use prefix and
+suffix products. Here's how:</p>
+<ol>
+<li><strong>Prefix Product:</strong> Calculate the product of all elements to the left of each element.</li>
+<li><strong>Suffix Product:</strong> Calculate the product of all elements to the right of each element.</li>
+<li><strong>Result Calculation:</strong> Multiply the corresponding prefix and suffix products for each element.</li>
+</ol>
+<p>This approach ensures that we only traverse the list a few times, resulting in linear time complexity.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">optimal_solution</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">numbers</span><span style="color:#5fb3b3;">):
+</span><span>    numbers_length </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">len</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">if </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[]
+</span><span>    </span><span style="color:#c594c5;">elif </span><span>numbers_length </span><span style="color:#5fb3b3;">== </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># Initialize prefix and suffix arrays
+</span><span>    prefix_products </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] * </span><span>numbers_length
+</span><span>    suffix_products </span><span style="color:#5fb3b3;">= [</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] * </span><span>numbers_length
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># Calculate prefix products
+</span><span>    </span><span style="color:#c594c5;">for </span><span>i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">):
+</span><span>        prefix_products</span><span style="color:#5fb3b3;">[</span><span>i</span><span style="color:#5fb3b3;">] = </span><span>prefix_products</span><span style="color:#5fb3b3;">[</span><span>i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] * </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>i </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># Calculate suffix products
+</span><span>    </span><span style="color:#c594c5;">for </span><span>i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers_length </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, -</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">):
+</span><span>        suffix_products</span><span style="color:#5fb3b3;">[</span><span>i</span><span style="color:#5fb3b3;">] = </span><span>suffix_products</span><span style="color:#5fb3b3;">[</span><span>i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">] * </span><span>numbers</span><span style="color:#5fb3b3;">[</span><span>i </span><span style="color:#5fb3b3;">+ </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># Calculate the result by multiplying prefix and suffix products
+</span><span>    result </span><span style="color:#5fb3b3;">= [</span><span>prefix_products</span><span style="color:#5fb3b3;">[</span><span>i</span><span style="color:#5fb3b3;">] * </span><span>suffix_products</span><span style="color:#5fb3b3;">[</span><span>i</span><span style="color:#5fb3b3;">] </span><span style="color:#c594c5;">for </span><span>i </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">range</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">numbers_length</span><span style="color:#5fb3b3;">)]
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>result
+</span><span>
+</span><span style="color:#5f6364;"># Example usage:
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">optimal_solution</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">]))  </span><span style="color:#5f6364;"># Output: [120, 60, 40, 30, 24]
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">optimal_solution</span><span style="color:#5fb3b3;">([</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">]))        </span><span style="color:#5f6364;"># Output: [2, 3, 6]
+</span></code></pre>
+<p><strong>Time Complexity:</strong></p>
+<ul>
+<li>Calculating prefix products takes (O(n)).</li>
+<li>Calculating suffix products takes (O(n)).</li>
+<li>Constructing the result array takes (O(n)).</li>
+<li>Therefore, the overall time complexity is (O(n)).</li>
+</ul>
+<p><strong>Space Complexity:</strong></p>
+<ul>
+<li>The space complexity is (O(n)) due to the additional prefix and suffix arrays.</li>
+</ul>
+<h3 id="comments-on-optimal-solution">Comments on Optimal Solution</h3>
+<ul>
+<li>This solution is efficient with a linear time complexity.</li>
+<li>It avoids using division, adhering to the follow-up constraint.</li>
+<li>While it uses extra space for prefix and suffix products, this can be further optimized by modifying the
+input array in place or using a single result array to store intermediate results.</li>
+</ul>
+<h3 id="final-thoughts">Final Thoughts</h3>
+<p>Your initial solutions were correct but not optimal. The optimal solution using prefix and suffix products
+is both efficient and adheres to the constraints provided in the problem statement.</p>
+<h1 id="my-conclusion">My conclusion</h1>
+<p>I would have never figured out the O(n) solution. I still need to step through it and understand it better, but I need to head out shortly.</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>

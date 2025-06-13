@@ -1,0 +1,855 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Creating an Application in Rust using Dioxus | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="My previous post about Vibe Coding got me thinking whether, perhaps, it is hard to create a GUI application in Rust. I have primarily been a backend developer with a little bit of web frontend experie…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/creating-a-gui-application-in-rust-using-dioxus/">
+  <meta property="og:title" content="Creating an Application in Rust using Dioxus">
+  <meta property="og:description" content="My previous post about Vibe Coding got me thinking whether, perhaps, it is hard to create a GUI application in Rust. I have primarily been a backend developer with a little bit of web frontend experie…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Creating an Application in Rust using Dioxus">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-04-01T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/creating-a-gui-application-in-rust-using-dioxus"
+      },
+      "headline": "Creating an Application in Rust using Dioxus",
+      "description": "My previous post about Vibe Coding got me thinking whether, perhaps, it is hard to create a GUI application in Rust. I have primarily been a backend developer with a little bit of web frontend experie…",
+      "wordcount": "1928",
+      "datePublished": "2025-04-01T00:00:00+00:00",
+      "dateModified": "2025-04-01T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Creating an Application in Rust using Dioxus",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Creating an Application in Rust using Dioxus</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/coding/" class="page-tag">Coding</a>,
+      <a href="https://bustin.tech/tags/rust/" class="page-tag">Rust</a>,
+      <a href="https://bustin.tech/tags/dioxus/" class="page-tag">Dioxus</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-04-01T00:00:00+00:00">
+      Posted on April  1, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>My <a href="https://bustin.tech/posts/vibe-coding/">previous post about Vibe Coding</a> got me thinking whether, perhaps, it is hard to create a GUI application in Rust. I have primarily been a backend developer with a little bit of web frontend experience using <a href="https://vuejs.org/">Vue.js</a>.</p>
+<p><a href="https://areweguiyet.com/#ecosystem">Are We GUI Yet</a> lists the various Rust GUI frameworks. The description for <a href="https://dioxuslabs.com/">Dioxus</a> sounded intriguing.Hopefully this is not drinking the Kool-Aid. See <a href="https://www.gwtproject.org/">Google Web Toolkit</a>, an attempt to allow writing frontend code in Java which would then be transpiled into Javascript. I had to work with a legacy app using that for its frontend and it was a disaster. THe current version might be better. We were using an old version that had gone out of support over 10 years ago. Fun times...</p>
+<p>I am going to be reading through the <a href="https://dioxuslabs.com/learn/0.6/getting_started/">Dioxus Getting Started Guide</a> and learning as I write this. This is not a tutorial. It is my journey learning Dioxus and attempting a GUI application.</p>
+<span id="continue-reading"></span><h1 id="getting-the-tooling-all-set-up">Getting the tooling all set up</h1>
+<ul>
+<li><em>Rust</em> ✅ - already installed</li>
+<li><em>Dioxus CLI</em> ✅ - had to get the OpenSSL dependency set up as documented in the link in the getting started docs</li>
+</ul>
+<h1 id="building-the-hotdog-application">Building the <em>HotDog</em> application</h1>
+<p>Each of the headers in this section link to the corresponding page in the <a href="https://dioxuslabs.com/learn/0.6/">Dioxus documentation</a>.</p>
+<h2 id="setting-up-tooling"><a href="https://dioxuslabs.com/learn/0.6/guide/tooling">Setting Up Tooling</a></h2>
+<p>The getting started documentation is going to have us build Tinder for Dogs. It says the <code>wasm32-unknown-unknown</code> toolchain must be installed. I do not think I have that installed. Toolchain is not the right word, it technically is a compilation target.</p>
+<p>I <a href="https://github.com/DioxusLabs/docsite/pull/472">sent a pull request to the project</a> to fix this tiny issue and it was quickly accepted.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">rustup target add wasm32-unknown-unknown
+</span></code></pre>
+<p>Turns out I already have it installed.</p>
+<h2 id="creating-a-new-app"><a href="https://dioxuslabs.com/learn/0.6/guide/new_app">Creating a new app</a></h2>
+<p>I run <code>dx new hot_dog</code> as instructed and choose the options specified in the documentation. The tooling is very slick.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">❯ dx new hot_dog
+</span><span style="color:#6699cc;">✔ 🤷   Which sub-template should be expanded</span><span style="color:#5fb3b3;">?</span><span style="color:#6699cc;"> · Bare-Bones
+</span><span style="color:#6699cc;">✔ 🤷   Do you want to use Dioxus Fullstack</span><span style="color:#5fb3b3;">?</span><span style="color:#6699cc;"> · false
+</span><span style="color:#6699cc;">✔ 🤷   Do you want to use Dioxus Router</span><span style="color:#5fb3b3;">?</span><span style="color:#6699cc;"> · false
+</span><span style="color:#6699cc;">✔ 🤷   Do you want to use Tailwind CSS</span><span style="color:#5fb3b3;">?</span><span style="color:#6699cc;"> · false
+</span><span style="color:#6699cc;">✔ 🤷   Which platform do you want DX to serve by default</span><span style="color:#5fb3b3;">?</span><span style="color:#6699cc;"> · Web
+</span><span>  </span><span style="color:#6699cc;">71.834s  INFO Generated project at /Users/brianbustin/projects/hot_dog
+</span><span>
+</span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;">cd</span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;"> to your project and run </span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;">dx serve</span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;"> to start developing.
+</span><span style="color:#6699cc;">If using Tailwind, make sure to run the Tailwind CLI.
+</span><span style="color:#6699cc;">More information is available in the generated </span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;">README.md</span><span style="color:#5fb3b3;">`</span><span style="color:#6699cc;">.
+</span><span>
+</span><span style="color:#6699cc;">Build cool things! ✌️
+</span></code></pre>
+<p>I really like how it documents the next steps. This makes using it more approachable. Even if you aren't following the getting started and making Dog Tinder.</p>
+<p>Then I run <code>dx serve</code> as instructed, open http://127.0.0.1:8080 in my browser, and there is a Dioxus website. Very nice so far. I am curious what code leveraging the library is going to be like.</p>
+<p>The getting started documentation is well done. It is going over the project structure and explaining everything with just the right level of detail. Hats off to the Dioxus team. Nicely done.</p>
+<p>I clear away all of the boilerplate, as instructed. The webpage in my browser hot reloads and it says <code>HotDog!</code> which is exactly what I am thinking as this is going so smoothly.</p>
+<h2 id="first-component"><a href="https://dioxuslabs.com/learn/0.6/guide/component">First Component</a></h2>
+<blockquote>
+<p>In Dioxus, apps are comprised of individual functions called Components that take in some Properties and render an Element</p>
+</blockquote>
+<p>Makes sense to me.</p>
+<p>The starting point for <code>src/main.rs</code> is:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">HotDog!</span><span style="color:#5fb3b3;">&quot;
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>No I add a component called <code>DogApp</code> which accepts a <code>breed</code> parameter and then I use it in the `App function.</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        DogApp </span><span style="color:#5fb3b3;">{</span><span> breed</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">Brittany Spaniel</span><span style="color:#5fb3b3;">&quot; }
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogApp</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">breed</span><span style="color:#5fb3b3;">:</span><span> String</span><span style="color:#5fb3b3;">) -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Breed: {breed}</span><span style="color:#5fb3b3;">&quot;
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>The webpage displays <code>Breed: Brittany Spaniel</code>. I have created a component. The framework does some cool work behind the scenes to make this work. The documents describe that a Struct called <code>DogAppProps</code> (name of the component with <code>Props</code> at the end). If you are building an API, the docs recommend creating those structs manually.</p>
+<h2 id="creating-ui-with-rsx"><a href="https://dioxuslabs.com/learn/0.6/guide/rsx">Creating UI with RSX</a></h2>
+<blockquote>
+<p>..all quoted strings in RSX imply format!() automatically, so you can define a variable outside your markup and use it in your strings without an explicit</p>
+</blockquote>
+<p>I like that. It makes things a little less verbose.</p>
+<p>One thing I do not like is that if the build fails, the hot reloading sometimes stops even though <code>dx serve</code> is still running. To get around this, I need to press <code>ctrl + c</code> and then run it again. Not a big deal, just a minor annoyance.</p>
+<p>Now the code looks like this:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot;  }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">https://www.selectadogbreed.com/media/1550/brittanyspaniel_puppy.jpg</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="styling-and-assets"><a href="https://dioxuslabs.com/learn/0.6/guide/assets">Styling and Assets</a></h2>
+<p>Styling in Dioxus uses CSS. So you essentially do this...</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">static </span><span>CSS</span><span style="color:#5fb3b3;">:</span><span> Asset </span><span style="color:#5fb3b3;">= </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>CSS </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>I make the changes above (but leave in all of the other code). Then I copy in the stylesheet from the tutorial into <code>/assets/main.css</code>. It looks nice and the hot reloading just works. Pretty sweet!</p>
+<h2 id="adding-state"><a href="https://dioxuslabs.com/learn/0.6/guide/state">Adding State</a></h2>
+<p>Now we:</p>
+<ul>
+<li>Split the Title and DogView out of App since DogView is going to have associated state and title will not.</li>
+<li>Add event handlers to DogView.</li>
+<li>Make the image source part of the DogView state and define a starting image with the <code>use_signal</code> function. (Note to future self: Read the <a href="https://dioxuslabs.com/learn/0.6/essentials/state/#">State Management Guide</a>)</li>
+</ul>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">static </span><span>CSS</span><span style="color:#5fb3b3;">:</span><span> Asset </span><span style="color:#5fb3b3;">= </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>CSS </span><span style="color:#5fb3b3;">}
+</span><span>        Title </span><span style="color:#5fb3b3;">{}
+</span><span>        DogView </span><span style="color:#5fb3b3;">{}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">Title</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">let</span><span> skip </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|</span><span>evt</span><span style="color:#5fb3b3;">| {};
+</span><span>    </span><span style="color:#c594c5;">let</span><span> save </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|</span><span>evt</span><span style="color:#5fb3b3;">| {};
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">let</span><span> img_src </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_signal</span><span style="color:#5fb3b3;">(|| &quot;</span><span style="color:#99c794;">https://www.selectadogbreed.com/media/1550/brittanyspaniel_puppy.jpg</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">{img_src}</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> onclick</span><span style="color:#5fb3b3;">:</span><span> skip</span><span style="color:#5fb3b3;">,</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> onclick</span><span style="color:#5fb3b3;">:</span><span> save</span><span style="color:#5fb3b3;">,</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="fetching-data"><a href="https://dioxuslabs.com/learn/0.6/guide/data_fetching">Fetching Data</a></h2>
+<p>Dog Tinder needs to be able to get other dogs for when you skip. This app is going to use the <a href="https://dog.ceo/dog-api/">dog.ceo/dog-api</a> to get images. So we need a library to call the API, and also a library to deserialize the response.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">cargo add reqwest</span><span style="color:#5fb3b3;"> --</span><span style="color:#f99157;">features</span><span style="color:#6699cc;"> json
+</span><span style="color:#6699cc;">cargo add serde</span><span style="color:#5fb3b3;"> --</span><span style="color:#f99157;">features</span><span style="color:#6699cc;"> derive
+</span></code></pre>
+<p>It looks like Dioxus can fetch the image on its own. The tricky part is calling the dog.ceo API and getting the URL for the image to display.</p>
+<p>The code looks like this now:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">static </span><span>CSS</span><span style="color:#5fb3b3;">:</span><span> Asset </span><span style="color:#5fb3b3;">= </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>CSS </span><span style="color:#5fb3b3;">}
+</span><span>        Title </span><span style="color:#5fb3b3;">{}
+</span><span>        DogView </span><span style="color:#5fb3b3;">{}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">Title</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">let mut</span><span> img_src </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_resource</span><span style="color:#5fb3b3;">(|| </span><span>async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>        reqwest</span><span style="color:#5fb3b3;">::</span><span>get</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">https://dog.ceo/api/breeds/image/random</span><span style="color:#5fb3b3;">&quot;)
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>json</span><span style="color:#5fb3b3;">::&lt;</span><span>DogApi</span><span style="color:#5fb3b3;">&gt;()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>message
+</span><span>    </span><span style="color:#5fb3b3;">});
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">:</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap_or_default</span><span style="color:#5fb3b3;">() }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">(),</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">(),</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>derive</span><span style="color:#5fb3b3;">(</span><span>serde::Deserialize</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">struct </span><span>DogApi </span><span style="color:#5fb3b3;">{
+</span><span>    message</span><span style="color:#5fb3b3;">:</span><span> String,
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="adding-a-backend"><a href="https://dioxuslabs.com/learn/0.6/guide/backend">Adding a Backend</a></h2>
+<p>It looks like the dx command does these steps for you automatically if you choose full stack when creating your project.</p>
+<p>Edit the <code>cargo.toml</code> file and:</p>
+<ul>
+<li>add the <code>fullstack</code> feature to the <code>dioxus</code> dependency</li>
+<li>remove the <code>default = ["web"]</code> feature</li>
+<li>add the <code>server = ["dioxus/server"]</code> feature</li>
+</ul>
+<p>My <code>cargo.toml</code> now looks like this.</p>
+<pre data-lang="toml" style="background-color:#2b2c2f;color:#cccece;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#5fb3b3;">[package]
+</span><span style="color:#eb606b;">name </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">hot_dog</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.1.0</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">authors </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">Brian Bustin &lt;_@_._&gt;</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">edition </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">2021</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5f6364;"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+</span><span>
+</span><span style="color:#5fb3b3;">[dependencies]
+</span><span style="color:#eb606b;">dioxus </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.6.0</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">fullstack</span><span style="color:#5fb3b3;">&quot;] }
+</span><span style="color:#eb606b;">reqwest </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.12.15</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">json</span><span style="color:#5fb3b3;">&quot;] }
+</span><span style="color:#eb606b;">serde </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">1.0.219</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">derive</span><span style="color:#5fb3b3;">&quot;] }
+</span><span>
+</span><span style="color:#5fb3b3;">[features]
+</span><span style="color:#eb606b;">web </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/web</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">desktop </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/desktop</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">mobile </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/mobile</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">server </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/server</span><span style="color:#5fb3b3;">&quot;]
+</span><span>
+</span><span style="color:#5fb3b3;">[profile]
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.wasm-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">opt-level </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.server-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.android-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<p>Then <code>ctrl+c</code> <code>dx serve</code> and instead run <code>dx serve --platform web</code> since it no longer has a default.</p>
+<p>Then we create a server endpoint to save the dog which takes an image parameter. It just saves it to a text file. Then the client code needs to call the server function. I just followed the steps.</p>
+<p>The documentation does mention that you need to be careful making sure any server-side secrets are not exposed to the client. In that case, you can put the server code in a different module behind <code>#[cfg(feature = "server")]</code>. Hopefully they will get more into that later on. The code below does not have any secrets and does not split the code. Everything is also in <code>main.rs</code>. In a real project, some more structure would help keep things neat.</p>
+<p>The other thing I would want to improve over the tutorial code are all the <code>unwraps</code>. It might be good to have more explicit error handling. This is just a tutorial app though. 😁</p>
+<p>It works though!</p>
+<p>Here is how the code looks...</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">static </span><span>CSS</span><span style="color:#5fb3b3;">:</span><span> Asset </span><span style="color:#5fb3b3;">= </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>CSS </span><span style="color:#5fb3b3;">}
+</span><span>        Title </span><span style="color:#5fb3b3;">{}
+</span><span>        DogView </span><span style="color:#5fb3b3;">{}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">Title</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">let mut</span><span> img_src </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_resource</span><span style="color:#5fb3b3;">(|| </span><span>async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>        reqwest</span><span style="color:#5fb3b3;">::</span><span>get</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">https://dog.ceo/api/breeds/image/random</span><span style="color:#5fb3b3;">&quot;)
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>json</span><span style="color:#5fb3b3;">::&lt;</span><span>DogApi</span><span style="color:#5fb3b3;">&gt;()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>message
+</span><span>    </span><span style="color:#5fb3b3;">});
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">:</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap_or_default</span><span style="color:#5fb3b3;">() }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;,</span><span> onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">(), &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{
+</span><span>                id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>                    </span><span style="color:#c594c5;">let</span><span> current </span><span style="color:#5fb3b3;">=</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>                    img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">();
+</span><span>                    </span><span style="color:#5fb3b3;">_ = </span><span style="color:#6699cc;">save_dog</span><span style="color:#5fb3b3;">(</span><span>current</span><span style="color:#5fb3b3;">).</span><span>await</span><span style="color:#5fb3b3;">;
+</span><span>            </span><span style="color:#5fb3b3;">},
+</span><span>            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>derive</span><span style="color:#5fb3b3;">(</span><span>serde::Deserialize</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">struct </span><span>DogApi </span><span style="color:#5fb3b3;">{
+</span><span>    message</span><span style="color:#5fb3b3;">:</span><span> String,
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>server</span><span style="color:#5fb3b3;">]
+</span><span>async </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">save_dog</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">image</span><span style="color:#5fb3b3;">:</span><span> String</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#fac863;">Result</span><span style="color:#5fb3b3;">&lt;()</span><span>, ServerFnError</span><span style="color:#5fb3b3;">&gt; {
+</span><span>    </span><span style="color:#c594c5;">use </span><span>std</span><span style="color:#5fb3b3;">::</span><span>io</span><span style="color:#5fb3b3;">::</span><span>Write</span><span style="color:#5fb3b3;">; </span><span style="color:#5f6364;">// keeping server-specific imports out of the client code
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Append to `dogs.txt`. If it does not exist, then create it.
+</span><span>    </span><span style="color:#c594c5;">let mut</span><span> file </span><span style="color:#5fb3b3;">= </span><span>std</span><span style="color:#5fb3b3;">::</span><span>fs</span><span style="color:#5fb3b3;">::</span><span>OpenOptions</span><span style="color:#5fb3b3;">::</span><span>new</span><span style="color:#5fb3b3;">()
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">write</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">create</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">true</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">open</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">dogs.txt</span><span style="color:#5fb3b3;">&quot;)
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Write the image URL to the file and then insert a new line
+</span><span>    file</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">write_fmt</span><span style="color:#5fb3b3;">(</span><span>format_args!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">{image}</span><span style="color:#5fb3b3;">\n&quot;));
+</span><span>
+</span><span>    </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">(())
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="working-with-databases"><a href="https://dioxuslabs.com/learn/0.6/guide/databases">Working with Databases</a></h2>
+<p>We are going to get the app working with a SQLite database.</p>
+<p>I chose to use the cargo command to add the dependency to the server feature rather than editing <code>cargo.toml</code> by hand. This may come to bite me as the resulting <code>cargo.toml</code> is different from the example. (Spoiler: It does... do not run this command or you'll have to manually clean up your <code>cargo.toml</code>.)</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">cargo add rusqlite</span><span style="color:#5fb3b3;"> --</span><span style="color:#f99157;">target</span><span style="color:#6699cc;"> server
+</span></code></pre>
+<p>Then I add the database connection code as per the tutorial.</p>
+<p>The way I chose to add the <code>rusqlite</code> dependency did come to bite me. IT turns out I had confused a <code>target</code> with a <code>feature</code>. I undid the changes in my <code>cargo.toml</code> and made it reflect the how it is in the tutorial, but I used the latest version.</p>
+<p>I use <a href="https://github.com/sqlitebrowser/sqlitebrowser">DB Browser for SQLite (DB4S)</a> to verify the dog image urls are actually getting saved, and they are.</p>
+<p>Here is the current code:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">static </span><span>CSS</span><span style="color:#5fb3b3;">:</span><span> Asset </span><span style="color:#5fb3b3;">= </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>App</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">App</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>CSS </span><span style="color:#5fb3b3;">}
+</span><span>        Title </span><span style="color:#5fb3b3;">{}
+</span><span>        DogView </span><span style="color:#5fb3b3;">{}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">Title</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">let mut</span><span> img_src </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_resource</span><span style="color:#5fb3b3;">(|| </span><span>async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>        reqwest</span><span style="color:#5fb3b3;">::</span><span>get</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">https://dog.ceo/api/breeds/image/random</span><span style="color:#5fb3b3;">&quot;)
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>json</span><span style="color:#5fb3b3;">::&lt;</span><span>DogApi</span><span style="color:#5fb3b3;">&gt;()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>message
+</span><span>    </span><span style="color:#5fb3b3;">});
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">:</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap_or_default</span><span style="color:#5fb3b3;">() }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;,</span><span> onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">(), &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{
+</span><span>                id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>                    </span><span style="color:#c594c5;">let</span><span> current </span><span style="color:#5fb3b3;">=</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>                    img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">();
+</span><span>                    </span><span style="color:#5fb3b3;">_ = </span><span style="color:#6699cc;">save_dog</span><span style="color:#5fb3b3;">(</span><span>current</span><span style="color:#5fb3b3;">).</span><span>await</span><span style="color:#5fb3b3;">;
+</span><span>            </span><span style="color:#5fb3b3;">},
+</span><span>            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>derive</span><span style="color:#5fb3b3;">(</span><span>serde::Deserialize</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">struct </span><span>DogApi </span><span style="color:#5fb3b3;">{
+</span><span>    message</span><span style="color:#5fb3b3;">:</span><span> String,
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>server</span><span style="color:#5fb3b3;">]
+</span><span>async </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">save_dog</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">image</span><span style="color:#5fb3b3;">:</span><span> String</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#fac863;">Result</span><span style="color:#5fb3b3;">&lt;()</span><span>, ServerFnError</span><span style="color:#5fb3b3;">&gt; {
+</span><span>    DB</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with</span><span style="color:#5fb3b3;">(|</span><span style="color:#f99157;">f</span><span style="color:#5fb3b3;">| </span><span>f</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">execute</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">INSERT INTO dogs (url) VALUES (?1)</span><span style="color:#5fb3b3;">&quot;, &amp;[&amp;</span><span>image</span><span style="color:#5fb3b3;">]));
+</span><span>    </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">(())
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5f6364;">// Databse should only be on the server side
+</span><span style="color:#5fb3b3;">#[</span><span>cfg</span><span style="color:#5fb3b3;">(</span><span>feature </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">server</span><span style="color:#5fb3b3;">&quot;)]
+</span><span>thread_local! </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">pub static </span><span>DB</span><span style="color:#5fb3b3;">: </span><span>rusqlite</span><span style="color:#5fb3b3;">::</span><span>Connection </span><span style="color:#5fb3b3;">= {
+</span><span>        </span><span style="color:#5f6364;">// open &quot;hotdog.db&quot; database
+</span><span>        </span><span style="color:#c594c5;">let</span><span> connection </span><span style="color:#5fb3b3;">= </span><span>rusqlite</span><span style="color:#5fb3b3;">::</span><span>Connection</span><span style="color:#5fb3b3;">::</span><span>open</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">hotdog.db</span><span style="color:#5fb3b3;">&quot;).</span><span style="color:#6699cc;">expect</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Failed to open database</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span>        </span><span style="color:#5f6364;">// Create the &quot;dogs&quot; table if it doesn&#39;t already exist
+</span><span>        connection</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">execute_batch</span><span style="color:#5fb3b3;">(
+</span><span>            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">CREATE TABLE IF NOT EXISTS dogs (
+</span><span style="color:#99c794;">                id INTEGER PRIMARY KEY,
+</span><span style="color:#99c794;">                url TEXT NOT NULL
+</span><span style="color:#99c794;">            );</span><span style="color:#5fb3b3;">&quot;,
+</span><span>        </span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>
+</span><span>        </span><span style="color:#5f6364;">// Return the connection
+</span><span>        connection
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="routing-and-structure"><a href="https://dioxuslabs.com/learn/0.6/guide/routing">Routing and Structure</a></h2>
+<p>Nice! Now the tutorial is going over better structuring the code. It is going to look like this:</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>├── Cargo.toml
+</span><span>├── assets
+</span><span>│   └── main.css
+</span><span>└── src
+</span><span>    ├── backend.rs
+</span><span>    ├── components
+</span><span>    │   ├── favorites.rs
+</span><span>    │   ├── mod.rs
+</span><span>    │   ├── nav.rs
+</span><span>    │   └── view.rs
+</span><span>    └── main.rs
+</span></code></pre>
+<p>I'm essentially creating all these files. Then moving the server-specific code to <code>backend.rs</code>. Then the UI components that are still in <code>main.rs</code> will get moved into the proper files in <code>src/components/</code>.</p>
+<p>The documentation notes that, if this project were started with the <code>Jumpstart</code> or <code>Workplace</code> template, then a lot of this scaffolding would already exist.</p>
+<p>I'm a little confused at this point because the code in my <code>main.rs</code> is not working. I can't access the <code>App</code> component in <code>views.rs</code>. The documentation is moving on to adding a router, so I am probably getting ahead of myself.</p>
+<p>I need to add the dioxus <code>router</code> feature.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">cargo add dioxus</span><span style="color:#5fb3b3;"> --</span><span style="color:#f99157;">features</span><span style="color:#6699cc;"> router
+</span></code></pre>
+<p>Then I follow the document to make a Route enum and an <code>app</code> function that leverages the router. The documentation is getting a lot harder to follow at this point. For example, I add the default route for when a page is not found, but <code>PageNotFound</code> is not found in the scope. Does that mean I need to create my own, or is this something I need ot add with a use statement somewhere?</p>
+<p>I keep pressing on. Lots of times I get ahead of myself. Perhaps all will be answered soon. The next screenshot does not have <code>PageNotFound</code>. It is also leveraging <code>DogView</code> from components, unlike the earlier code it showed with</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    todo!</span><span style="color:#5fb3b3;">()
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>I also had to go into <code>src/backend.rs</code> and make <code>save_dog</code> public. Then I had to go into <code>src/components/view.rs</code> and make <code>DogView</code> public. I also needed to add <code>use crate::backend;</code> and then call the function as <code>backend::save_dog(current).await</code>. I am not sure at this point if all of that is the correct thing to do, but the application is working again. I even verify the dog image urls are still being written properly to the database. Huzzah!</p>
+<p>Now it is time to add a NavBar. This is pretty straight-forward. I just follow the documentation.</p>
+<p>Then I add backend code to get the last 10 saved dogs, and the view code in <code>favorites.rs</code> that uses it. It is pretty slick how this all ties together so nicely. There must be a major downside somewhere...</p>
+<p>The tutorial is almost over.</p>
+<p>Here is what the code looks like now.</p>
+<p><code>cargo.toml</code></p>
+<pre data-lang="toml" style="background-color:#2b2c2f;color:#cccece;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#5fb3b3;">[package]
+</span><span style="color:#eb606b;">name </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">hot_dog</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.1.0</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">authors </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">Brian Bustin &lt;_@_._&gt;</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">edition </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">2021</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5f6364;"># See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+</span><span>
+</span><span style="color:#5fb3b3;">[dependencies]
+</span><span style="color:#eb606b;">dioxus </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.6.0</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">fullstack</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">router</span><span style="color:#5fb3b3;">&quot;] }
+</span><span style="color:#eb606b;">reqwest </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.12.15</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">json</span><span style="color:#5fb3b3;">&quot;] }
+</span><span style="color:#eb606b;">serde </span><span style="color:#5fb3b3;">= { </span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">1.0.219</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">features </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">derive</span><span style="color:#5fb3b3;">&quot;] }
+</span><span style="color:#eb606b;">rusqlite </span><span style="color:#5fb3b3;">= {</span><span style="color:#eb606b;">version </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">0.34.0</span><span style="color:#5fb3b3;">&quot;, </span><span style="color:#eb606b;">optional </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">true </span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">[features]
+</span><span style="color:#eb606b;">web </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/web</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">desktop </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/desktop</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">mobile </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/mobile</span><span style="color:#5fb3b3;">&quot;]
+</span><span style="color:#eb606b;">server </span><span style="color:#5fb3b3;">= [&quot;</span><span style="color:#99c794;">dioxus/server</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">dep:rusqlite</span><span style="color:#5fb3b3;">&quot;]
+</span><span>
+</span><span style="color:#5fb3b3;">[profile]
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.wasm-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span><span style="color:#eb606b;">opt-level </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">1
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.server-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5fb3b3;">[profile.android-dev]
+</span><span style="color:#eb606b;">inherits </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">dev</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span></code></pre>
+<p><code>dioxus.toml</code></p>
+<pre data-lang="toml" style="background-color:#2b2c2f;color:#cccece;" class="language-toml "><code class="language-toml" data-lang="toml"><span style="color:#5fb3b3;">[application]
+</span><span>
+</span><span style="color:#5fb3b3;">[web.app]
+</span><span>
+</span><span style="color:#5f6364;"># HTML title tag content
+</span><span style="color:#eb606b;">title </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">hot_dog</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5f6364;"># include `assets` in web platform
+</span><span style="color:#5fb3b3;">[web.resource]
+</span><span>
+</span><span style="color:#5f6364;"># Additional CSS style files
+</span><span style="color:#eb606b;">style </span><span style="color:#5fb3b3;">= []
+</span><span>
+</span><span style="color:#5f6364;"># Additional JavaScript files
+</span><span style="color:#eb606b;">script </span><span style="color:#5fb3b3;">= []
+</span><span>
+</span><span style="color:#5fb3b3;">[web.resource.dev]
+</span><span>
+</span><span style="color:#5f6364;"># Javascript code file
+</span><span style="color:#5f6364;"># serve: [dev-server] only
+</span><span style="color:#eb606b;">script </span><span style="color:#5fb3b3;">= []
+</span></code></pre>
+<p><code>src/main.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">mod </span><span>backend</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">mod </span><span>components</span><span style="color:#5fb3b3;">;
+</span><span>
+</span><span style="color:#c594c5;">use </span><span>components</span><span style="color:#5fb3b3;">::</span><span>DogView</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span>components</span><span style="color:#5fb3b3;">::</span><span>Favorites</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span>components</span><span style="color:#5fb3b3;">::</span><span>NavBar</span><span style="color:#5fb3b3;">;
+</span><span>
+</span><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>launch</span><span style="color:#5fb3b3;">(</span><span>app</span><span style="color:#5fb3b3;">);
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>derive</span><span style="color:#5fb3b3;">(</span><span>Routable</span><span style="color:#5fb3b3;">,</span><span> Clone</span><span style="color:#5fb3b3;">,</span><span> PartialEq</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">enum </span><span>Route </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#5fb3b3;">#[</span><span>layout</span><span style="color:#5fb3b3;">(</span><span>NavBar</span><span style="color:#5fb3b3;">)]
+</span><span>    </span><span style="color:#5fb3b3;">#[</span><span>route</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/</span><span style="color:#5fb3b3;">&quot;)]
+</span><span>    DogView</span><span style="color:#5fb3b3;">,
+</span><span>
+</span><span>    </span><span style="color:#5fb3b3;">#[</span><span>route</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/favorites</span><span style="color:#5fb3b3;">&quot;)]
+</span><span>    Favorites</span><span style="color:#5fb3b3;">,
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">app</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        document</span><span style="color:#5fb3b3;">::</span><span>Stylesheet </span><span style="color:#5fb3b3;">{</span><span> href</span><span style="color:#5fb3b3;">: </span><span>asset!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/assets/main.css</span><span style="color:#5fb3b3;">&quot;) }
+</span><span>        Router</span><span style="color:#5fb3b3;">::&lt;</span><span>Route</span><span style="color:#5fb3b3;">&gt; {}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><code>src/backend.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>server</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">pub</span><span> async </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">save_dog</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">image</span><span style="color:#5fb3b3;">:</span><span> String</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#fac863;">Result</span><span style="color:#5fb3b3;">&lt;()</span><span>, ServerFnError</span><span style="color:#5fb3b3;">&gt; {
+</span><span>    DB</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with</span><span style="color:#5fb3b3;">(|</span><span style="color:#f99157;">f</span><span style="color:#5fb3b3;">| </span><span>f</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">execute</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">INSERT INTO dogs (url) VALUES (?1)</span><span style="color:#5fb3b3;">&quot;, &amp;[&amp;</span><span>image</span><span style="color:#5fb3b3;">]));
+</span><span>    </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">(())
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5f6364;">// Query the database and return the last 10 dogs and their url
+</span><span style="color:#5fb3b3;">#[</span><span>server</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">pub</span><span> async </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">list_dogs</span><span style="color:#5fb3b3;">() -&gt; </span><span style="color:#fac863;">Result</span><span style="color:#5fb3b3;">&lt;</span><span style="color:#fac863;">Vec</span><span style="color:#5fb3b3;">&lt;(</span><span style="color:#c594c5;">usize</span><span>, String</span><span style="color:#5fb3b3;">)&gt;</span><span>, ServerFnError</span><span style="color:#5fb3b3;">&gt; {
+</span><span>    </span><span style="color:#c594c5;">let</span><span> dogs </span><span style="color:#5fb3b3;">= </span><span>DB</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with</span><span style="color:#5fb3b3;">(|</span><span style="color:#f99157;">f</span><span style="color:#5fb3b3;">| {
+</span><span>        f</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">prepare</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">SELECT id, url FROM dogs ORDER BY id DESC LIMIT 10</span><span style="color:#5fb3b3;">&quot;)
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">query_map</span><span style="color:#5fb3b3;">([], |</span><span style="color:#f99157;">row</span><span style="color:#5fb3b3;">| </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">((</span><span>row</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)?,</span><span> row</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)?)))
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">map</span><span style="color:#5fb3b3;">(|</span><span style="color:#f99157;">r</span><span style="color:#5fb3b3;">| </span><span>r</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">())
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">collect</span><span style="color:#5fb3b3;">()
+</span><span>    </span><span style="color:#5fb3b3;">});
+</span><span>
+</span><span>    </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">(</span><span>dogs</span><span style="color:#5fb3b3;">)
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5f6364;">// Database should only be on the server side
+</span><span style="color:#5fb3b3;">#[</span><span>cfg</span><span style="color:#5fb3b3;">(</span><span>feature </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">server</span><span style="color:#5fb3b3;">&quot;)]
+</span><span>thread_local! </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">pub static </span><span>DB</span><span style="color:#5fb3b3;">: </span><span>rusqlite</span><span style="color:#5fb3b3;">::</span><span>Connection </span><span style="color:#5fb3b3;">= {
+</span><span>        </span><span style="color:#5f6364;">// open &quot;hotdog.db&quot; database
+</span><span>        </span><span style="color:#c594c5;">let</span><span> connection </span><span style="color:#5fb3b3;">= </span><span>rusqlite</span><span style="color:#5fb3b3;">::</span><span>Connection</span><span style="color:#5fb3b3;">::</span><span>open</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">hotdog.db</span><span style="color:#5fb3b3;">&quot;).</span><span style="color:#6699cc;">expect</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Failed to open database</span><span style="color:#5fb3b3;">&quot;);
+</span><span>
+</span><span>        </span><span style="color:#5f6364;">// Create the &quot;dogs&quot; table if it doesn&#39;t already exist
+</span><span>        connection</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">execute_batch</span><span style="color:#5fb3b3;">(
+</span><span>            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">CREATE TABLE IF NOT EXISTS dogs (
+</span><span style="color:#99c794;">                id INTEGER PRIMARY KEY,
+</span><span style="color:#99c794;">                url TEXT NOT NULL
+</span><span style="color:#99c794;">            );</span><span style="color:#5fb3b3;">&quot;,
+</span><span>        </span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>
+</span><span>        </span><span style="color:#5f6364;">// Return the connection
+</span><span>        connection
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><code>src/components/favorites.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use crate</span><span style="color:#5fb3b3;">::</span><span>backend</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">Favorites</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#5f6364;">// Create a pending resource that resolves to the list of dogs from the backend
+</span><span>    </span><span style="color:#5f6364;">// Wait for the favorites list to resolve with `.suspend()`
+</span><span>    </span><span style="color:#c594c5;">let</span><span> favorites </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_resource</span><span style="color:#5fb3b3;">(</span><span>backend</span><span style="color:#5fb3b3;">::</span><span>list_dogs</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">suspend</span><span style="color:#5fb3b3;">()?;
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">favorites</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">favorites-container</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                </span><span style="color:#c594c5;">for </span><span style="color:#5fb3b3;">(</span><span>id</span><span style="color:#5fb3b3;">,</span><span> url</span><span style="color:#5fb3b3;">) in </span><span style="color:#6699cc;">favorites</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">() {
+</span><span>                    </span><span style="color:#5f6364;">// Render a div for each photo using the dog&#39;s ID as the list key
+</span><span>                    div </span><span style="color:#5fb3b3;">{
+</span><span>                        key</span><span style="color:#5fb3b3;">:</span><span> id</span><span style="color:#5fb3b3;">,
+</span><span>                        class</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">favorite-dog</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                        img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">{url}</span><span style="color:#5fb3b3;">&quot; }
+</span><span>                    </span><span style="color:#5fb3b3;">}
+</span><span>                </span><span style="color:#5fb3b3;">}
+</span><span>            </span><span style="color:#5fb3b3;">}
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><code>src/components/nav.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use crate</span><span style="color:#5fb3b3;">::</span><span>Route</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">NavBar</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            Link </span><span style="color:#5fb3b3;">{</span><span> to</span><span style="color:#5fb3b3;">: </span><span>Route</span><span style="color:#5fb3b3;">::</span><span>DogView</span><span style="color:#5fb3b3;">,
+</span><span>                h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">🌭 HotDog! </span><span style="color:#5fb3b3;">&quot; }
+</span><span>            </span><span style="color:#5fb3b3;">}
+</span><span>            Link </span><span style="color:#5fb3b3;">{</span><span> to</span><span style="color:#5fb3b3;">: </span><span>Route</span><span style="color:#5fb3b3;">::</span><span>Favorites</span><span style="color:#5fb3b3;">,</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">heart</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">♥️</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        Outlet</span><span style="color:#5fb3b3;">::&lt;</span><span>Route</span><span style="color:#5fb3b3;">&gt; {}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><code>src/components/view.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">use crate</span><span style="color:#5fb3b3;">::</span><span>backend</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">use </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>prelude</span><span style="color:#5fb3b3;">::*;
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">Title</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            h1 </span><span style="color:#5fb3b3;">{ &quot;</span><span style="color:#99c794;">HotDog! 🌭</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>component</span><span style="color:#5fb3b3;">]
+</span><span style="color:#c594c5;">pub fn </span><span style="color:#6699cc;">DogView</span><span style="color:#5fb3b3;">() -&gt;</span><span> Element </span><span style="color:#5fb3b3;">{
+</span><span>    </span><span style="color:#c594c5;">let mut</span><span> img_src </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">use_resource</span><span style="color:#5fb3b3;">(|| </span><span>async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>        reqwest</span><span style="color:#5fb3b3;">::</span><span>get</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">https://dog.ceo/api/breeds/image/random</span><span style="color:#5fb3b3;">&quot;)
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>json</span><span style="color:#5fb3b3;">::&lt;</span><span>DogApi</span><span style="color:#5fb3b3;">&gt;()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>await
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">()
+</span><span>            </span><span style="color:#5fb3b3;">.</span><span>message
+</span><span>    </span><span style="color:#5fb3b3;">});
+</span><span>
+</span><span>    rsx! </span><span style="color:#5fb3b3;">{
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">dogview</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            img </span><span style="color:#5fb3b3;">{</span><span> src</span><span style="color:#5fb3b3;">:</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap_or_default</span><span style="color:#5fb3b3;">() }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>        div </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">buttons</span><span style="color:#5fb3b3;">&quot;,
+</span><span>            button </span><span style="color:#5fb3b3;">{</span><span> id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot;,</span><span> onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">(), &quot;</span><span style="color:#99c794;">skip</span><span style="color:#5fb3b3;">&quot; }
+</span><span>            button </span><span style="color:#5fb3b3;">{
+</span><span>                id</span><span style="color:#5fb3b3;">: &quot;</span><span style="color:#99c794;">save</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                onclick</span><span style="color:#5fb3b3;">: </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">|_|</span><span> async </span><span style="color:#c594c5;">move </span><span style="color:#5fb3b3;">{
+</span><span>                    </span><span style="color:#c594c5;">let</span><span> current </span><span style="color:#5fb3b3;">=</span><span> img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">cloned</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>                    img_src</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">restart</span><span style="color:#5fb3b3;">();
+</span><span>                    </span><span style="color:#5fb3b3;">_ = </span><span>backend</span><span style="color:#5fb3b3;">::</span><span>save_dog</span><span style="color:#5fb3b3;">(</span><span>current</span><span style="color:#5fb3b3;">).</span><span>await</span><span style="color:#5fb3b3;">;
+</span><span>            </span><span style="color:#5fb3b3;">},
+</span><span>            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">save!</span><span style="color:#5fb3b3;">&quot; }
+</span><span>        </span><span style="color:#5fb3b3;">}
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span style="color:#5fb3b3;">}
+</span><span>
+</span><span style="color:#5fb3b3;">#[</span><span>derive</span><span style="color:#5fb3b3;">(</span><span>serde::Deserialize</span><span style="color:#5fb3b3;">)]
+</span><span style="color:#c594c5;">struct </span><span>DogApi </span><span style="color:#5fb3b3;">{
+</span><span>    message</span><span style="color:#5fb3b3;">:</span><span> String,
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p><code>src/components/mod.rs</code></p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#c594c5;">mod </span><span>favorites</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">mod </span><span>nav</span><span style="color:#5fb3b3;">;
+</span><span style="color:#c594c5;">mod </span><span>view</span><span style="color:#5fb3b3;">;
+</span><span>
+</span><span style="color:#c594c5;">pub use </span><span>favorites</span><span style="color:#5fb3b3;">::*;
+</span><span style="color:#c594c5;">pub use </span><span>nav</span><span style="color:#5fb3b3;">::*;
+</span><span style="color:#c594c5;">pub use </span><span>view</span><span style="color:#5fb3b3;">::*;
+</span></code></pre>
+<h2 id="bundling"><a href="https://dioxuslabs.com/learn/0.6/guide/bundle">Bundling</a></h2>
+<p>I might do this later, but I am not sure yet. It allows building an iOS or Android application and testing them.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p><a href="https://bustin.tech/posts/creating-a-gui-application-in-rust-using-dioxus/learn/0.6/guide/bundle">Dioxus</a> is a pretty neat framework. I am not enough of a fullstack developer to recommend it or not. It seems like the mixing of server and frontend could get you into trouble. On the other hand, it is awfully convenient.</p>
+<p>Rust is great for developing efficient runtimes. If Dioxus can be used to create an application with minimal hosting costs, while making it easier to get everything going, that sounds great and I am all for it.</p>
+<p>Long ago, for work, I rewrote one of our small web APIs in Rust. This was for a lunch and learn talk I gave. The original Java version took several seconds to spin up and was guzzling down over 200MB of RAM. My functionally-identical version in Rust spun up in milliseconds and consumed around 4MB of RAM. If the service were used at scale, switching to Rust could have saved a significant amount of money. The talk went over so well, that I gave it again for my colleagues in India. Unfortunately, nothing ever came of it and we stuck to Java.</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>

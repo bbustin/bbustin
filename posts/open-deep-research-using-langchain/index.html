@@ -1,0 +1,685 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Open Deep Research using LangChain | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="In Foray Into Agentic AI, I adapted HuggingFace&#x27;s
+Open Deep Research work to run locally. Now I am going to try to do the same using
+LangChain&#x27;s Open Deep Research code.Initial SetupClone the reposito…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/open-deep-research-using-langchain/">
+  <meta property="og:title" content="Open Deep Research using LangChain">
+  <meta property="og:description" content="In Foray Into Agentic AI, I adapted HuggingFace&#x27;s
+Open Deep Research work to run locally. Now I am going to try to do the same using
+LangChain&#x27;s Open Deep Research code.Initial SetupClone the reposito…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Open Deep Research using LangChain">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-02-26T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/open-deep-research-using-langchain"
+      },
+      "headline": "Open Deep Research using LangChain",
+      "description": "In Foray Into Agentic AI, I adapted HuggingFace&#x27;s
+Open Deep Research work to run locally. Now I am going to try to do the same using
+LangChain&#x27;s Open Deep Research code.Initial SetupClone the reposito…",
+      "wordcount": "1773",
+      "datePublished": "2025-02-26T00:00:00+00:00",
+      "dateModified": "2025-02-26T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Open Deep Research using LangChain",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Open Deep Research using LangChain</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/research/" class="page-tag">Research</a>,
+      <a href="https://bustin.tech/tags/ai/" class="page-tag">AI</a>,
+      <a href="https://bustin.tech/tags/agents/" class="page-tag">Agents</a>,
+      <a href="https://bustin.tech/tags/nix/" class="page-tag">Nix</a>,
+      <a href="https://bustin.tech/tags/langchain/" class="page-tag">langchain</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-02-26T00:00:00+00:00">
+      Posted on February 26, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>In <a href="https://bustin.tech/posts/foray-into-agentic-ai/">Foray Into Agentic AI</a>, I adapted HuggingFace's
+Open Deep Research work to run locally. Now I am going to try to do the same using
+<a href="https://github.com/langchain-ai/open_deep_research">LangChain's Open Deep Research code</a>.</p>
+<span id="continue-reading"></span><h1 id="initial-setup">Initial Setup</h1>
+<p>Clone the repository locally and then cd into it.</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">❯ git clone https://github.com/langchain-ai/open_deep_research.git
+</span><span style="color:#6699cc;">Cloning into </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">open_deep_research</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">...
+</span><span style="color:#6699cc;">remote: Enumerating objects: 388, done.
+</span><span style="color:#6699cc;">remote: Counting objects: 100</span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;"> (120/120</span><span>)</span><span style="color:#6699cc;">, done.
+</span><span style="color:#6699cc;">remote: Compressing objects: 100</span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;"> (60/60</span><span>)</span><span style="color:#6699cc;">, done.
+</span><span style="color:#6699cc;">remote: Total 388 (delta 67</span><span>)</span><span style="color:#6699cc;">, reused 66 (delta 55</span><span>)</span><span style="color:#6699cc;">, pack-reused 268 (from 2</span><span>)
+</span><span style="color:#6699cc;">Receiving objects: 100</span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;"> (388/388</span><span>)</span><span style="color:#6699cc;">, 682.29 KiB </span><span style="color:#5fb3b3;">| </span><span style="color:#6699cc;">3.20 MiB/s, done.
+</span><span style="color:#6699cc;">Resolving deltas: 100</span><span style="color:#5fb3b3;">%</span><span style="color:#6699cc;"> (174/174</span><span>)</span><span style="color:#6699cc;">, done.
+</span><span>
+</span><span style="color:#ec5f67;">~</span><span style="color:#6699cc;">/projects
+</span><span style="color:#6699cc;">❯ cd open_deep_research
+</span></code></pre>
+<p>I am going to do the same as I have before by creating a Nix flake. See
+<a href="https://bustin.tech/posts/diving-into-ai/">Diving Into AI</a> for more information about Nix and
+initially setting it up.</p>
+<pre data-lang="nix" style="background-color:#2b2c2f;color:#cccece;" class="language-nix "><code class="language-nix" data-lang="nix"><span style="color:#5fb3b3;">{
+</span><span>	</span><span style="color:#bb80b3;">description </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Shell for running Open Deep Research</span><span style="color:#5fb3b3;">&quot;;
+</span><span>
+</span><span>	</span><span style="color:#bb80b3;">inputs </span><span style="color:#5fb3b3;">=
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">nixpkgs</span><span>.</span><span style="color:#bb80b3;">url </span><span style="color:#5fb3b3;">= </span><span style="color:#99c794;">github:nixos/nixpkgs/nixos-unstable</span><span style="color:#5fb3b3;">;
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span>
+</span><span>	</span><span style="color:#bb80b3;">outputs </span><span style="color:#5fb3b3;">= { </span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">, ... }:
+</span><span>		</span><span style="color:#c594c5;">let
+</span><span>			</span><span style="color:#bb80b3;">system </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">aarch64-darwin</span><span style="color:#5fb3b3;">&quot;;
+</span><span>			</span><span style="color:#bb80b3;">pkgs </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">nixpkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">legacyPackages</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">};
+</span><span>			</span><span style="color:#bb80b3;">pythonVersion </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">python313</span><span style="color:#5fb3b3;">&quot;;
+</span><span>		</span><span style="color:#c594c5;">in
+</span><span>		</span><span style="color:#5fb3b3;">{
+</span><span>			</span><span style="color:#bb80b3;">devShells</span><span>.</span><span style="color:#5fb3b3;">${</span><span style="color:#f99157;">system</span><span style="color:#5fb3b3;">}</span><span>.</span><span style="color:#bb80b3;">default </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">mkShell
+</span><span>				</span><span style="color:#5fb3b3;">{
+</span><span>					</span><span style="color:#bb80b3;">buildInputs </span><span style="color:#5fb3b3;">= [
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}
+</span><span>						</span><span style="color:#f99157;">pkgs</span><span style="color:#5fb3b3;">.&quot;${</span><span style="color:#f99157;">pythonVersion</span><span style="color:#5fb3b3;">}</span><span style="color:#99c794;">Packages</span><span style="color:#5fb3b3;">&quot;.</span><span style="color:#f99157;">pip
+</span><span>					</span><span style="color:#5fb3b3;">];
+</span><span>
+</span><span>					</span><span style="color:#bb80b3;">shellHook </span><span style="color:#5fb3b3;">= &#39;&#39;
+</span><span style="color:#99c794;">						python -m venv .venv
+</span><span style="color:#99c794;">						source .venv/bin/activate
+</span><span style="color:#99c794;">						pip install jupyter duckduckgo_search langchain-ollama -e . &amp;&amp; jupyter lab
+</span><span style="color:#99c794;">						exit
+</span><span style="color:#99c794;">					</span><span style="color:#5fb3b3;">&#39;&#39;;
+</span><span>				</span><span style="color:#5fb3b3;">};
+</span><span>		</span><span style="color:#5fb3b3;">};
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<p>Then <code>git add flake.nix</code> or else it will not work.</p>
+<h2 id="allow-searching-using-duckduckgo">Allow searching using DuckDuckGo</h2>
+<p>The code is setup by default to use the Tavily search API, and then Anthropic or OpenAI to
+run the LLM. I want to change this to using DuckDuckGo for search and an LLM running locally.</p>
+<p>Here is what I did:</p>
+<p>In <code>src/open_deep_research/configuration.py</code>, edit the SearchAPI class to:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">class </span><span style="color:#fac863;">SearchAPI</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">Enum</span><span style="color:#5fb3b3;">):
+</span><span>    PERPLEXITY </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">perplexity</span><span style="color:#5fb3b3;">&quot;
+</span><span>    TAVILY </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">tavily</span><span style="color:#5fb3b3;">&quot;
+</span><span>    DUCKDUCKGO </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">duckduckgo</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<p>In <code>src/open_deep_research/utils.py</code>:</p>
+<ul>
+<li>Add the following import:</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">from </span><span>duckduckgo_search </span><span style="color:#c594c5;">import </span><span>DDGS
+</span></code></pre>
+<ul>
+<li>Create a <code>duckduckgo_search</code> function following the example of
+<code>perplexity_search</code>.</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5fb3b3;">@</span><span>traceable
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">duckduckgo_search</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">search_queries</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot;Search the web using DuckDuckGo.
+</span><span style="color:#5f6364;">
+</span><span style="color:#5f6364;">    Args:
+</span><span style="color:#5f6364;">        search_queries (List[SearchQuery]): List of search queries to process
+</span><span style="color:#5f6364;">
+</span><span style="color:#5f6364;">    Returns:
+</span><span style="color:#5f6364;">        List[dict]: List of search responses from DuckDuckGo, one per query. Each response has format:
+</span><span style="color:#5f6364;">            {
+</span><span style="color:#5f6364;">                &#39;query&#39;: str,                    # The original search query
+</span><span style="color:#5f6364;">                &#39;follow_up_questions&#39;: None,
+</span><span style="color:#5f6364;">                &#39;answer&#39;: None,
+</span><span style="color:#5f6364;">                &#39;images&#39;: list,
+</span><span style="color:#5f6364;">                &#39;results&#39;: [                     # List of search results
+</span><span style="color:#5f6364;">                    {
+</span><span style="color:#5f6364;">                        &#39;title&#39;: str,           # Title of the search result
+</span><span style="color:#5f6364;">                        &#39;url&#39;: str,             # URL of the result
+</span><span style="color:#5f6364;">                        &#39;content&#39;: str,         # Summary/snippet of content
+</span><span style="color:#5f6364;">                    },
+</span><span style="color:#5f6364;">                    ...
+</span><span style="color:#5f6364;">                ]
+</span><span style="color:#5f6364;">            }
+</span><span style="color:#5f6364;">    &quot;&quot;&quot;
+</span><span>
+</span><span>    search_docs </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>query </span><span style="color:#c594c5;">in </span><span>search_queries</span><span style="color:#5fb3b3;">:
+</span><span>        results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">DDGS</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">text</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">backend</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">lite</span><span style="color:#5fb3b3;">&quot;)
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># match field names used for Tavily
+</span><span>        results </span><span style="color:#5fb3b3;">= [{&#39;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&#39;], &#39;</span><span style="color:#99c794;">url</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">href</span><span style="color:#5fb3b3;">&#39;], &#39;</span><span style="color:#99c794;">content</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">body</span><span style="color:#5fb3b3;">&#39;]} </span><span style="color:#c594c5;">for </span><span>result </span><span style="color:#c594c5;">in </span><span>results</span><span style="color:#5fb3b3;">]
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># Format response to match Tavily structure
+</span><span>        </span><span style="color:#6699cc;">search_docs</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">({
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">query</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">follow_up_questions</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">answer</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">images</span><span style="color:#5fb3b3;">&quot;: [],
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">results</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#6699cc;">results
+</span><span style="color:#6699cc;">        </span><span style="color:#5fb3b3;">})
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>search_docs
+</span></code></pre>
+<p>In <code>src/open_deep_research/graph.py</code>:</p>
+<ul>
+<li>On line 14 add <code>duckduckgo_search</code> to the imports</li>
+<li>Update <code>generate_report_plan</code> so it can perform a DuckDuckGo search if configured to:</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># Search the web
+</span><span style="color:#c594c5;">if </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">tavily</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">await </span><span style="color:#6699cc;">tavily_search_async</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">1000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">elif </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">perplexity</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">perplexity_search</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">1000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">elif </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">duckduckgo</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">duckduckgo_search</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">1000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">raise </span><span style="color:#fac863;">ValueError</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Unsupported search API: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">search_api</span><span style="color:#5fb3b3;">}&quot;)
+</span></code></pre>
+<ul>
+<li>Update <code>search_web</code> so it can perform a DuckDuckGo search if configured to"</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># Search the web
+</span><span style="color:#c594c5;">if </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">tavily</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#c594c5;">await </span><span style="color:#6699cc;">tavily_search_async</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">5000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">elif </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">perplexity</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">perplexity_search</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">5000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">elif </span><span>search_api </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">duckduckgo</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    search_results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">duckduckgo_search</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query_list</span><span style="color:#5fb3b3;">)
+</span><span>    source_str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deduplicate_and_format_sources</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">search_results</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens_per_source</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">5000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">include_raw_content</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">False</span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">raise </span><span style="color:#fac863;">ValueError</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Unsupported search API: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">search_api</span><span style="color:#5fb3b3;">}&quot;)
+</span></code></pre>
+<h2 id="allow-for-using-ollama-to-run-the-llm-locally">Allow for using Ollama to run the LLM locally</h2>
+<p>In <code>src/open_deep_research/configuration.py</code>, edit PlannerProvider and WriterProvider to be able to use Ollama:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">class </span><span style="color:#fac863;">PlannerProvider</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">Enum</span><span style="color:#5fb3b3;">):
+</span><span>    ANTHROPIC </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">anthropic</span><span style="color:#5fb3b3;">&quot;
+</span><span>    OPENAI </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">openai</span><span style="color:#5fb3b3;">&quot;
+</span><span>    GROQ </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">groq</span><span style="color:#5fb3b3;">&quot;
+</span><span>    OLLAMA </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">WriterProvider</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">Enum</span><span style="color:#5fb3b3;">):
+</span><span>    ANTHROPIC </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">anthropic</span><span style="color:#5fb3b3;">&quot;
+</span><span>    OPENAI </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">openai</span><span style="color:#5fb3b3;">&quot;
+</span><span>    GROQ </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">groq</span><span style="color:#5fb3b3;">&quot;
+</span><span>    OLLAMA </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot;
+</span></code></pre>
+<p>Luckily, LangChain already supports Ollama. So this is the only change needed aside
+from installing <code>langchain-ollama</code> which <code>flake.nix</code> is already taking care of for us.</p>
+<h1 id="running-it">Running it</h1>
+<p>I run <code>nix develop</code> and it pops up Jupyter in my browser. I navigate to <code>/src/open_deep_research</code>
+and create a new Jupyter notebook. I mostly copy from the <code>graph.ipynb</code> notebook.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">import </span><span>open_deep_research
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">open_deep_research</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">__version__</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#5f6364;"># We are not going to use Tavily, but it will error out if this is not set
+</span><span style="color:#5fb3b3;">%</span><span>env TAVILY_API_KEY</span><span style="color:#5fb3b3;">=</span><span>NONE
+</span><span>
+</span><span style="color:#c594c5;">from </span><span>IPython</span><span style="color:#5fb3b3;">.</span><span>display </span><span style="color:#c594c5;">import </span><span>Image</span><span style="color:#5fb3b3;">, </span><span>display
+</span><span style="color:#c594c5;">from </span><span>langgraph</span><span style="color:#5fb3b3;">.</span><span>types </span><span style="color:#c594c5;">import </span><span>Command
+</span><span style="color:#c594c5;">from </span><span>langgraph</span><span style="color:#5fb3b3;">.</span><span>checkpoint</span><span style="color:#5fb3b3;">.</span><span>memory </span><span style="color:#c594c5;">import </span><span>MemorySaver
+</span><span style="color:#c594c5;">from </span><span>open_deep_research</span><span style="color:#5fb3b3;">.</span><span>graph </span><span style="color:#c594c5;">import </span><span>builder
+</span><span>
+</span><span>memory </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">MemorySaver</span><span style="color:#5fb3b3;">()
+</span><span>graph </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">builder</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">compile</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">checkpointer</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">memory</span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">display</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Image</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get_graph</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">xray</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">).</span><span style="color:#6699cc;">draw_mermaid_png</span><span style="color:#5fb3b3;">()))
+</span><span>
+</span><span style="color:#c594c5;">import </span><span>uuid
+</span><span style="color:#c594c5;">from </span><span>IPython</span><span style="color:#5fb3b3;">.</span><span>display </span><span style="color:#c594c5;">import </span><span>Markdown
+</span><span>
+</span><span style="color:#5f6364;"># local config
+</span><span>thread </span><span style="color:#5fb3b3;">= {&quot;</span><span style="color:#99c794;">configurable</span><span style="color:#5fb3b3;">&quot;: {&quot;</span><span style="color:#99c794;">thread_id</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">uuid</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">uuid4</span><span style="color:#5fb3b3;">()),
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">search_api</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">duckduckgo</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">planner_provider</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">planner_model</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">qwen2.5-coder:7b</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">writer_provider</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">writer_model</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">llama3.3</span><span style="color:#5fb3b3;">&quot;,
+</span><span>                           </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">max_search_depth</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">,
+</span><span>                           </span><span style="color:#5fb3b3;">}}
+</span><span>
+</span><span style="color:#5f6364;"># Create a topic
+</span><span>topic </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">Overview of the AI inference market with focus on Fireworks, Together.ai, Groq</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span style="color:#5f6364;"># Run the graph until the interruption
+</span><span style="color:#c594c5;">async for </span><span>event </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">astream</span><span style="color:#5fb3b3;">({&quot;</span><span style="color:#99c794;">topic</span><span style="color:#5fb3b3;">&quot;:</span><span style="color:#6699cc;">topic</span><span style="color:#5fb3b3;">,}, </span><span style="color:#6699cc;">thread</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">stream_mode</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">updates</span><span style="color:#5fb3b3;">&quot;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">__interrupt__</span><span style="color:#5fb3b3;">&#39; in </span><span>event</span><span style="color:#5fb3b3;">:
+</span><span>        interrupt_value </span><span style="color:#5fb3b3;">= </span><span>event</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">__interrupt__</span><span style="color:#5fb3b3;">&#39;][</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">].</span><span>value
+</span><span>        </span><span style="color:#6699cc;">display</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Markdown</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">interrupt_value</span><span style="color:#5fb3b3;">))
+</span><span>
+</span><span style="color:#5f6364;"># Pass feedback to update the report plan
+</span><span style="color:#c594c5;">async for </span><span>event </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">astream</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Command</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">resume</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Include a revenue estimate (ARR) in the sections focused on Groq, Together.ai, and Fireworks</span><span style="color:#5fb3b3;">&quot;), </span><span style="color:#6699cc;">thread</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">stream_mode</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">updates</span><span style="color:#5fb3b3;">&quot;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">__interrupt__</span><span style="color:#5fb3b3;">&#39; in </span><span>event</span><span style="color:#5fb3b3;">:
+</span><span>        interrupt_value </span><span style="color:#5fb3b3;">= </span><span>event</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">__interrupt__</span><span style="color:#5fb3b3;">&#39;][</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">].</span><span>value
+</span><span>        </span><span style="color:#6699cc;">display</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Markdown</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">interrupt_value</span><span style="color:#5fb3b3;">))
+</span><span>
+</span><span style="color:#5f6364;"># Pass True to approve the report plan
+</span><span style="color:#c594c5;">async for </span><span>event </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">astream</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Command</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">resume</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">), </span><span style="color:#6699cc;">thread</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">stream_mode</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">updates</span><span style="color:#5fb3b3;">&quot;):
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">event</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;\n&quot;)
+</span><span>
+</span><span>final_state </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get_state</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">thread</span><span style="color:#5fb3b3;">)
+</span><span>report </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">final_state</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">values</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">get</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">final_report</span><span style="color:#5fb3b3;">&#39;)
+</span><span style="color:#6699cc;">Markdown</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">report</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>When I run it, I get the following error:</p>
+<pre data-lang="bash" style="background-color:#2b2c2f;color:#cccece;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#6699cc;">ValidationError: 2 validation errors for Queries
+</span><span style="color:#6699cc;">queries.0
+</span><span>  </span><span style="color:#6699cc;">Input should be a valid dictionary or instance of SearchQuery </span><span style="color:#c594c5;">[</span><span style="color:#6699cc;">type=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">AI inference market trends and growth</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">, input_type=str</span><span style="color:#c594c5;">]
+</span><span>    </span><span style="color:#6699cc;">For further information visit https://errors.pydantic.dev/2.10/v/model_type
+</span><span style="color:#6699cc;">queries.1
+</span><span>  </span><span style="color:#6699cc;">Input should be a valid dictionary or instance of SearchQuery </span><span style="color:#c594c5;">[</span><span style="color:#6699cc;">type=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">Fireworks, Together.ai, ...utions and applications</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;">, input_type=str</span><span style="color:#c594c5;">]
+</span><span>    </span><span style="color:#6699cc;">For further information visit https://errors.pydantic.dev/2.10/v/model_type
+</span><span style="color:#6699cc;">During task with name </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">generate_report_plan</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#6699cc;"> and id </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">2238eb30-2a86-de8d-2b1f-f3988c67325c</span><span style="color:#5fb3b3;">&#39;
+</span></code></pre>
+<p>I think this means the model is not generating the search queries properly when coming up
+with a research plan.</p>
+<h1 id="troubleshooting-the-validation-errors">Troubleshooting the validation errors</h1>
+<p>If I change the code to operate at the message level and have it print each message,
+I should be able to get a better idea of what is happening:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># Run the graph until the interruption
+</span><span style="color:#c594c5;">import </span><span>pprint
+</span><span style="color:#c594c5;">async for </span><span>event </span><span style="color:#c594c5;">in </span><span style="color:#6699cc;">graph</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">astream</span><span style="color:#5fb3b3;">({&quot;</span><span style="color:#99c794;">topic</span><span style="color:#5fb3b3;">&quot;:</span><span style="color:#6699cc;">topic</span><span style="color:#5fb3b3;">,}, </span><span style="color:#6699cc;">thread</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">stream_mode</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">messages</span><span style="color:#5fb3b3;">&quot;):
+</span><span>    </span><span style="color:#6699cc;">pprint</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">pprint</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">event</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#5f6364;"># if &#39;__interrupt__&#39; in event:
+</span><span>    </span><span style="color:#5f6364;">#     interrupt_value = event[&#39;__interrupt__&#39;][0].value
+</span><span>    </span><span style="color:#5f6364;">#     display(Markdown(interrupt_value))
+</span></code></pre>
+<p>Among the huge amount of output, I saw this:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>tool_calls</span><span style="color:#5fb3b3;">=[{&#39;</span><span style="color:#99c794;">name</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">Queries</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">args</span><span style="color:#5fb3b3;">&#39;: {&#39;</span><span style="color:#99c794;">queries</span><span style="color:#5fb3b3;">&#39;: [&#39;</span><span style="color:#99c794;">Overview of AI inference market trends and key players 2023</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">Detailed analysis of Fireworks, Together.ai, and Groq in AI inference market including their technologies and competitive landscape</span><span style="color:#5fb3b3;">&#39;]}, &#39;</span><span style="color:#99c794;">id</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">7c25ca51-0200-4302-b455-8307f36147c6</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">type</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">tool_call</span><span style="color:#5fb3b3;">&#39;}]
+</span></code></pre>
+<p>It looks like it did, indeed, generate two queries and those are not in the format the validation
+error is specifying. I revert the code changes. Right now, I'm not sure if it is the model that is
+supposed to format them properly or some other code.</p>
+<p>LangChain appears to have really good documentation.
+I read <a href="https://github.com/langchain-ai/langchain/blob/master/docs/docs/how_to/structured_output.ipynb">How to return structured data from a model</a>.</p>
+<p>First, the <a href="https://github.com/langchain-ai/langchain/tree/master/docs/docs/integrations/chat">model must support <code>.with_structured_output()</code></a>.
+It looks like <a href="https://github.com/langchain-ai/langchain/blob/master/docs/docs/integrations/chat/ollama.ipynb">Ollama does support structured output</a>.
+It mentions installing <code>langchain-ollama</code> which I already did. It also mentions updating the <code>ollama</code> library
+to make sure the latest version supporting structured outputs is installed. That is worth trying.</p>
+<p>I open a terminal in Jupyter and type <code>pip install -U ollama</code>. Then I go back to my notebook
+and choose <code>Restart Kernel and Run All Cells...</code> from the <code>Kernel</code> menu. That does not help,
+but it was worth a shot.</p>
+<p>There really aren't any more clues in the LangChain Ollama documentation. I either need to debug
+the code or create sample code. I am going to choose the latter.</p>
+<p>Here is my test code to see what is happening.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">from </span><span>typing </span><span style="color:#c594c5;">import </span><span>List
+</span><span style="color:#c594c5;">from </span><span>langchain_ollama </span><span style="color:#c594c5;">import </span><span>ChatOllama
+</span><span style="color:#c594c5;">from </span><span>pydantic </span><span style="color:#c594c5;">import </span><span>BaseModel</span><span style="color:#5fb3b3;">, </span><span>Field
+</span><span style="color:#c594c5;">from </span><span>langchain_core</span><span style="color:#5fb3b3;">.</span><span>messages </span><span style="color:#c594c5;">import </span><span>HumanMessage</span><span style="color:#5fb3b3;">, </span><span>SystemMessage
+</span><span>
+</span><span>llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">ChatOllama</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">    </span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">qwen2.5-coder:7b</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#6699cc;">    </span><span style="color:#f99157;">temperature</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">,
+</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">SearchQuery</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">BaseModel</span><span style="color:#5fb3b3;">):
+</span><span>    search_query</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Field</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">description</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Query for web search.</span><span style="color:#5fb3b3;">&quot;)
+</span><span>
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">Queries</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">BaseModel</span><span style="color:#5fb3b3;">):
+</span><span>    queries</span><span style="color:#5fb3b3;">: </span><span>List</span><span style="color:#5fb3b3;">[</span><span>SearchQuery</span><span style="color:#5fb3b3;">] = </span><span style="color:#6699cc;">Field</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">description</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">List of search queries.</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with_structured_output</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Queries</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">structured_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">invoke</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">SystemMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">You are a helpful research assistant who will be drafting a report. The subject of the report will be provided by the human.</span><span style="color:#5fb3b3;">&quot;)]+[</span><span style="color:#6699cc;">HumanMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Generate search queries that will help with planning sections of a report about LangChain.</span><span style="color:#5fb3b3;">&quot;)])
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">results</span><span style="color:#5fb3b3;">)
+</span></code></pre>
+<p>I am getting similar errors with this code. That is very helpful because now I've pared this
+down quite a bit.</p>
+<p>If I change <code>structured_llm = llm.with_structured_output(Queries)</code> to <code>structured_llm = llm.with_structured_output(Queries, include_raw=True)</code>,
+then I can see the raw output. It looks like this:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5fb3b3;">{&#39;</span><span style="color:#99c794;">parsed</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span> </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">parsing_error</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">4 </span><span>validation errors </span><span style="color:#c594c5;">for </span><span>Queries
+</span><span>queries.0
+</span><span>  Input should be a valid dictionary or instance of SearchQuery </span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">type</span><span>=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">report structure</span><span style="color:#5fb3b3;">&#39;</span><span>, input_type=</span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">]
+</span><span>    For further information visit https:</span><span style="color:#5fb3b3;">//</span><span>errors</span><span style="color:#5fb3b3;">.</span><span>pydantic</span><span style="color:#5fb3b3;">.</span><span>dev</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">/</span><span>v</span><span style="color:#5fb3b3;">/</span><span>model_type
+</span><span>queries</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">1
+</span><span>  Input should be a valid dictionary </span><span style="color:#5fb3b3;">or </span><span>instance of SearchQuery </span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">type</span><span>=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">section planning</span><span style="color:#5fb3b3;">&#39;</span><span>, input_type=</span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">]
+</span><span>    For further information visit https:</span><span style="color:#5fb3b3;">//</span><span>errors</span><span style="color:#5fb3b3;">.</span><span>pydantic</span><span style="color:#5fb3b3;">.</span><span>dev</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">/</span><span>v</span><span style="color:#5fb3b3;">/</span><span>model_type
+</span><span>queries</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">2
+</span><span>  Input should be a valid dictionary </span><span style="color:#5fb3b3;">or </span><span>instance of SearchQuery </span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">type</span><span>=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">content organization</span><span style="color:#5fb3b3;">&#39;</span><span>, input_type=</span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">]
+</span><span>    For further information visit https:</span><span style="color:#5fb3b3;">//</span><span>errors</span><span style="color:#5fb3b3;">.</span><span>pydantic</span><span style="color:#5fb3b3;">.</span><span>dev</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">/</span><span>v</span><span style="color:#5fb3b3;">/</span><span>model_type
+</span><span>queries</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">3
+</span><span>  Input should be a valid dictionary </span><span style="color:#5fb3b3;">or </span><span>instance of SearchQuery </span><span style="color:#5fb3b3;">[</span><span style="color:#6699cc;">type</span><span>=model_type, input_value=</span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">time management for report writing</span><span style="color:#5fb3b3;">&#39;</span><span>, input_type=</span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">]
+</span><span>    For further information visit https:</span><span style="color:#5fb3b3;">//</span><span>errors</span><span style="color:#5fb3b3;">.</span><span>pydantic</span><span style="color:#5fb3b3;">.</span><span>dev</span><span style="color:#5fb3b3;">/</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">.</span><span style="color:#f99157;">10</span><span style="color:#5fb3b3;">/</span><span>v</span><span style="color:#5fb3b3;">/</span><span>model_type,
+</span><span> </span><span style="color:#5fb3b3;">&#39;</span><span style="color:#99c794;">raw</span><span style="color:#5fb3b3;">&#39;</span><span>: </span><span style="color:#6699cc;">AIMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&#39;&#39;, </span><span style="color:#f99157;">additional_kwargs</span><span style="color:#5fb3b3;">={}, </span><span style="color:#f99157;">response_metadata</span><span style="color:#5fb3b3;">={&#39;</span><span style="color:#99c794;">model</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">qwen2.5-coder:7b</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">created_at</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">2025-02-27T18:01:38.990692Z</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">done</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">True</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">done_reason</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">stop</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">total_duration</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">1125161416</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">load_duration</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">30422375</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">prompt_eval_count</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">161</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">prompt_eval_duration</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">162000000</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">eval_count</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">71</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">eval_duration</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">930000000</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">message</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#6699cc;">Message</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">role</span><span style="color:#5fb3b3;">=&#39;</span><span style="color:#99c794;">assistant</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&#39;&#39;, </span><span style="color:#f99157;">images</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">tool_calls</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">)}, </span><span style="color:#f99157;">id</span><span style="color:#5fb3b3;">=&#39;</span><span style="color:#99c794;">run-e4fef1f2-8f57-4c95-9f8e-16c452dafe7b-0</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#f99157;">tool_calls</span><span style="color:#5fb3b3;">=[{&#39;</span><span style="color:#99c794;">name</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">Queries</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">args</span><span style="color:#5fb3b3;">&#39;: {&#39;</span><span style="color:#99c794;">queries</span><span style="color:#5fb3b3;">&#39;: [&#39;</span><span style="color:#99c794;">report structure</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">section planning</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">content organization</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">time management for report writing</span><span style="color:#5fb3b3;">&#39;]}, &#39;</span><span style="color:#99c794;">id</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">8e9cd5e8-c02b-44b2-a330-c71e75a6848f</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">type</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">tool_call</span><span style="color:#5fb3b3;">&#39;}], </span><span style="color:#f99157;">usage_metadata</span><span style="color:#5fb3b3;">={&#39;</span><span style="color:#99c794;">input_tokens</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">161</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">output_tokens</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">71</span><span style="color:#5fb3b3;">, &#39;</span><span style="color:#99c794;">total_tokens</span><span style="color:#5fb3b3;">&#39;: </span><span style="color:#f99157;">232</span><span style="color:#5fb3b3;">})}
+</span></code></pre>
+<p>In the <code>tool_calls</code> field, there is a <code>Queries</code> tool call with a list of search queries. The
+validation errors are saying
+<code>Input should be a valid dictionary or instance of SearchQuery [type=model_type, input_value='report structure', input_type=str]</code>.
+It is true the output is not a dictionary, but <code>SearchQuery</code> defines a single field that is a <code>str</code>.
+I suppose it wants the output to look like this?</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5fb3b3;">[{&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">report structure</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">section planning</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">content organization</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">time management for report writing</span><span style="color:#5fb3b3;">&#39;}]
+</span></code></pre>
+<p>Time to learn more about <a href="https://docs.pydantic.dev/latest/">pydantic</a>. Yeah, that is the problem. Let's test my assumption above
+while taking LangChain completely out of the loop.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">from </span><span>typing </span><span style="color:#c594c5;">import </span><span>List
+</span><span style="color:#c594c5;">from </span><span>pydantic </span><span style="color:#c594c5;">import </span><span>BaseModel</span><span style="color:#5fb3b3;">, </span><span>Field</span><span style="color:#5fb3b3;">, </span><span>ValidationError
+</span><span style="color:#c594c5;">import </span><span>json
+</span><span>
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">SearchQuery</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">BaseModel</span><span style="color:#5fb3b3;">):
+</span><span>    search_query</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">str </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Field</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">description</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Query for web search.</span><span style="color:#5fb3b3;">&quot;)
+</span><span>
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">Queries</span><span style="color:#5fb3b3;">(</span><span style="color:#99c794;">BaseModel</span><span style="color:#5fb3b3;">):
+</span><span>    queries</span><span style="color:#5fb3b3;">: </span><span>List</span><span style="color:#5fb3b3;">[</span><span>SearchQuery</span><span style="color:#5fb3b3;">] = </span><span style="color:#6699cc;">Field</span><span style="color:#5fb3b3;">(
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">description</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">List of search queries.</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>query_output_from_llm </span><span style="color:#5fb3b3;">= {&#39;</span><span style="color:#99c794;">queries</span><span style="color:#5fb3b3;">&#39;: [&#39;</span><span style="color:#99c794;">report structure</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">section planning</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">content organization</span><span style="color:#5fb3b3;">&#39;, &#39;</span><span style="color:#99c794;">time management for report writing</span><span style="color:#5fb3b3;">&#39;]}
+</span><span>
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Original Data</span><span style="color:#5fb3b3;">&quot;)
+</span><span style="color:#c594c5;">try</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#6699cc;">Queries</span><span style="color:#5fb3b3;">(**</span><span style="color:#6699cc;">query_output_from_llm</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Success!</span><span style="color:#5fb3b3;">&quot;)
+</span><span style="color:#c594c5;">except </span><span>ValidationError </span><span style="color:#c594c5;">as </span><span>e</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Error..........</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">errors</span><span style="color:#5fb3b3;">())
+</span><span>
+</span><span>possibly_corrected_query_output </span><span style="color:#5fb3b3;">= {&#39;</span><span style="color:#99c794;">queries</span><span style="color:#5fb3b3;">&#39;: [{&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">report structure</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">section planning</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">content organization</span><span style="color:#5fb3b3;">&#39;}, {&#39;</span><span style="color:#99c794;">search_query</span><span style="color:#5fb3b3;">&#39;: &#39;</span><span style="color:#99c794;">time management for report writing</span><span style="color:#5fb3b3;">&#39;}]}
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">-</span><span style="color:#5fb3b3;">&quot; * </span><span style="color:#f99157;">80</span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;\n</span><span style="color:#99c794;">Updated Data</span><span style="color:#5fb3b3;">&quot;)
+</span><span style="color:#c594c5;">try</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#6699cc;">Queries</span><span style="color:#5fb3b3;">(**</span><span style="color:#6699cc;">possibly_corrected_query_output</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Success!</span><span style="color:#5fb3b3;">&quot;)
+</span><span style="color:#c594c5;">except </span><span>ValidationError </span><span style="color:#c594c5;">as </span><span>e</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Error..........</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">errors</span><span style="color:#5fb3b3;">())
+</span></code></pre>
+<p>The output I get from running this is:</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>Original Data
+</span><span>Error..........
+</span><span>[{&#39;type&#39;: &#39;model_type&#39;, &#39;loc&#39;: (&#39;queries&#39;, 0), &#39;msg&#39;: &#39;Input should be a valid dictionary or instance of SearchQuery&#39;, &#39;input&#39;: &#39;report structure&#39;, &#39;ctx&#39;: {&#39;class_name&#39;: &#39;SearchQuery&#39;}, &#39;url&#39;: &#39;https://errors.pydantic.dev/2.10/v/model_type&#39;}, {&#39;type&#39;: &#39;model_type&#39;, &#39;loc&#39;: (&#39;queries&#39;, 1), &#39;msg&#39;: &#39;Input should be a valid dictionary or instance of SearchQuery&#39;, &#39;input&#39;: &#39;section planning&#39;, &#39;ctx&#39;: {&#39;class_name&#39;: &#39;SearchQuery&#39;}, &#39;url&#39;: &#39;https://errors.pydantic.dev/2.10/v/model_type&#39;}, {&#39;type&#39;: &#39;model_type&#39;, &#39;loc&#39;: (&#39;queries&#39;, 2), &#39;msg&#39;: &#39;Input should be a valid dictionary or instance of SearchQuery&#39;, &#39;input&#39;: &#39;content organization&#39;, &#39;ctx&#39;: {&#39;class_name&#39;: &#39;SearchQuery&#39;}, &#39;url&#39;: &#39;https://errors.pydantic.dev/2.10/v/model_type&#39;}, {&#39;type&#39;: &#39;model_type&#39;, &#39;loc&#39;: (&#39;queries&#39;, 3), &#39;msg&#39;: &#39;Input should be a valid dictionary or instance of SearchQuery&#39;, &#39;input&#39;: &#39;time management for report writing&#39;, &#39;ctx&#39;: {&#39;class_name&#39;: &#39;SearchQuery&#39;}, &#39;url&#39;: &#39;https://errors.pydantic.dev/2.10/v/model_type&#39;}]
+</span><span>--------------------------------------------------------------------------------
+</span><span>
+</span><span>Updated Data
+</span><span>Success!
+</span></code></pre>
+<p>This confirms my suspicions. The model needs to be informed how to format the data. It
+seems like the tooling should do it automatically, but that does not appear to be happening.</p>
+<p>I find some details on <a href="https://ollama.com/blog/structured-outputs">how Ollama works with structured outputs</a>.
+It appears Ollama has a format parameter which accepts JSON. <code>ChatOllama.with_structured_output</code> accepts
+a parameter called <code>method</code>. If we add <code>method="json_schema"</code>, maybe the call will work?</p>
+<p>To test this theory, I go back to some earlier test code and modify the <code>.with_structured_output</code>
+call.</p>
+<pre data-lang="json" style="background-color:#2b2c2f;color:#cccece;" class="language-json "><code class="language-json" data-lang="json"><span>from typing import List
+</span><span>from langchain_ollama import ChatOllama
+</span><span>from pydantic import BaseModel, Field
+</span><span>from langchain_core.messages import HumanMessage, SystemMessage
+</span><span>
+</span><span>llm = ChatOllama(
+</span><span>    model=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">qwen2.5-coder:7b</span><span style="color:#5fb3b3;">&quot;</span><span>,
+</span><span>    temperature=</span><span style="color:#f99157;">0</span><span>,
+</span><span>)
+</span><span>
+</span><span>
+</span><span>class SearchQuery(BaseModel):
+</span><span>    search_query: str = Field(None, description=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Query for web search.</span><span style="color:#5fb3b3;">&quot;</span><span>)
+</span><span>
+</span><span>class Queries(BaseModel):
+</span><span>    queries: List</span><span style="color:#5fb3b3;">[</span><span>SearchQuery</span><span style="color:#5fb3b3;">]</span><span> = Field(
+</span><span>        description=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">List of search queries.</span><span style="color:#5fb3b3;">&quot;</span><span>,
+</span><span>)
+</span><span>
+</span><span>structured_llm = llm.with_structured_output(Queries, method=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">json_schema</span><span style="color:#5fb3b3;">&quot;</span><span>)
+</span><span>result = structured_llm.invoke(</span><span style="color:#5fb3b3;">[</span><span>SystemMessage(content=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">You are a helpful research assistant who will be drafting a report.</span><span style="color:#5fb3b3;">&quot;</span><span>)</span><span style="color:#5fb3b3;">]</span><span>+</span><span style="color:#5fb3b3;">[</span><span>HumanMessage(content=</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Generate search queries that will help with planning the sections of the report.</span><span style="color:#5fb3b3;">&quot;</span><span>)</span><span style="color:#5fb3b3;">]</span><span>)
+</span><span>
+</span><span>print(result)
+</span></code></pre>
+<p>This works! Now I go back to <code>src/open_deep_research/graph.py</code> and modify the code so that if <code>planner_provider</code>
+is <code>ollama</code>, then <code>method="json_schema"</code> is included <code>.with_structured_output</code> call.
+I make the same change for writer_provider. I could just omit this conditional logic, but I want
+this to still be compatible with other LLM providers.</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">async def </span><span style="color:#6699cc;">generate_report_plan</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">state</span><span style="color:#5fb3b3;">: </span><span>ReportState</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">config</span><span style="color:#5fb3b3;">: </span><span>RunnableConfig</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot; Generate the report plan &quot;&quot;&quot;
+</span><span>    </span><span style="color:#5f6364;"># Set writer model (model used for query writing and section writing)
+</span><span>    writer_provider </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">get_config_value</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">writer_provider</span><span style="color:#5fb3b3;">)
+</span><span>    writer_model_name </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">get_config_value</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">writer_model</span><span style="color:#5fb3b3;">)
+</span><span>    writer_model </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">init_chat_model</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">writer_model_name</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">model_provider</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">writer_provider</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">temperature</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+</span><span>    structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">writer_model</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with_structured_output</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Queries</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">method</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">json_schema</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">writer_provider </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span><span>    </span><span style="color:#5f6364;"># Set the planner model
+</span><span>    </span><span style="color:#c594c5;">if </span><span>planner_model </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">claude-3-7-sonnet-latest</span><span style="color:#5fb3b3;">&quot;:
+</span><span>        planner_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">init_chat_model</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">planner_model</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">model_provider</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">planner_provider</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">max_tokens</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">20_000</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">thinking</span><span style="color:#5fb3b3;">={&quot;</span><span style="color:#99c794;">type</span><span style="color:#5fb3b3;">&quot;: &quot;</span><span style="color:#99c794;">enabled</span><span style="color:#5fb3b3;">&quot;, &quot;</span><span style="color:#99c794;">budget_tokens</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">16_000</span><span style="color:#5fb3b3;">})
+</span><span>        </span><span style="color:#5f6364;"># with_structured_output uses forced tool calling, which thinking mode with Claude 3.7 does not support. Use bind_tools to generate the report sections
+</span><span>        structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">planner_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">bind_tools</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">Sections</span><span style="color:#5fb3b3;">])
+</span><span>        report_sections </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">structured_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">invoke</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">SystemMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">system_instructions_sections</span><span style="color:#5fb3b3;">)]+[</span><span style="color:#6699cc;">HumanMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Generate the sections of the report. Your response must include a &#39;sections&#39; field containing a list of sections. Each section must have: name, description, plan, research, and content fields.</span><span style="color:#5fb3b3;">&quot;)])
+</span><span>        tool_call </span><span style="color:#5fb3b3;">= </span><span>report_sections</span><span style="color:#5fb3b3;">.</span><span>tool_calls</span><span style="color:#5fb3b3;">[</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">][&#39;</span><span style="color:#99c794;">args</span><span style="color:#5fb3b3;">&#39;]
+</span><span>        report_sections </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Sections</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">model_validate</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">tool_call</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>        planner_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">init_chat_model</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">planner_model</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">model_provider</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">planner_provider</span><span style="color:#5fb3b3;">)
+</span><span>        structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">planner_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with_structured_output</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Sections</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#f99157;">method</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">json_schema</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">planner_provider </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">)
+</span><span>        report_sections </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">structured_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">invoke</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">SystemMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">system_instructions_sections</span><span style="color:#5fb3b3;">)]+[</span><span style="color:#6699cc;">HumanMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Generate the sections of the report. Your response must include a &#39;sections&#39; field containing a list of sections. Each section must have: name, description, plan, research, and content fields.</span><span style="color:#5fb3b3;">&quot;)])
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">generate_queries</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">state</span><span style="color:#5fb3b3;">: </span><span>SectionState</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">config</span><span style="color:#5fb3b3;">: </span><span>RunnableConfig</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot; Generate search queries for a report section &quot;&quot;&quot;
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span><span>    </span><span style="color:#5f6364;"># Generate queries
+</span><span>    writer_provider </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">get_config_value</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">writer_provider</span><span style="color:#5fb3b3;">)
+</span><span>    writer_model_name </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">get_config_value</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">configurable</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">writer_model</span><span style="color:#5fb3b3;">)
+</span><span>    writer_model </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">init_chat_model</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">model</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">writer_model_name</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">model_provider</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">writer_provider</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">temperature</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">0</span><span style="color:#5fb3b3;">)
+</span><span>    structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">writer_model</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with_structured_output</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Queries</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">method</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">json_schema</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">writer_provider </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">)
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">write_section</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">state</span><span style="color:#5fb3b3;">: </span><span>SectionState</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">config</span><span style="color:#5fb3b3;">: </span><span>RunnableConfig</span><span style="color:#5fb3b3;">) -&gt; </span><span>Command</span><span style="color:#5fb3b3;">[</span><span>Literal</span><span style="color:#5fb3b3;">[</span><span>END, </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">search_web</span><span style="color:#5fb3b3;">&quot;]]:
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot; Write a section of the report &quot;&quot;&quot;
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span><span>    </span><span style="color:#5f6364;"># Feedback
+</span><span>    structured_llm </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">writer_model</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">with_structured_output</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">Feedback</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">        </span><span style="color:#f99157;">method</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">json_schema</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">if </span><span style="color:#6699cc;">writer_provider </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">ollama</span><span style="color:#5fb3b3;">&quot; </span><span style="color:#c594c5;">else </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">)
+</span><span>    feedback </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">structured_llm</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">invoke</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">SystemMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=</span><span style="color:#6699cc;">section_grader_instructions_formatted</span><span style="color:#5fb3b3;">)]+[</span><span style="color:#6699cc;">HumanMessage</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">content</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">Grade the report and consider follow-up questions for missing information:</span><span style="color:#5fb3b3;">&quot;)])
+</span><span>    </span><span style="color:#5f6364;">## skipping code for post ##
+</span></code></pre>
+<p>Time to test! I go back to my original Jupyter notebook, go to the <code>Kernel</code> menu
+and select <code>Restart Kernel and Run all Cells</code>. Now there is a RateLimit error
+with the DuckDuckGo search API. I must've been sending out a ton of search queries
+to hit that.</p>
+<h2 id="implementing-simple-rate-limiting-for-duckduckgo-search">Implementing simple rate limiting for DuckDuckGo search</h2>
+<p>This is not going to be a production-grade fix here. I am simply going to make the
+<code>duckduckgo_search</code> wait 1 second between searches. If it hits a rate limit, it will
+wait 5 seconds and try the search that did not succeed again.</p>
+<p>I make the following changes to to <code>src/open_deep_research/utils.py</code>:</p>
+<ul>
+<li>Import the exception, and time:</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">import </span><span>time
+</span><span style="color:#c594c5;">from </span><span>duckduckgo_search</span><span style="color:#5fb3b3;">.</span><span>exceptions </span><span style="color:#c594c5;">import </span><span>DuckDuckGoSearchException
+</span></code></pre>
+<ul>
+<li>Modify <code>duckduckgo_search</code>:</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5fb3b3;">@</span><span>traceable
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">duckduckgo_search</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">search_queries</span><span style="color:#5fb3b3;">):
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot;Search the web using DuckDuckGo.
+</span><span style="color:#5f6364;">
+</span><span style="color:#5f6364;">    Args:
+</span><span style="color:#5f6364;">        search_queries (List[SearchQuery]): List of search queries to process
+</span><span style="color:#5f6364;">
+</span><span style="color:#5f6364;">    Returns:
+</span><span style="color:#5f6364;">        List[dict]: List of search responses from DuckDuckGo, one per query. Each response has format:
+</span><span style="color:#5f6364;">            {
+</span><span style="color:#5f6364;">                &#39;query&#39;: str,                    # The original search query
+</span><span style="color:#5f6364;">                &#39;follow_up_questions&#39;: None,
+</span><span style="color:#5f6364;">                &#39;answer&#39;: None,
+</span><span style="color:#5f6364;">                &#39;images&#39;: list,
+</span><span style="color:#5f6364;">                &#39;results&#39;: [                     # List of search results
+</span><span style="color:#5f6364;">                    {
+</span><span style="color:#5f6364;">                        &#39;title&#39;: str,           # Title of the search result
+</span><span style="color:#5f6364;">                        &#39;url&#39;: str,             # URL of the result
+</span><span style="color:#5f6364;">                        &#39;content&#39;: str,         # Summary/snippet of content
+</span><span style="color:#5f6364;">                    },
+</span><span style="color:#5f6364;">                    ...
+</span><span style="color:#5f6364;">                ]
+</span><span style="color:#5f6364;">            }
+</span><span style="color:#5f6364;">    &quot;&quot;&quot;
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">perform_search</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">query</span><span style="color:#5fb3b3;">):
+</span><span>            max_retries </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">2
+</span><span>            retry_count </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+</span><span>
+</span><span>            </span><span style="color:#c594c5;">while </span><span>retry_count </span><span style="color:#5fb3b3;">&lt; </span><span>max_retries</span><span style="color:#5fb3b3;">:
+</span><span>                </span><span style="color:#c594c5;">try</span><span style="color:#5fb3b3;">:
+</span><span>                    results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">DDGS</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">text</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">backend</span><span style="color:#5fb3b3;">=&quot;</span><span style="color:#99c794;">lite</span><span style="color:#5fb3b3;">&quot;)
+</span><span>                    </span><span style="color:#5f6364;"># match field names used for Tavily
+</span><span>                    </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">[{&#39;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">title</span><span style="color:#5fb3b3;">&#39;], &#39;</span><span style="color:#99c794;">url</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">href</span><span style="color:#5fb3b3;">&#39;], &#39;</span><span style="color:#99c794;">content</span><span style="color:#5fb3b3;">&#39;: </span><span>result</span><span style="color:#5fb3b3;">[&#39;</span><span style="color:#99c794;">body</span><span style="color:#5fb3b3;">&#39;]} </span><span style="color:#c594c5;">for </span><span>result </span><span style="color:#c594c5;">in </span><span>results</span><span style="color:#5fb3b3;">]
+</span><span>                </span><span style="color:#c594c5;">except </span><span>DuckDuckGoSearchException </span><span style="color:#c594c5;">as </span><span>e</span><span style="color:#5fb3b3;">:
+</span><span>                    </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">202 RateLimit</span><span style="color:#5fb3b3;">&quot; in </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">e</span><span style="color:#5fb3b3;">):
+</span><span>                        retry_count </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1
+</span><span>                        </span><span style="color:#5f6364;"># if this is the last retry, propagate the original exception
+</span><span>                        </span><span style="color:#c594c5;">if </span><span>retry_count </span><span style="color:#5fb3b3;">== </span><span>max_retries</span><span style="color:#5fb3b3;">:
+</span><span>                            </span><span style="color:#c594c5;">raise
+</span><span>                        </span><span style="color:#5f6364;"># wait before trying again
+</span><span>                        </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sleep</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">)
+</span><span>                    </span><span style="color:#c594c5;">else</span><span style="color:#5fb3b3;">:
+</span><span>                        </span><span style="color:#c594c5;">raise
+</span><span>
+</span><span>    search_docs </span><span style="color:#5fb3b3;">= []
+</span><span>    </span><span style="color:#c594c5;">for </span><span>query </span><span style="color:#c594c5;">in </span><span>search_queries</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#6699cc;">time</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">sleep</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span><span>        results </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">perform_search</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># Format response to match Tavily structure
+</span><span>        </span><span style="color:#6699cc;">search_docs</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">({
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">query</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#6699cc;">query</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">follow_up_questions</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">answer</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">,
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">images</span><span style="color:#5fb3b3;">&quot;: [],
+</span><span style="color:#6699cc;">            </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">results</span><span style="color:#5fb3b3;">&quot;: </span><span style="color:#6699cc;">results
+</span><span style="color:#6699cc;">        </span><span style="color:#5fb3b3;">})
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>search_docs
+</span></code></pre>
+<h2 id="third-time-s-the-charm">Third time's the charm</h2>
+<p>It works... kind of. I think it has problems incorporating data from the search results when
+constructing sections. I was watching outbound traffic and saw it connect to DuckDuckGo many times.
+What I did not see was it following any of the links.</p>
+<p>To see updates after this post was written, please see
+<a href="https://bustin.tech/posts/open-deep-research-using-langchain-working/">Open Deep Research Using LangChain Working</a>.</p>
+<p>Here is what it generated. The original research question was
+<code>Overview of the AI inference market with focus on Fireworks, Together.ai, Groq</code>.</p>
+<hr />
+<h1 id="overview-of-the-ai-inference-market-with-focus-on-fireworks-together-ai-groq">Overview of the AI Inference Market with Focus on Fireworks, Together.ai, Groq</h1>
+<p>The AI inference market is experiencing rapid growth driven by the increasing demand for real-time decision-making across various industries such as healthcare, finance, and autonomous vehicles. This report delves into the current trends, growth projections, and key players in this dynamic sector, with a particular focus on Fireworks, Together.ai, and Groq. By examining their technology features, use cases, and financial performance, we aim to provide insights that can guide stakeholders in making informed decisions.</p>
+<h2 id="summary">Summary</h2>
+<p>The AI inference market is poised for significant expansion, fueled by advancements in hardware and software technologies. Fireworks, Together.ai, and Groq are leading players, each offering unique solutions tailored to diverse applications. Below is a comparative table summarizing their key attributes:</p>
+<table><thead><tr><th>Feature/Company</th><th>Fireworks</th><th>Together.ai</th><th>Groq</th></tr></thead><tbody>
+<tr><td>Technology</td><td>Distributed AI infrastructure</td><td>Collaborative AI platform</td><td>Custom silicon for high-performance inference</td></tr>
+<tr><td>Use Cases</td><td>Large-scale AI model deployment, cloud services</td><td>Team collaboration and shared AI models</td><td>Real-time AI processing in edge devices</td></tr>
+<tr><td>ARR (Approx.)</td><td>$10M+</td><td>$5M+</td><td>$20M+</td></tr>
+</tbody></table>
+<p>These platforms represent different approaches to addressing the challenges of AI inference, from distributed computing to specialized hardware solutions. As the market continues to evolve, understanding these distinctions is crucial for leveraging AI effectively.</p>
+<p>Next steps include further analysis of emerging trends and potential partnerships within the industry to capitalize on growth opportunities.</p>
+<p>Certainly! To generate a report section, I'll need you to provide the specific details or sources you want included in the report. Please share the relevant information or documents so that I can craft an accurate and detailed section for your report.</p>
+<p>Certainly! To generate a report section, I'll need you to provide the specific details or sources you want included in the report. Please share the relevant information or documents so that I can craft an accurate and detailed section for your report.</p>
+<p>Certainly! To generate a report section, I'll need you to provide the specific details or sources you want included in the report. Please share the relevant information or documents so that I can craft an accurate and detailed section for your report.</p>
+<p>Certainly! To generate a report section, I'll need you to provide the specific details or sources you want included in the report. Please share the relevant information or documents so that I can craft an accurate and detailed section for your report.</p>
+<p>Certainly! To generate a report section, I'll need you to provide the specific details or sources you want included in the report. Could you please share the relevant information or documents? This could include data points, statistics, quotes from experts, or any other pertinent material that should be incorporated into the report section.</p>
+<h1 id="overview-of-the-ai-inference-market-with-focus-on-fireworks-together-ai-and-groq">Overview of the AI Inference Market with Focus on Fireworks, Together.ai, and Groq</h1>
+<p>The AI inference market is experiencing rapid growth driven by advancements in artificial intelligence technology and increasing demand for real-time data processing across various industries. This report delves into the key trends shaping this market and provides a detailed analysis of three prominent players: Fireworks, Together.ai, and Groq. By examining their unique offerings, use cases, and financial performance, we aim to offer insights that can guide stakeholders in making informed decisions.</p>
+<h2 id="summary-1">Summary</h2>
+<p>The AI inference market is witnessing significant expansion, fueled by the need for efficient and scalable solutions. Among the leading companies, Fireworks stands out with its cloud-based infrastructure designed for seamless deployment of machine learning models. Together.ai offers a collaborative platform that simplifies model sharing and experimentation, catering to teams looking to streamline their workflow. Groq, on the other hand, focuses on hardware acceleration, providing ultra-fast inference capabilities through custom silicon solutions.</p>
+<table><thead><tr><th>Company</th><th>Technology Focus</th><th>Use Cases</th><th>Annual Recurring Revenue (ARR)</th></tr></thead><tbody>
+<tr><td>Fireworks</td><td>Cloud-based infrastructure</td><td>Real-time analytics, customer service</td><td>Not publicly disclosed</td></tr>
+<tr><td>Together.ai</td><td>Collaborative platform</td><td>Model sharing, experimentation</td><td>Not publicly disclosed</td></tr>
+<tr><td>Groq</td><td>Hardware acceleration</td><td>High-performance inference</td><td>Not publicly disclosed</td></tr>
+</tbody></table>
+<p>These platforms represent different strategies within the AI inference market, each addressing specific needs and challenges. As the landscape continues to evolve, understanding these distinctions is crucial for leveraging AI effectively.</p>
+<p>Next steps include further analysis of emerging trends and potential partnerships that could shape the future of AI inference solutions.</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>🐴 Creating Horse Hot or Not 🐎 | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="I already followed the Dioxus tutorial and created a GUI application. Now I needed a pet project to learn even more about Dioxus. It couldn&#x27;t be too complex as I am still learning the framework. It ha…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/creating-horse-hot-or-not/">
+  <meta property="og:title" content="🐴 Creating Horse Hot or Not 🐎">
+  <meta property="og:description" content="I already followed the Dioxus tutorial and created a GUI application. Now I needed a pet project to learn even more about Dioxus. It couldn&#x27;t be too complex as I am still learning the framework. It ha…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="🐴 Creating Horse Hot or Not 🐎">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-04-16T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/creating-horse-hot-or-not"
+      },
+      "headline": "🐴 Creating Horse Hot or Not 🐎",
+      "description": "I already followed the Dioxus tutorial and created a GUI application. Now I needed a pet project to learn even more about Dioxus. It couldn&#x27;t be too complex as I am still learning the framework. It ha…",
+      "wordcount": "1401",
+      "datePublished": "2025-04-16T00:00:00+00:00",
+      "dateModified": "2025-04-16T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "🐴 Creating Horse Hot or Not 🐎",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>🐴 Creating Horse Hot or Not 🐎</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/coding/" class="page-tag">Coding</a>,
+      <a href="https://bustin.tech/tags/rust/" class="page-tag">Rust</a>,
+      <a href="https://bustin.tech/tags/dioxus/" class="page-tag">Dioxus</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-04-16T00:00:00+00:00">
+      Posted on April 16, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>I already <a href="https://bustin.tech/posts/creating-a-gui-application-in-rust-using-dioxus/">followed the Dioxus tutorial and created a GUI application</a>. Now I needed a pet project to learn even more about Dioxus. It couldn't be too complex as I am still learning the framework. It had to have some similarity to the application from the tutorial so I would not get too stuck and could reference it. I did not want to touch user authentication just yet.</p>
+<p>My idea is <a href="https://hhn.bustin.tech">Horse Hot or Not</a>. It is a bit of a spoof on an old website that, misogynistically, was used to rate women as being "Hot" or "Not". Making this site is not an endorsement of the original site. The subject here will be horses.</p>
+<span id="continue-reading"></span>
+<p>Here is what the site should do, at a minimum:</p>
+<ul>
+<li>Rating page
+<ul>
+<li>Show a picture of a random horse and "Hot" and "Not" buttons</li>
+<li>Allow user to click one of the buttons to vote on the horse shown</li>
+</ul>
+</li>
+<li>Leaderboard page
+<ul>
+<li>Show images of horses starting with the horse that has the highest net number of hot votes (hot - not)</li>
+</ul>
+</li>
+<li>Keep a person from being able to rate the same horse multiple times</li>
+<li>Not store user-identifiable data (I am a big fan of privacy and do not want to have more information than is needed)</li>
+</ul>
+<p>The last two items are the ones I spent the most time thinking about before I started coding. The system to prevent multiple votes on a horse does not need to work perfectly. This is not a high stakes site. How could I prevent the user from voting twice while not storing any identifiable information about them?</p>
+<p>Then the idea strikes. I can use a hash. If I store the hash, I can not directly access the identifying information. It would take brute forcing or a <a href="https://en.wikipedia.org/wiki/Rainbow_table">rainbow table</a>. That is probably good enough, but what data should I hash? How about <code>user_ip:horse_id</code>. This would allow me to determine if the user voted for a particular horse before because I will have their IP address in the request and will know the id of the horse they are submitting a rating for. I can look up if the hash exists in a database table first, if not, record the vote and then add the hash to a table.</p>
+<p>Using the IP address as the user identifier is far from perfect. Here are just some of the problems with this approach:</p>
+<ul>
+<li>If the site is accessed from a phone while on WiFi, then the user leaves the location and is on a cellular data connection, their IP address will change</li>
+<li>IPv4 connections behind a NAT router will all come from the same IP address, even if there are multiple people or devices trying to vote. This essentially locks the household down to only being able to vote once for a horse.</li>
+<li>IP addresses do not correspond to individuals, but more to devices.</li>
+</ul>
+<p>I could combine this with a browser cookie, and I am sure there are other approaches I could take, but this is good enough for now.</p>
+<p>I get the project all set up and start coding.</p>
+<h1 id="challenges">Challenges</h1>
+<h2 id="getting-to-the-axum-configuration">Getting to the Axum configuration</h2>
+<p>Dioxus uses Axum under the hood, but it does a great job of hiding it. This is a smart approach because there is no need to shoulder the cognitive load of Axum in most cases. Axum does not include much information about the request within it unless configured to do so. I need the IP address the request is being made from.</p>
+<p>I also need to be able to serve static images, but I can not seem to find a way to do that directly from within Dioxus. There is a way to include assets, but that bundles them. I want this to be all self-contained without the need for a CDN or different server setup.</p>
+<p><a href="https://dioxuslabs.com/learn/0.6/guide/backend/#server-functions-an-inline-rpc-system">The tutorial shows how to get to the Axum configuration</a>. The problem I keep running up against is on this line:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span>axum</span><span style="color:#5fb3b3;">::</span><span>Router</span><span style="color:#5fb3b3;">::</span><span>new</span><span style="color:#5fb3b3;">().</span><span style="color:#6699cc;">serve_dioxus_application</span><span style="color:#5fb3b3;">(</span><span>config</span><span style="color:#5fb3b3;">,</span><span> app</span><span style="color:#5fb3b3;">);
+</span></code></pre>
+<p><code>serve_dioxus_application</code> simply does not exist. I eventually find <a href="https://github.com/DioxusLabs/dioxus/issues/3479">issue 3479</a>. When I added axum to my <code>cargo.toml</code>, I had used a version that was newer than the one supported by Dioxus. Once I change it to version <code>0.7.9</code>, it starts working. This took me a while to figure it out, but will no <a href="https://github.com/DioxusLabs/dioxus/pull/3820">longer be a problem soon</a>.</p>
+<p>To get the connection information in the request, I add <code>let router = router.into_make_service_with_connect_info::&lt;SocketAddr&gt;();</code>.</p>
+<p>To serve the static images, I use the <code>tower_http</code> <code>ServeDir</code> service and add it to the Axum router. <code>.nest_service("/static/horses", ServeDir::new("public/static/horses"));</code>.</p>
+<p>The <code>main</code> function in <code>main.rs</code> now looks like this:</p>
+<pre data-lang="rust" style="background-color:#2b2c2f;color:#cccece;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#5f6364;">// The entry point for the server
+</span><span style="color:#5fb3b3;">#[</span><span>cfg</span><span style="color:#5fb3b3;">(</span><span>feature </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">server</span><span style="color:#5fb3b3;">&quot;)]
+</span><span style="color:#5fb3b3;">#[</span><span>tokio::main</span><span style="color:#5fb3b3;">]
+</span><span>async </span><span style="color:#c594c5;">fn </span><span style="color:#6699cc;">main</span><span style="color:#5fb3b3;">() {
+</span><span>    </span><span style="color:#5f6364;">// dependencies that only apply to the server
+</span><span>    </span><span style="color:#c594c5;">use </span><span>std</span><span style="color:#5fb3b3;">::</span><span>net</span><span style="color:#5fb3b3;">::</span><span>SocketAddr</span><span style="color:#5fb3b3;">;
+</span><span>    </span><span style="color:#c594c5;">use </span><span>tower_http</span><span style="color:#5fb3b3;">::</span><span>services</span><span style="color:#5fb3b3;">::</span><span>ServeDir</span><span style="color:#5fb3b3;">;
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Connect to dioxus&#39; logging infrastructure
+</span><span>    dioxus</span><span style="color:#5fb3b3;">::</span><span>logger</span><span style="color:#5fb3b3;">::</span><span>initialize_default</span><span style="color:#5fb3b3;">();
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Get the address the server should run on. If the CLI is running, the CLI proxies fullstack into the main address
+</span><span>    </span><span style="color:#5f6364;">// and we use the generated address the CLI gives us
+</span><span>    </span><span style="color:#c594c5;">let</span><span> address </span><span style="color:#5fb3b3;">= </span><span>dioxus</span><span style="color:#5fb3b3;">::</span><span>cli_config</span><span style="color:#5fb3b3;">::</span><span>fullstack_address_or_localhost</span><span style="color:#5fb3b3;">();
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Set up the axum router
+</span><span>    </span><span style="color:#c594c5;">let</span><span> router </span><span style="color:#5fb3b3;">= </span><span>axum</span><span style="color:#5fb3b3;">::</span><span>Router</span><span style="color:#5fb3b3;">::</span><span>new</span><span style="color:#5fb3b3;">()
+</span><span>        </span><span style="color:#5f6364;">// You can add a dioxus application to the router with the `serve_dioxus_application` method
+</span><span>        </span><span style="color:#5f6364;">// This will add a fallback route to the router that will serve your component and server functions
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">serve_dioxus_application</span><span style="color:#5fb3b3;">(</span><span>ServeConfigBuilder</span><span style="color:#5fb3b3;">::</span><span>default</span><span style="color:#5fb3b3;">(),</span><span> App</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">nest_service</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">/static/horses</span><span style="color:#5fb3b3;">&quot;, </span><span>ServeDir</span><span style="color:#5fb3b3;">::</span><span>new</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">public/static/horses</span><span style="color:#5fb3b3;">&quot;));
+</span><span>
+</span><span>    </span><span style="color:#5f6364;">// Finally, we can launch the server
+</span><span>    </span><span style="color:#c594c5;">let</span><span> router </span><span style="color:#5fb3b3;">=</span><span> router</span><span style="color:#5fb3b3;">.</span><span>into_make_service_with_connect_info</span><span style="color:#5fb3b3;">::&lt;</span><span>SocketAddr</span><span style="color:#5fb3b3;">&gt;();
+</span><span>    </span><span style="color:#c594c5;">let</span><span> listener </span><span style="color:#5fb3b3;">= </span><span>tokio</span><span style="color:#5fb3b3;">::</span><span>net</span><span style="color:#5fb3b3;">::</span><span>TcpListener</span><span style="color:#5fb3b3;">::</span><span>bind</span><span style="color:#5fb3b3;">(</span><span>address</span><span style="color:#5fb3b3;">).</span><span>await</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span>    </span><span style="color:#c594c5;">match </span><span>backend</span><span style="color:#5fb3b3;">::</span><span>load</span><span style="color:#5fb3b3;">() {
+</span><span>        </span><span style="color:#fac863;">Ok</span><span style="color:#5fb3b3;">(_) =&gt; (),
+</span><span>        </span><span style="color:#fac863;">Err</span><span style="color:#5fb3b3;">(</span><span>e</span><span style="color:#5fb3b3;">) =&gt; </span><span>panic!</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Unable to load: {}</span><span style="color:#5fb3b3;">&quot;,</span><span> e</span><span style="color:#5fb3b3;">),
+</span><span>    </span><span style="color:#5fb3b3;">}
+</span><span>    axum</span><span style="color:#5fb3b3;">::</span><span>serve</span><span style="color:#5fb3b3;">(</span><span>listener</span><span style="color:#5fb3b3;">,</span><span> router</span><span style="color:#5fb3b3;">).</span><span>await</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">unwrap</span><span style="color:#5fb3b3;">();
+</span><span style="color:#5fb3b3;">}
+</span></code></pre>
+<h2 id="limitations-tracking-rating-submissions">Limitations tracking rating submissions</h2>
+<p>The initial idea of using the hashes to represent an individual rating submission for a certain horse is sound. The problem is that it does not allow for getting at some information that could be useful. I decide to hash the IP address, but then have a column for the horse_id, and when the rating was submitted. This does make revealing the user's IP address easier (at least in the case of IPv4) because you could simply create a rainbow table with hashes of all possible IP addresses, and then cross-reference each hash in the database against the rainbow table to reveal the address. That is definitely a downside.</p>
+<p>The upside is that it allows for more streamlined database queries. The main issue that convinced me to change course was picking a random horse for a user to rate. It does not make sense to serve the user a horse they have already rated. In that scenario, the user would click a rating button, but the rating would not be successfully submitted.</p>
+<p>Sure, I could:</p>
+<ul>
+<li>Get a random horse</li>
+<li>Hash the user's IP with the horse_id</li>
+<li>Look up the hash to see if the user rated this horse</li>
+<li>If they did rate this horse, repeat the previous steps until a horse they have not rated is found</li>
+</ul>
+<p>This approach has some obvious disadvantages. The most important one to me is it gets more and more compute-intensive the more horses a user has rated. Imagine there are 6,000 horses and the user has rated 5,999 of them. It is going to need to keep repeating the steps until it finds the 1 horse they have not rated. It is not just compute-intensive, it will also get really sluggish.</p>
+<p>With the horse_id decoupled from the hash, I can simply use a query that returns a random horse where the user's hash and the horse_id in question does not exist in the table where per-user rating submissions are recorded. This will not be compute-intensive and performance will be great.</p>
+<h2 id="ipv6">IPv6</h2>
+<p>I noticed that I could vote for the same horse if I used my computer and then my phone while both were connected to my home's network. My home network uses IPv4 and IPv6. With IPv6 there is no need to be behind NAT. This means each device has a different public IPv6 address. What I needed to do was to actually hash the /64 network address of the IPv6 address. This, in effect, makes it behave closely to the IPv4 behind NAT scenario. It is not perfect. ISPs could assign a /63 or larger network, but it should cover most home networks.</p>
+<h2 id="ui-and-css">UI and css</h2>
+<p>I am not a UI expert. Getting the UI to be good enough took some work. CSS is great, but there are lots of complexities. This is an area I could use some improvement in.</p>
+<p>There are still rough edges on the site. I noticed, for example, on a small mobile screen some text that should be centered is not. I have not tried to fix that yet.</p>
+<h1 id="conclusion">Conclusion</h1>
+<p>My second go-round with Dioxus went well. I do like the framework. When researching some of the problems I was having, I saw an active community around the project.</p>
+<p>The UI state reactivity reminded me of some of the UI work I did in <a href="https://vuejs.org/">Vue.js</a> for work. Many of the ideas felt, at least superficially, very similar even if the code looks nothing alike.</p>
+<p>Don't forget to check out <a href="https://hhn.bustin.tech">Horse Hot or Not</a>! 🐎</p>
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>

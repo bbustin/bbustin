@@ -1,0 +1,686 @@
+<!DOCTYPE html><html lang="en-US" xml:lang="en-US" prefix="og: https://ogp.me/ns#">
+
+
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<link rel="shortcut icon" type="image/svg" href="https://bustin.tech/favicon.svg">
+<link rel="alternate" type="application/atom+xml" title="Atom feed" href="https://bustin.tech/atom.xml">
+<link rel="stylesheet" href="https://bustin.tech/main.css">
+<meta name="theme-color" content="#151515">
+<meta name="msapplication-navbutton-color" content="#151515">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+
+
+<meta name="robots" content="index, follow">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+
+<title>Daily Coding Problem: Problem #3 | Bustin Tech</title>
+<meta name="generator" content="Zola">
+<meta name="description" content="This is
+Daily Coding Problem #3. I did the work in a Jupyter
+notebook and then exported it to include here.Daily Coding ProblemProblem #3 (Medium)This problem was asked by Google.Given the root to a b…">
+<meta name="author" content="Brian Bustin">
+<link rel="canonical" href="https://bustin.tech/posts/daily-coding-problem-problem-3/">
+  <meta property="og:title" content="Daily Coding Problem: Problem #3">
+  <meta property="og:description" content="This is
+Daily Coding Problem #3. I did the work in a Jupyter
+notebook and then exported it to include here.Daily Coding ProblemProblem #3 (Medium)This problem was asked by Google.Given the root to a b…">
+  <meta property="og:type" content="article">
+        <meta property="og:image" content="https://bustin.tech/opengraph_logo.png">
+
+  <meta property="og:site_name" content="Daily Coding Problem: Problem #3">
+  <meta property="og:locale" content="en_US">
+    <meta property="article:published_time" content="2025-03-12T00:00:00+00:00">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://bustin.tech/posts/daily-coding-problem-problem-3"
+      },
+      "headline": "Daily Coding Problem: Problem #3",
+      "description": "This is
+Daily Coding Problem #3. I did the work in a Jupyter
+notebook and then exported it to include here.Daily Coding ProblemProblem #3 (Medium)This problem was asked by Google.Given the root to a b…",
+      "wordcount": "1834",
+      "datePublished": "2025-03-12T00:00:00+00:00",
+      "dateModified": "2025-03-12T00:00:00+00:00",
+      "author": {
+        "@type": "Person",
+        "name": "Brian Bustin"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Daily Coding Problem: Problem #3",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://bustin.tech/opengraph_logo.png"
+        }
+      }
+    }
+    </script>
+
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <a id="a-title" href="https://bustin.tech">
+        <h1>Bustin Tech</h1>
+      </a>
+      <h2>A software engineer&#x27;s pragmatic perspectives</h2>
+      <nav id="navbar">
+  <a href="https://bustin.tech/about" class="btn">About</a>
+  <a href="https://bustin.tech" class="btn">Blog</a>
+  <a href="https://bustin.tech/apps" class="btn">Apps</a>
+  <a href="https://bustin.tech/tags" class="btn">Tags</a>
+</nav>
+</div>
+  </header>
+
+  <div class="container">
+    <main>
+<article class="page">
+  <div class="header-container">
+    <h2>Daily Coding Problem: Problem #3</h2>
+  </div>
+  <div class="page-info">
+    <span>Tags = [
+      <a href="https://bustin.tech/tags/codinginterview/" class="page-tag">CodingInterview</a> ]
+    </span>
+    <time class="page-time smaller" datetime="2025-03-12T00:00:00+00:00">
+      Posted on March 12, 2025
+    </time>
+  </div>
+  <div class="entry">
+    <p>This is
+<a href="https://www.dailycodingproblem.com/">Daily Coding Problem</a> #3. I did the work in a Jupyter
+notebook and then exported it to include here.</p>
+<span id="continue-reading"></span>
+<hr />
+<h1 id="daily-coding-problem">Daily Coding Problem</h1>
+<h2 id="problem-3-medium">Problem #3 (Medium)</h2>
+<p>This problem was asked by Google.</p>
+<p>Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deserialize(s), which deserializes the string back into the tree.</p>
+<p>For example, given the following Node class</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">left</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">right</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">= </span><span>val
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span>left
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span>right
+</span></code></pre>
+<p>The following test should pass:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">left</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;)), </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">right</span><span style="color:#5fb3b3;">&#39;))
+</span><span style="color:#c594c5;">assert </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">)).</span><span>left</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">== &#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;
+</span></code></pre>
+<h1 id="my-thoughts">My Thoughts</h1>
+<p>I am going to need to implement two methods. The first takes a tree and serializes it into
+a string. The second takes a string and deserializes it into a tree.</p>
+<p>I'll probably want to write the deserialize code first. It might make it easier to test.</p>
+<p>I also want to reformat the test that should pass to make it easier to parse with my brain. Here goes:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">val </span><span style="color:#5fb3b3;">= &#39;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&#39;,
+</span><span style="color:#6699cc;">            </span><span style="color:#f99157;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">val </span><span style="color:#5fb3b3;">= &#39;</span><span style="color:#99c794;">left</span><span style="color:#5fb3b3;">&#39;,
+</span><span style="color:#6699cc;">                        </span><span style="color:#f99157;">left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">val </span><span style="color:#5fb3b3;">= &#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;)
+</span><span style="color:#6699cc;">                       </span><span style="color:#5fb3b3;">),
+</span><span style="color:#6699cc;">            </span><span style="color:#f99157;">right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">val </span><span style="color:#5fb3b3;">= &#39;</span><span style="color:#99c794;">right</span><span style="color:#5fb3b3;">&#39;)
+</span><span style="color:#6699cc;">           </span><span style="color:#5fb3b3;">)
+</span><span style="color:#c594c5;">assert </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">)).</span><span>left</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">== &#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;
+</span></code></pre>
+<p>Looking at this, I wonder if the right side of the tree can just be completely ignored? Then I could just traverse the tree by continually going left. It seems weird to go left instead of right, but I feel that is what the example is telling me to do.</p>
+<p>I don't think a grader is needed here. I should be able to define a string, deserialize it, then serialize the deserialized output. If this output is the same as the original string, I think that means it worked as expected... actually, there is one more issue. I probably need to break the text at word boundaries. There would likely also need to be a test to see if I created the correct number of nodes.</p>
+<h1 id="common-code">Common code</h1>
+<p>I probably should do some common setup. How about the following:</p>
+<ul>
+<li>define base Node class to be used by all code</li>
+<li>create a way to count all nodes when traversing left</li>
+</ul>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># node definition from the question
+</span><span style="color:#c594c5;">class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">left</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">right</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">= </span><span>val
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span>left
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span>right
+</span><span>
+</span><span style="color:#5f6364;"># counts the number of nodes, excluding the root node
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">count_left_nodes</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">root_node</span><span style="color:#5fb3b3;">: </span><span>Node</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#fac863;">int</span><span style="color:#5fb3b3;">:
+</span><span>    number_of_nodes </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">0
+</span><span>    current_node </span><span style="color:#5fb3b3;">= </span><span>root_node
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">while </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">:
+</span><span>        number_of_nodes </span><span style="color:#5fb3b3;">+= </span><span style="color:#f99157;">1
+</span><span>        current_node </span><span style="color:#5fb3b3;">= </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>left
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>number_of_nodes </span><span style="color:#5fb3b3;">- </span><span style="color:#f99157;">1 </span><span style="color:#5f6364;"># exclude root node
+</span></code></pre>
+<h1 id="go-for-it">Go for it</h1>
+<p>Here goes nothing</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">def </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">string</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">) -&gt; &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;:
+</span><span>    root_node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&quot;)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">if </span><span>string</span><span style="color:#5fb3b3;">:
+</span><span>        root_node</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">string</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>root_node
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">root_node</span><span style="color:#5fb3b3;">: </span><span>Node</span><span style="color:#5fb3b3;">) -&gt; </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">:
+</span><span>    output </span><span style="color:#5fb3b3;">= &quot;&quot;
+</span><span>    current_node </span><span style="color:#5fb3b3;">= </span><span>root_node
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># the loop traverses left first, so the root node will effectively be skipped
+</span><span>    </span><span style="color:#c594c5;">while </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#5f6364;"># traverse left
+</span><span>        current_node </span><span style="color:#5fb3b3;">= </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>left
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># If we encounter a value, add it to the output
+</span><span>        </span><span style="color:#c594c5;">if </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>val</span><span style="color:#5fb3b3;">:
+</span><span>            output </span><span style="color:#5fb3b3;">+= </span><span>current_node</span><span style="color:#5fb3b3;">.</span><span>val
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span>output
+</span><span>
+</span><span style="color:#5f6364;"># let&#39;s test:
+</span><span>input_string </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">This is a test of the node broadcasting system. This is only a test.</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span>root_node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">input_string</span><span style="color:#5fb3b3;">)
+</span><span>serialized_string </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">input_string and serialized_string are the same: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">input_string </span><span style="color:#5fb3b3;">== </span><span style="color:#6699cc;">serialized_string</span><span style="color:#5fb3b3;">}&quot;)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>input_string and serialized_string are the same: True
+</span></code></pre>
+<h2 id="thoughts-while-i-was-creating-the-code-above">Thoughts while I was creating the code above.</h2>
+<p>If I divide based on spaces in <code>deserialize</code> and then add those spaces back in <code>serialize</code>, then this could lead the output to not be exactly the same as the input if the nodes were constructed manually. The question did not say we would always get the node structure from our own <code>deserialize</code> code.</p>
+<p>It is important that what goes in is the same as what comes out. So I can make <code>deserialize</code> really simple and then create some nested test cases for <code>serialize</code>.</p>
+<h2 id="the-serialize-code-needs-more-testing-will-it-left-traverse-properly-when-there-are-a-lot-more-nodes">The serialize code needs more testing. Will it left traverse properly when there are a lot more nodes?</h2>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span>test_root </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#6699cc;">                 Node</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">This </span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#6699cc;">                      Node</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">is a </span><span style="color:#5fb3b3;">&quot;,
+</span><span style="color:#6699cc;">                           Node</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">test!</span><span style="color:#5fb3b3;">&quot;)
+</span><span style="color:#6699cc;">                          </span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">                     </span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">                </span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>expected_output </span><span style="color:#5fb3b3;">= &quot;</span><span style="color:#99c794;">This is a test!</span><span style="color:#5fb3b3;">&quot;
+</span><span>serialized_output </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">test_root</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">expected_output and serialized_output are the same: </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">expected_output </span><span style="color:#5fb3b3;">== </span><span style="color:#6699cc;">serialized_output</span><span style="color:#5fb3b3;">}&quot;)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>expected_output and serialized_output are the same: True
+</span></code></pre>
+<h1 id="time-for-the-qwen2-5-coder-critique">Time for the Qwen2.5-coder critique!</h1>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>... I was given the following coding question:
+</span><span>...
+</span><span>... ````This problem was asked by Google.
+</span><span>...
+</span><span>... Given the root to a binary tree, implement serialize(root), which serializes the tree into a string, and deser
+</span><span>... ialize(s), which deserializes the string back into the tree.
+</span><span>...
+</span><span>... For example, given the following Node class
+</span><span>...
+</span><span>... ```python
+</span><span>... class Node:
+</span><span>...     def __init__(self, val, left=None, right=None):
+</span><span>...         self.val = val
+</span><span>...         self.left = left
+</span><span>...         self.right = right
+</span><span>... ```
+</span><span>...
+</span><span>... The following test should pass:
+</span><span>...
+</span><span>... ```python
+</span><span>... node = Node(&#39;root&#39;, Node(&#39;left&#39;, Node(&#39;left.left&#39;)), Node(&#39;right&#39;))
+</span><span>... assert deserialize(serialize(node)).left.left.val == &#39;left.left&#39;
+</span><span>... ```
+</span><span>... ````
+</span><span>...
+</span><span>... My answer was:
+</span><span>...
+</span><span>... ```python
+</span><span>... class Node:
+</span><span>...     def __init__(self, val, left: &#39;Node&#39;=None, right: &#39;Node&#39;=None):
+</span><span>...         self.val = val
+</span><span>...         self.left = left
+</span><span>...         self.right = right
+</span><span>...
+</span><span>... def deserialize(string: str) -&gt; &#39;Node&#39;:
+</span><span>...     root_node = Node(&quot;root&quot;)
+</span><span>...
+</span><span>...     if string:
+</span><span>...         root_node.left = Node(string)
+</span><span>...
+</span><span>...     return root_node
+</span><span>...
+</span><span>... def serialize(root_node: Node) -&gt; str:
+</span><span>...     output = &quot;&quot;
+</span><span>...     current_node = root_node
+</span><span>...
+</span><span>...     # the loop traverses left first, so the root node will effectively be skipped
+</span><span>...     while current_node.left:
+</span><span>...         # traverse left
+</span><span>...         current_node = current_node.left
+</span><span>...
+</span><span>...         # If we encounter a value, add it to the output
+</span><span>...         if current_node.val:
+</span><span>...             output += current_node.val
+</span><span>...
+</span><span>...     return output
+</span><span>...
+</span><span>... # let&#39;s test:
+</span><span>... input_string = &quot;This is a test of the node broadcasting system. This is only a test.&quot;
+</span><span>...
+</span><span>... root_node = deserialize(input_string)
+</span><span>... serialized_string = serialize(root_node)
+</span><span>...
+</span><span>... print(f&quot;input_string and serialized_string are the same: {input_string == serialized_string}&quot;)```
+</span><span>...
+</span><span>... Please analyze my code to see if it answers the problem correctly. Verify it will pass all edge cases. Analyze
+</span><span>...  for big O. Finally, please suggest a more optimal way to solve this problem.
+</span></code></pre>
+<hr />
+<p>Your current implementation of <code>serialize</code> and <code>deserialize</code> functions doesn't fully meet the requirements
+of the problem. Let's analyze the issues:</p>
+<h3 id="issues-in-your-implementation">Issues in Your Implementation</h3>
+<ol>
+<li>
+<p><strong>Incorrect Deserialization</strong>:</p>
+<ul>
+<li>Your <code>deserialize</code> function creates a tree with only one node (the root) and sets its left child to a
+single node containing the entire serialized string, which is incorrect.</li>
+</ul>
+</li>
+<li>
+<p><strong>Incorrect Serialization</strong>:</p>
+<ul>
+<li>The <code>serialize</code> function only traverses the left subtree of the tree and collects values in a linear
+fashion. This means it completely ignores the right subtree and also doesn't handle the structure of the
+tree correctly.</li>
+</ul>
+</li>
+<li>
+<p><strong>Edge Cases Not Covered</strong>:</p>
+<ul>
+<li>Your implementation does not cover edge cases such as trees with no nodes, single-node trees, or trees
+with mixed structures (both left and right children).</li>
+</ul>
+</li>
+<li>
+<p><strong>Big O Complexity</strong>:</p>
+<ul>
+<li>Since your traversal is linear in nature, it only handles a subset of the tree structure. The
+complexity cannot be accurately determined from this partial implementation.</li>
+</ul>
+</li>
+</ol>
+<h3 id="correct-approach">Correct Approach</h3>
+<p>A common approach to serialize and deserialize binary trees is to use pre-order or level-order traversal
+methods. Here's an optimal way to solve the problem using pre-order traversal with handling <code>None</code> nodes
+(which represent missing children):</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">left</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">right</span><span style="color:#5fb3b3;">=</span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">= </span><span>val
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span>left
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span>right
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">root</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;) -&gt; </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot;Encodes a tree to a single string.&quot;&quot;&quot;
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#c594c5;">if </span><span style="color:#5fb3b3;">not </span><span>node</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#c594c5;">return </span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">None,</span><span style="color:#5fb3b3;">&quot;
+</span><span>
+</span><span>        </span><span style="color:#5f6364;"># Pre-order traversal (root, left, right)
+</span><span>        </span><span style="color:#c594c5;">return </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">) + &quot;</span><span style="color:#99c794;">,</span><span style="color:#5fb3b3;">&quot; + </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">) + </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">data</span><span style="color:#5fb3b3;">: </span><span style="color:#fac863;">str</span><span style="color:#5fb3b3;">) -&gt; &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;:
+</span><span>    </span><span style="color:#5f6364;">&quot;&quot;&quot;Decodes your encoded data to tree.&quot;&quot;&quot;
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">nodes</span><span style="color:#5fb3b3;">):
+</span><span>        val </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">next</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">nodes</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>        </span><span style="color:#c594c5;">if </span><span>val </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">None</span><span style="color:#5fb3b3;">&quot;:
+</span><span>            </span><span style="color:#c594c5;">return </span><span style="color:#f99157;">None
+</span><span>
+</span><span>        node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">)
+</span><span>        node</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">nodes</span><span style="color:#5fb3b3;">)
+</span><span>        node</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">nodes</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#c594c5;">return </span><span>node
+</span><span>
+</span><span>    </span><span style="color:#5f6364;"># Convert string into an iterator of values
+</span><span>    node_values </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">iter</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">data</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">split</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">,</span><span style="color:#5fb3b3;">&quot;))
+</span><span>    </span><span style="color:#c594c5;">return </span><span style="color:#6699cc;">helper</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node_values</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#5f6364;"># Testing the solution
+</span><span>node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">left</span><span style="color:#5fb3b3;">&#39;, </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;)), </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">right</span><span style="color:#5fb3b3;">&#39;))
+</span><span style="color:#c594c5;">assert </span><span style="color:#6699cc;">deserialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">)).</span><span>left</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">== &#39;</span><span style="color:#99c794;">left.left</span><span style="color:#5fb3b3;">&#39;
+</span></code></pre>
+<h3 id="explanation">Explanation</h3>
+<ol>
+<li>
+<p><strong>Serialization</strong>:</p>
+<ul>
+<li>We use a pre-order traversal to serialize the tree.</li>
+<li>If we encounter a <code>None</code> node, we append <code>"None,"</code> to indicate that there's no child at this position.</li>
+</ul>
+</li>
+<li>
+<p><strong>Deserialization</strong>:</p>
+<ul>
+<li>We split the serialized string by commas and convert it into an iterator for easy traversal.</li>
+<li>We use a recursive helper function to reconstruct the tree from the list of values. If the value is
+<code>"None"</code>, we return <code>None</code>; otherwise, we create a new node with the given value and recursively build its
+left and right children.</li>
+</ul>
+</li>
+<li>
+<p><strong>Big O Complexity</strong>:</p>
+<ul>
+<li>Both serialization and deserialization have a time complexity of (O(n)), where (n) is the number of
+nodes in the tree.</li>
+<li>The space complexity is also (O(n)) due to the recursion stack during traversal.</li>
+</ul>
+</li>
+</ol>
+<p>This implementation covers all edge cases, including empty trees, single-node trees, and complex trees with
+various structures.</p>
+<hr />
+<h1 id="my-response">My response</h1>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>1. **Incorrect Deserialization**:
+</span><span>   - Your `deserialize` function creates a tree with only one node (the root) and sets its left child to a
+</span><span>single node containing the entire serialized string, which is incorrect.
+</span></code></pre>
+<p>The original problem never stated how it should be deserialized. I do not think my approach is incorrect in the context of the problem. It was never stated you could not just stuff all values into a single node. That was easiest, so I did it. It probably is incorrect in the context of computer science though.</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>2. **Incorrect Serialization**:
+</span><span>   - The `serialize` function only traverses the left subtree of the tree and collects values in a linear
+</span><span>fashion. This means it completely ignores the right subtree and also doesn&#39;t handle the structure of the
+</span><span>tree correctly.
+</span></code></pre>
+<p>The example in the problem completely ignored the value of the node to the root's right. I needed to make my code conform to the example. These questions are all weird and contrived. So, I figured my answer could be as well.</p>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>3. **Edge Cases Not Covered**:
+</span><span>   - Your implementation does not cover edge cases such as trees with no nodes, single-node trees, or trees
+</span><span>with mixed structures (both left and right children).
+</span></code></pre>
+<ul>
+<li>Single node trees: excluded due to example. The text <code>root</code> was not returned in the output</li>
+<li>Mixed structure trees: deliberately excluded.</li>
+</ul>
+<p>Tree with no nodes? Let's test...</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#5f6364;"># tree with no nodes
+</span><span>root_node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(&#39;</span><span style="color:#99c794;">root</span><span style="color:#5fb3b3;">&#39;)
+</span><span>output </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">serialize</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root_node</span><span style="color:#5fb3b3;">)
+</span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#c594c5;">f</span><span style="color:#5fb3b3;">&quot;</span><span style="color:#99c794;">Edge case tree with no nodes returned empty string? </span><span style="color:#5fb3b3;">{</span><span style="color:#6699cc;">output </span><span style="color:#5fb3b3;">== &quot;&quot;}&quot;)
+</span></code></pre>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>Edge case tree with no nodes returned empty string? True
+</span></code></pre>
+<p>The Qwen <em>correct approach</em> is making the assumption we will have comma separated values. I do not think that is a safe assumption to make. It also would have led to a single node with all the text in it just like my solution as the input text did not contain commas.</p>
+<h2 id="takeaway">Takeaway</h2>
+<p>While my answer did work, I do need to learn more about the proper computer science way to handle trees of text.</p>
+<h1 id="qwen-2-5-coder-on-handling-text-in-trees">Qwen-2.5-coder on handling text in trees</h1>
+<pre style="background-color:#2b2c2f;color:#cccece;"><code><span>&gt;&gt;&gt; Please explain more about the proper ways to leverage trees in Computer Science. Please also discuss tree traversal. Example code should be in Python.
+</span></code></pre>
+<hr />
+<p>Certainly! Trees are a fundamental data structure in computer science used for a wide range of applications
+due to their hierarchical nature and efficiency in various operations. Let's delve into how trees can be
+leveraged in computer science, including different types of trees and common tree traversal techniques.</p>
+<h3 id="types-of-trees">Types of Trees</h3>
+<ol>
+<li>
+<p><strong>Binary Tree</strong>:</p>
+<ul>
+<li>Each node has at most two children (left and right).</li>
+</ul>
+</li>
+<li>
+<p><strong>Binary Search Tree (BST)</strong>:</p>
+<ul>
+<li>A binary tree where the left child contains only nodes with values less than the parent node, and the
+right child only nodes with values greater than the parent node.</li>
+<li>This property allows for efficient searching, insertion, and deletion operations.</li>
+</ul>
+</li>
+<li>
+<p><strong>Balanced Trees</strong>:</p>
+<ul>
+<li>Examples include AVL Trees and Red-Black Trees.</li>
+<li>These trees maintain a balanced structure to ensure that operations like search, insert, and delete
+remain (O(\log n)).</li>
+</ul>
+</li>
+<li>
+<p><strong>B-Trees/B+ Trees</strong>:</p>
+<ul>
+<li>Used in databases and file systems due to their ability to store large amounts of data efficiently.</li>
+<li>B-Trees have multiple children, allowing for fewer levels in the tree.</li>
+</ul>
+</li>
+<li>
+<p><strong>Heap</strong>:</p>
+<ul>
+<li>A complete binary tree that satisfies the heap property (max-heap or min-heap).</li>
+<li>Used in priority queues and heapsort.</li>
+</ul>
+</li>
+<li>
+<p><strong>Trie</strong>:</p>
+<ul>
+<li>A tree-like data structure used to store a dynamic set of strings.</li>
+<li>Efficient for prefix-based searches.</li>
+</ul>
+</li>
+</ol>
+<h3 id="tree-traversal-techniques">Tree Traversal Techniques</h3>
+<p>Tree traversal involves visiting all nodes in a tree in a specific order. The most common types of tree
+traversals are:</p>
+<ol>
+<li>
+<p><strong>Pre-order Traversal (Root, Left, Right)</strong>:</p>
+<ul>
+<li>Visit the root node first, then recursively visit the left subtree, followed by the right subtree.</li>
+</ul>
+</li>
+<li>
+<p><strong>In-order Traversal (Left, Root, Right)</strong>:</p>
+<ul>
+<li>Recursively visit the left subtree, then visit the root node, and finally visit the right subtree.</li>
+<li>For BSTs, in-order traversal visits nodes in ascending order.</li>
+</ul>
+</li>
+<li>
+<p><strong>Post-order Traversal (Left, Right, Root)</strong>:</p>
+<ul>
+<li>Recursively visit the left subtree, then the right subtree, and finally visit the root node.</li>
+</ul>
+</li>
+<li>
+<p><strong>Level-order Traversal</strong>:</p>
+<ul>
+<li>Visit all nodes level by level from top to bottom.</li>
+<li>Implemented using a queue data structure.</li>
+</ul>
+</li>
+</ol>
+<h3 id="example-code-for-tree-traversals">Example Code for Tree Traversals</h3>
+<p>Let's implement a binary tree and demonstrate the different traversal techniques in Python:</p>
+<pre data-lang="python" style="background-color:#2b2c2f;color:#cccece;" class="language-python "><code class="language-python" data-lang="python"><span style="color:#c594c5;">class </span><span style="color:#fac863;">Node</span><span style="color:#5fb3b3;">:
+</span><span>    </span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">__init__</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">self</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">val</span><span style="color:#5fb3b3;">):
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>val </span><span style="color:#5fb3b3;">= </span><span>val
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+</span><span>        </span><span style="color:#ec5f67;">self</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span style="color:#f99157;">None
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">pre_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span>node </span><span style="color:#5fb3b3;">is not </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">end</span><span style="color:#5fb3b3;">=&#39; &#39;)
+</span><span>        </span><span style="color:#6699cc;">pre_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#6699cc;">pre_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">in_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span>node </span><span style="color:#5fb3b3;">is not </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#6699cc;">in_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">end</span><span style="color:#5fb3b3;">=&#39; &#39;)
+</span><span>        </span><span style="color:#6699cc;">in_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">post_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">node</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span>node </span><span style="color:#5fb3b3;">is not </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#6699cc;">post_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#6699cc;">post_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">end</span><span style="color:#5fb3b3;">=&#39; &#39;)
+</span><span>
+</span><span>
+</span><span style="color:#c594c5;">def </span><span style="color:#6699cc;">level_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">root</span><span style="color:#5fb3b3;">: &#39;</span><span style="color:#99c794;">Node</span><span style="color:#5fb3b3;">&#39;):
+</span><span>    </span><span style="color:#c594c5;">if </span><span>root </span><span style="color:#5fb3b3;">is </span><span style="color:#f99157;">None</span><span style="color:#5fb3b3;">:
+</span><span>        </span><span style="color:#c594c5;">return
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">from </span><span>collections </span><span style="color:#c594c5;">import </span><span>deque
+</span><span>    queue </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">deque</span><span style="color:#5fb3b3;">([</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">])
+</span><span>
+</span><span>    </span><span style="color:#c594c5;">while </span><span>queue</span><span style="color:#5fb3b3;">:
+</span><span>        node </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">popleft</span><span style="color:#5fb3b3;">()
+</span><span>        </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">val</span><span style="color:#5fb3b3;">, </span><span style="color:#f99157;">end</span><span style="color:#5fb3b3;">=&#39; &#39;)
+</span><span>
+</span><span>        </span><span style="color:#c594c5;">if </span><span>node</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">left</span><span style="color:#5fb3b3;">)
+</span><span>        </span><span style="color:#c594c5;">if </span><span>node</span><span style="color:#5fb3b3;">.</span><span>right</span><span style="color:#5fb3b3;">:
+</span><span>            </span><span style="color:#6699cc;">queue</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">append</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">node</span><span style="color:#5fb3b3;">.</span><span style="color:#6699cc;">right</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>
+</span><span style="color:#5f6364;"># Example usage:
+</span><span style="color:#c594c5;">if </span><span>__name__ </span><span style="color:#5fb3b3;">== &quot;</span><span style="color:#99c794;">__main__</span><span style="color:#5fb3b3;">&quot;:
+</span><span>    </span><span style="color:#5f6364;"># Constructing the following tree:
+</span><span>    </span><span style="color:#5f6364;">#     1
+</span><span>    </span><span style="color:#5f6364;">#    / \
+</span><span>    </span><span style="color:#5f6364;">#   2   3
+</span><span>    </span><span style="color:#5f6364;">#  / \   \
+</span><span>    </span><span style="color:#5f6364;"># 4   5   6
+</span><span>
+</span><span>    root </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">1</span><span style="color:#5fb3b3;">)
+</span><span>    root</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">2</span><span style="color:#5fb3b3;">)
+</span><span>    root</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">3</span><span style="color:#5fb3b3;">)
+</span><span>    root</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">.</span><span>left </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">4</span><span style="color:#5fb3b3;">)
+</span><span>    root</span><span style="color:#5fb3b3;">.</span><span>left</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">5</span><span style="color:#5fb3b3;">)
+</span><span>    root</span><span style="color:#5fb3b3;">.</span><span>right</span><span style="color:#5fb3b3;">.</span><span>right </span><span style="color:#5fb3b3;">= </span><span style="color:#6699cc;">Node</span><span style="color:#5fb3b3;">(</span><span style="color:#f99157;">6</span><span style="color:#5fb3b3;">)
+</span><span>
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;</span><span style="color:#99c794;">Pre-order Traversal:</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">pre_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">)  </span><span style="color:#5f6364;"># Output: 1 2 4 5 3 6
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;\n</span><span style="color:#99c794;">In-order Traversal:</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">in_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">)   </span><span style="color:#5f6364;"># Output: 4 2 5 1 3 6
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;\n</span><span style="color:#99c794;">Post-order Traversal:</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">post_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;"># Output: 4 5 2 6 3 1
+</span><span>    </span><span style="color:#6699cc;">print</span><span style="color:#5fb3b3;">(&quot;\n</span><span style="color:#99c794;">Level-order Traversal:</span><span style="color:#5fb3b3;">&quot;)
+</span><span>    </span><span style="color:#6699cc;">level_order_traversal</span><span style="color:#5fb3b3;">(</span><span style="color:#6699cc;">root</span><span style="color:#5fb3b3;">) </span><span style="color:#5f6364;"># Output: 1 2 3 4 5 6
+</span></code></pre>
+<h3 id="explanation-of-the-code">Explanation of the Code</h3>
+<ol>
+<li>
+<p><strong>Pre-order Traversal</strong>:</p>
+<ul>
+<li>Visits the root node first, then recursively visits the left and right subtrees.</li>
+<li>Example output for the given tree: <code>1 2 4 5 3 6</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>In-order Traversal</strong>:</p>
+<ul>
+<li>Recursively visits the left subtree, then the root node, and finally the right subtree.</li>
+<li>For a BST, this will visit nodes in ascending order.</li>
+<li>Example output for the given tree: <code>4 2 5 1 3 6</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Post-order Traversal</strong>:</p>
+<ul>
+<li>Recursively visits the left and right subtrees before visiting the root node.</li>
+<li>Useful for deleting trees (delete children first).</li>
+<li>Example output for the given tree: <code>4 5 2 6 3 1</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Level-order Traversal</strong>:</p>
+<ul>
+<li>Visits nodes level by level from top to bottom using a queue.</li>
+<li>Useful in breadth-first search algorithms.</li>
+<li>Example output for the given tree: <code>1 2 3 4 5 6</code>.</li>
+</ul>
+</li>
+</ol>
+<h3 id="applications-of-trees">Applications of Trees</h3>
+<ul>
+<li>
+<p><strong>Binary Search Trees (BSTs)</strong>:</p>
+<ul>
+<li>Efficient searching, insertion, and deletion operations with average time complexity (O(\log n)).</li>
+</ul>
+</li>
+<li>
+<p><strong>Heaps</strong>:</p>
+<ul>
+<li>Used in priority queues and implementing efficient sorting algorithms like heapsort.</li>
+</ul>
+</li>
+<li>
+<p><strong>Balanced Trees (AVL Trees, Red-Black Trees)</strong>:</p>
+<ul>
+<li>Maintain balance to ensure efficient operations even in the worst case ((O(\log n))).</li>
+</ul>
+</li>
+<li>
+<p><strong>Tries</strong>:</p>
+<ul>
+<li>Efficient prefix-based searches for strings.</li>
+</ul>
+</li>
+<li>
+<p><strong>Expression Trees</strong>:</p>
+<ul>
+<li>Used to represent expressions and evaluate them efficiently.</li>
+</ul>
+</li>
+</ul>
+<h3 id="conclusion">Conclusion</h3>
+<p>Trees are a versatile data structure with numerous applications across various domains of computer science.
+Understanding different types of trees and traversal techniques is crucial for designing efficient
+algorithms and data management systems. The examples provided demonstrate how to implement and use these
+traversals in Python, which can be adapted to more complex tree structures and applications.</p>
+<hr />
+
+  </div><div class="giscus comments"></div>
+<script src="https://giscus.app/client.js"
+        data-repo="bbustin&#x2F;bbustin"
+        data-repo-id="R_kgDONz6DGA"
+        data-category="Announcements"
+        data-category-id="DIC_kwDONz6DGM4Cnh16"
+        data-mapping="pathname"
+        data-strict="false"
+        data-reactions-enabled="true"
+        data-emit-metadata="false"
+        data-input-position="bottom"
+        data-theme="dark"
+        data-lang="en"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+</script>
+
+</article>
+
+    </main>
+  </div>
+  <footer>
+    <a href="https://github.com/bbustin"><i class="svg-icon icon-github-circled"></i></a>
+    <a href="https://www.linkedin.com/in/brianbustin"><i class="svg-icon icon-linkedin"></i></a>
+    <a href="https://youtube.com/@BustinTech"><i class="svg-icon icon-youtube"></i></a>
+    <a href="/atom.xml"><i class="svg-icon icon-rss"></i></a>
+<span class="copyright">&copy; 2025 Brian Bustin</span>
+</footer>
+</body>
+
+</html>
